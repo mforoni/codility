@@ -21,6 +21,10 @@ public class CyclicRotationTest {
 		K = 42;
 		cyclicRotation.solution(A, K);
 		assertArrayEquals(new int[] { 3, 5, 1, 1, 2 }, A);
+		A = new int[0] ;
+		K = 5;
+		cyclicRotation.solution(A, K);
+		assertArrayEquals(new int[] {}, A);
 	}
 
 	@Test

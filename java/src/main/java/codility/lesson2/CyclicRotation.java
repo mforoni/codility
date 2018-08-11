@@ -44,7 +44,7 @@ package codility.lesson2;
 final class CyclicRotation {
 
 	public int[] solution(int[] A, int K) {
-		if (K > 0) {
+		if (A.length > 0 && K > 0) {
 			final int times = K > A.length ? K % A.length : K;  
 			for (int i = 0; i < times; i++) {
 				rotate(A);
