@@ -9,15 +9,15 @@ public final class MoreInts {
 	private MoreInts() {
 		throw new AssertionError();
 	}
-	
+
 	public static final int newRandom(final int min, final int max) {
-		return ThreadLocalRandom.current().nextInt(min, max+1);
+		return ThreadLocalRandom.current().nextInt(min, max + 1);
 	}
 
 	public static final int[] newRandomArray(final int n, final int min, final int max) {
 		final int[] a = new int[n];
 		for (int i = 0; i < n; i++) {
-			a[i] = ThreadLocalRandom.current().nextInt(min, max+1);
+			a[i] = ThreadLocalRandom.current().nextInt(min, max + 1);
 		}
 		return a;
 	}
@@ -31,6 +31,14 @@ public final class MoreInts {
 		return sum;
 	}
 
+	public static int indexOf(final int[] array, final int target) {
+		return indexOf(array, target, 0, array.length - 1);
+	}
+
+	public static int indexOf(final int[] array, final int target, final int start) {
+		return indexOf(array, target, start, array.length - 1);
+	}
+
 	public static int indexOf(final int[] array, final int target, final int from, final int end) {
 		Preconditions.checkArgument(from <= end);
 		Preconditions.checkArgument(end < array.length);
@@ -40,5 +48,11 @@ public final class MoreInts {
 			}
 		}
 		return -1;
+	}
+
+	public static void swap(final int[] A, int i, int j) {
+		final int tmp = A[i];
+		A[i] = A[j];
+		A[j] = tmp;
 	}
 }
