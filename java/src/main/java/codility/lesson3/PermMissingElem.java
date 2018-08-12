@@ -35,10 +35,15 @@ package codility.lesson3;
  */
 final class PermMissingElem {
 
-	/**
-	 * Sum(1...n+1) = Sum(1...n) + n+1
-	 * 
-	 * Time complexity is O(n) Space complexity is O(1)
+	/** 
+	 * Time complexity is O(n)<br>
+	 * Space complexity is O(1)
+	 * <p>
+	 * Idea: Sum(1,...,n+1) = 1 + ... + x + ... + n + n+1 = x + Sum(a in A)
+	 * <p>
+	 * Therefore:
+	 * <p>
+	 * x = Sum(1,...,n+1) - Sum(a in A)
 	 * 
 	 * @param A
 	 * @return

@@ -36,6 +36,15 @@ package codility.lesson3;
  */
 final class FrogJump {
 
+	/**
+	 * Time complexity is O(1)<br>
+	 * Space complexity is O(1)
+	 * 
+	 * @param X
+	 * @param Y
+	 * @param D
+	 * @return
+	 */
 	public int solution(int X, int Y, int D) {
 		return (int) Math.ceil((double) (Y - X) / D);
 	}
