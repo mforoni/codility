@@ -9,11 +9,15 @@ public final class MoreInts {
 	private MoreInts() {
 		throw new AssertionError();
 	}
+	
+	public static final int newRandom(final int min, final int max) {
+		return ThreadLocalRandom.current().nextInt(min, max+1);
+	}
 
 	public static final int[] newRandomArray(final int n, final int min, final int max) {
 		final int[] a = new int[n];
 		for (int i = 0; i < n; i++) {
-			a[i] = ThreadLocalRandom.current().nextInt(min, max);
+			a[i] = ThreadLocalRandom.current().nextInt(min, max+1);
 		}
 		return a;
 	}

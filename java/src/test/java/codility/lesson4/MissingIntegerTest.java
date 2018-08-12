@@ -2,8 +2,6 @@ package codility.lesson4;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import org.junit.Test;
 
 import com.google.common.primitives.Ints;
@@ -36,8 +34,8 @@ public class MissingIntegerTest {
 	public void testMassive() {
 		final int ntest = 200;
 		for (int t = 0; t < ntest; t++) {
-			final int n = ThreadLocalRandom.current().nextInt(1, N + 1);
-			final int[] a = MoreInts.newRandomArray(n, MIN, MAX + 1);
+			final int n = MoreInts.newRandom(1, N);
+			final int[] a = MoreInts.newRandomArray(n, MIN, MAX);
 			final int[] b = a.clone();
 			final int sol1 = MissingInteger.withHashSet(a);
 			final int sol2 = MissingInteger.sortAndFind(b);

@@ -2,8 +2,6 @@ package codility.lesson3;
 
 import static org.junit.Assert.assertEquals;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 import org.junit.Test;
 
 import com.google.common.primitives.Ints;
@@ -55,8 +53,8 @@ public class TapeEquilibriumTest {
 		final TapeEquilibrium tapeEquilibrium = new TapeEquilibrium();
 		final int ntest = 20000;
 		for (int t = 0; t < ntest; t++) {
-			final int n = ThreadLocalRandom.current().nextInt(MIN_N, MAX_N + 1);
-			final int[] a = MoreInts.newRandomArray(n, MIN_INT, MAX_INT + 1);
+			final int n = MoreInts.newRandom(MIN_N, MAX_N);
+			final int[] a = MoreInts.newRandomArray(n, MIN_INT, MAX_INT);
 			final int sol1 = TapeEquilibrium.exhausitveSearch(a);
 			final int sol2 = tapeEquilibrium.solution(a);
 			if (sol1 != sol2) {
