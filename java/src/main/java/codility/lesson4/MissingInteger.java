@@ -88,5 +88,5 @@ public class MissingInteger {
 	}
 
 	// TODO optimized withHashSet: use an array P of size N where P[i] = 1 if i is
-	// present in array A
+	// present in array A, the elements greater than N can be skipped
 }
