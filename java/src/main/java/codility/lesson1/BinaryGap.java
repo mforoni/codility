@@ -39,13 +39,14 @@ package codility.lesson1;
 final class BinaryGap {
 
 	/**
-	 * Time complexity should be O(logN) Space complexity is O(1)
+	 * Time complexity should be O(log(N))<br>
+	 * Space complexity is O(1)
 	 * 
 	 * @param N
 	 * @return
 	 */
 	public int solution(int N) {
-		final String s = Integer.toBinaryString(N); // seems to have O(logN) time complexity
+		final String s = Integer.toBinaryString(N); // seems to have O(log(N)) time complexity
 		final int end = lastIndexOf(s, '1');
 		int counter = 0;
 		int max = 0;

@@ -69,7 +69,7 @@ final class MissingInteger {
 	}
 
 	/**
-	 * Time complexity is O(N*logN)<br>
+	 * Time complexity is O(N*log(N))<br>
 	 * Space complexity is O(1) - destroy the input
 	 * 
 	 * @param A
