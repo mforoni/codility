@@ -36,10 +36,36 @@ import java.util.Set;
  * @author Foroni Marco
  *
  */
-public class MissingInteger {
-	
+final class MissingInteger {
+
+	/**
+	 * Time complexity is O(N)<br>
+	 * Space complexity is O(N)
+	 * <p>
+	 * Idea: use an array P of size N where P[i] = 1 if i is present in array A.
+	 * <p>
+	 * Note:<br>
+	 * the integers in A greater than N can be skipped<br>
+	 * the integers in A lesser than 0 can be skipped
+	 * 
+	 * @param A
+	 * @return
+	 */
 	public int solution(final int[] A) {
-		return withHashSet(A);
+		final int N = A.length;
+		final int[] P = new int[N];
+		for (int a : A) {
+			if (a > 0 && a <= N) {
+				P[a - 1] = 1;
+			}
+		}
+		int x = 0;
+		for (; x < P.length; x++) {
+			if (P[x] == 0) {
+				return x + 1;
+			}
+		}
+		return x + 1;
 	}
 
 	/**
@@ -87,6 +113,4 @@ public class MissingInteger {
 		// return x;
 	}
 
-	// TODO optimized withHashSet: use an array P of size N where P[i] = 1 if i is
-	// present in array A, the elements greater than N can be skipped
 }

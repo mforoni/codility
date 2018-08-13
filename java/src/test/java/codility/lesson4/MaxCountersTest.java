@@ -18,6 +18,7 @@ public class MaxCountersTest {
 	public void testSolution() {
 		final MaxCounters maxCounters = new MaxCounters();
 		assertArrayEquals(SOL1, maxCounters.solution(N1, A1));
+		assertArrayEquals(SOL2, maxCounters.solution(N2, A2));
 	}
 
 	@Test
