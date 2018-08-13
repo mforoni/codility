@@ -3,6 +3,7 @@ package codility.util;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.google.common.base.Preconditions;
+import com.google.common.primitives.Ints;
 
 public final class MoreInts {
 
@@ -31,6 +32,17 @@ public final class MoreInts {
 		return sum;
 	}
 
+	public static final int min(final int[] A, final int start, final int end) {
+		assert (start <= end && end < A.length);
+		int min = Integer.MAX_VALUE;
+		for (int i = start; i <= end; i++) {
+			if (A[i] < min) {
+				min = A[i];
+			}
+		}
+		return min;
+	}
+
 	public static int indexOf(final int[] array, final int target) {
 		return indexOf(array, target, 0, array.length - 1);
 	}
@@ -54,5 +66,9 @@ public final class MoreInts {
 		final int tmp = A[i];
 		A[i] = A[j];
 		A[j] = tmp;
+	}
+
+	public static String toString(final int[] A) {
+		return Ints.join(",", A);
 	}
 }
