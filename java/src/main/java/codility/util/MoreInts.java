@@ -32,15 +32,37 @@ public final class MoreInts {
 		return sum;
 	}
 
-	public static final int min(final int[] A, final int start, final int end) {
+	public static int min(final int[] A) {
+		return min(A, 0, A.length - 1);
+	}
+
+	public static int min(final int[] A, final int start, final int end) {
+		return A[minIndex(A, start, end)];
+	}
+
+	public static int minIndex(final int[] A) {
+		return minIndex(A, 0, A.length - 1);
+	}
+
+	public static int minIndex(final int[] A, final int start, final int end) {
 		assert (start <= end && end < A.length);
 		int min = Integer.MAX_VALUE;
+		int minIndex = -1;
 		for (int i = start; i <= end; i++) {
 			if (A[i] < min) {
 				min = A[i];
+				minIndex = i;
 			}
 		}
-		return min;
+		return minIndex;
+	}
+
+	public static int max(final int a, final int b, final int c) {
+		if (a < b) {
+			return c > b ? c : b;
+		} else {
+			return b > a ? b : a;
+		}
 	}
 
 	public static int indexOf(final int[] array, final int target) {
