@@ -11,19 +11,27 @@ public final class MoreInts {
 		throw new AssertionError();
 	}
 
-	public static final int newRandom(final int min, final int max) {
+	public static int newRandom(final int min, final int max) {
 		return ThreadLocalRandom.current().nextInt(min, max + 1);
 	}
 
-	public static final int[] newRandomArray(final int n, final int min, final int max) {
+	public static int[] newRandomArray(final int n, final int min, final int max) {
 		final int[] a = new int[n];
 		for (int i = 0; i < n; i++) {
 			a[i] = ThreadLocalRandom.current().nextInt(min, max + 1);
 		}
 		return a;
 	}
+	
+	public static int[] prefixSums(final int[] A) {
+		final int[] sums = new int[A.length];
+		for (int i = 0; i < A.length; i++) {
+			sums[i] = i == 0 ? A[i] : sums[i - 1] + A[i];
+		}
+		return sums;
+	}
 
-	public static final int sum(final int[] A, final int start, final int end) {
+	public static int sum(final int[] A, final int start, final int end) {
 		assert (start <= end && end < A.length);
 		int sum = 0;
 		for (int i = start; i <= end; i++) {
@@ -33,7 +41,7 @@ public final class MoreInts {
 	}
 
 	public static int min(final int[] A) {
-		return min(A, 0, A.length - 1);
+		return A[minIndex(A, 0, A.length - 1)];
 	}
 
 	public static int min(final int[] A, final int start, final int end) {
@@ -55,6 +63,31 @@ public final class MoreInts {
 			}
 		}
 		return minIndex;
+	}
+	
+	public static int max(final int[] A) {
+		return A[maxIndex(A, 0, A.length - 1)];
+	}
+
+	public static int max(final int[] A, final int start, final int end) {
+		return A[maxIndex(A, start, end)];
+	}
+
+	public static int maxIndex(final int[] A) {
+		return maxIndex(A, 0, A.length - 1);
+	}
+
+	public static int maxIndex(final int[] A, final int start, final int end) {
+		assert (start <= end && end < A.length);
+		int max = Integer.MIN_VALUE;
+		int maxIndex = -1;
+		for (int i = start; i <= end; i++) {
+			if (A[i] > max) {
+				max = A[i];
+				maxIndex = i;
+			}
+		}
+		return maxIndex;
 	}
 
 	public static int max(final int a, final int b, final int c) {
