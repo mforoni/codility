@@ -38,8 +38,10 @@ import codility.util.MoreInts;
  * <p>
  * Assume that:
  * <p>
- * N is an integer within the range [2..100,000]; each element of array A is an
- * integer within the range [−10,000..10,000]. Complexity:
+ * N is an integer within the range [2..100,000];<br>
+ * each element of array A is an integer within the range [−10,000..10,000].
+ * <p>
+ * Complexity:
  * <p>
  * expected worst-case time complexity is O(N);<br>
  * expected worst-case space complexity is O(N) (not counting the storage
@@ -74,11 +76,10 @@ final class MinAvgTwoSlice {
 		lenMinAvg[N - 2] = 2;
 		for (int i = N - 3; i >= 0; i--) {
 			final double a = (minAvg[i + 1] * lenMinAvg[i + 1] + A[i]) / (lenMinAvg[i + 1] + 1);
-			final double b = (A[i] + A[i + 1]) / 2;
+			final double b = ((double) A[i] + (double) A[i + 1]) / 2;
 			if (b <= a) {
 				// crucial: for a==b we need to prioritize the slice with lesser length because
-				// it is
-				// more "minimizable"
+				// it is "more minimizable"
 				minAvg[i] = b;
 				lenMinAvg[i] = 2;
 			} else {
@@ -140,7 +141,8 @@ final class MinAvgTwoSlice {
 					min = avg;
 					start = s;
 				}
-//				System.out.println(String.format("s=%s, e=%s, avg=%s, min=%s", s, e, avg, min));
+				// System.out.println(String.format("s=%s, e=%s, avg=%s, min=%s", s, e, avg,
+				// min));
 			}
 		}
 		return start;
