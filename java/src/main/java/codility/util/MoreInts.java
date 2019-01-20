@@ -23,67 +23,67 @@ public final class MoreInts {
 		return a;
 	}
 	
-	public static int[] prefixSums(final int[] A) {
-		final int[] sums = new int[A.length];
-		for (int i = 0; i < A.length; i++) {
-			sums[i] = i == 0 ? A[i] : sums[i - 1] + A[i];
+	public static int[] prefixSums(final int[] array) {
+		final int[] sums = new int[array.length];
+		for (int i = 0; i < array.length; i++) {
+			sums[i] = i == 0 ? array[i] : sums[i - 1] + array[i];
 		}
 		return sums;
 	}
 
-	public static int sum(final int[] A, final int start, final int end) {
-		assert (start <= end && end < A.length);
+	public static int sum(final int[] array, final int start, final int end) {
+		assert (start <= end && end < array.length);
 		int sum = 0;
 		for (int i = start; i <= end; i++) {
-			sum += A[i];
+			sum += array[i];
 		}
 		return sum;
 	}
 
-	public static int min(final int[] A) {
-		return A[minIndex(A, 0, A.length - 1)];
+	public static int min(final int[] array) {
+		return array[minIndex(array, 0, array.length - 1)];
 	}
 
-	public static int min(final int[] A, final int start, final int end) {
-		return A[minIndex(A, start, end)];
+	public static int min(final int[] array, final int start, final int end) {
+		return array[minIndex(array, start, end)];
 	}
 
-	public static int minIndex(final int[] A) {
-		return minIndex(A, 0, A.length - 1);
+	public static int minIndex(final int[] array) {
+		return minIndex(array, 0, array.length - 1);
 	}
 
-	public static int minIndex(final int[] A, final int start, final int end) {
-		assert (start <= end && end < A.length);
+	public static int minIndex(final int[] array, final int start, final int end) {
+		assert (start <= end && end < array.length);
 		int min = Integer.MAX_VALUE;
 		int minIndex = -1;
 		for (int i = start; i <= end; i++) {
-			if (A[i] < min) {
-				min = A[i];
+			if (array[i] < min) {
+				min = array[i];
 				minIndex = i;
 			}
 		}
 		return minIndex;
 	}
 	
-	public static int max(final int[] A) {
-		return A[maxIndex(A, 0, A.length - 1)];
+	public static int max(final int[] array) {
+		return array[maxIndex(array, 0, array.length - 1)];
 	}
 
-	public static int max(final int[] A, final int start, final int end) {
-		return A[maxIndex(A, start, end)];
+	public static int max(final int[] array, final int start, final int end) {
+		return array[maxIndex(array, start, end)];
 	}
 
-	public static int maxIndex(final int[] A) {
-		return maxIndex(A, 0, A.length - 1);
+	public static int maxIndex(final int[] array) {
+		return maxIndex(array, 0, array.length - 1);
 	}
 
-	public static int maxIndex(final int[] A, final int start, final int end) {
-		assert (start <= end && end < A.length);
+	public static int maxIndex(final int[] array, final int start, final int end) {
+		assert (start <= end && end < array.length);
 		int max = Integer.MIN_VALUE;
 		int maxIndex = -1;
 		for (int i = start; i <= end; i++) {
-			if (A[i] > max) {
-				max = A[i];
+			if (array[i] > max) {
+				max = array[i];
 				maxIndex = i;
 			}
 		}
@@ -116,14 +116,24 @@ public final class MoreInts {
 		}
 		return -1;
 	}
-
-	public static void swap(final int[] A, int i, int j) {
-		final int tmp = A[i];
-		A[i] = A[j];
-		A[j] = tmp;
+	
+	public static int occurrences(final int[] array, int key) {
+		int counter = 0;
+		for (int a : array) {
+			if (a ==key) {
+				counter++;
+			}
+		}
+		return counter;
 	}
 
-	public static String toString(final int[] A) {
-		return Ints.join(",", A);
+	public static void swap(final int[] array, int i, int j) {
+		final int tmp = array[i];
+		array[i] = array[j];
+		array[j] = tmp;
+	}
+
+	public static String toString(final int[] array) {
+		return Ints.join(",", array);
 	}
 }
