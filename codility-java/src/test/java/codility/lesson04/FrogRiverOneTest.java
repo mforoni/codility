@@ -1,11 +1,16 @@
 package codility.lesson04;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
+import codility.util.MoreInts;
+import com.google.common.primitives.Ints;
 import org.junit.Test;
 
+import static org.junit.Assert.*;
+
 public class FrogRiverOneTest {
+
+	private static final int NUM_TESTS = 10;
+	private static final int MIN_N_AND_X = 1;
+	private static final int MAX_N_AND_X = 100_000;
 
 	private static final int[] A1 = { 1, 3, 1, 4, 2, 3, 5, 4 };
 	private static final int X1 = 5;
@@ -58,10 +63,42 @@ public class FrogRiverOneTest {
 	@Test
 	public void testEnsureSoundness() {
 		assertTrue(FrogRiverOne.ensureSoundness(X1, A1, SOL1));
-		assertTrue(FrogRiverOne.ensureSoundness(X2, A2, SOL2));
+		assertFalse(FrogRiverOne.ensureSoundness(X2, A2, SOL2));
 		assertTrue(FrogRiverOne.ensureSoundness(X3, A3, SOL3));
 		assertTrue(FrogRiverOne.ensureSoundness(X4, A4, SOL4));
 		assertTrue(FrogRiverOne.ensureSoundness(X5, A5, SOL5));
 	}
 
+	@Test
+	public void testSolutionRandomInput() {
+		final FrogRiverOne frogRiverOne = new FrogRiverOne();
+		for (int t = 0; t < NUM_TESTS; t++) {
+			final int x = MoreInts.newRandom(MIN_N_AND_X, MAX_N_AND_X);
+			final int n = MoreInts.newRandom(x, MAX_N_AND_X);
+			final int[] a = MoreInts.newRandomArray(n, 1, x);
+			final int sol1 = FrogRiverOne.exhaustiveSearch(x, a);
+			final int sol2 = frogRiverOne.solution(x, a);
+			if (sol1 != sol2) {
+				System.out.println("A = " + Ints.join(", ", a));
+				System.out.println("X = " + x);
+			}
+			assertEquals(sol1, sol2);
+		}
+	}
+
+	@Test
+	public void testEfficientSolutionRandomInput() {
+		for (int t = 0; t < NUM_TESTS; t++) {
+			final int x = MoreInts.newRandom(MIN_N_AND_X, MAX_N_AND_X);
+			final int n = MoreInts.newRandom(x, MAX_N_AND_X);
+			final int[] a = MoreInts.newRandomArray(n, 1, x);
+			final int sol1 = FrogRiverOne.exhaustiveSearch(x, a);
+			final int sol2 = FrogRiverOne.efficientSolution(x, a);
+			if (sol1 != sol2) {
+				System.out.println("A = " + Ints.join(", ", a));
+				System.out.println("X = " + x);
+			}
+			assertEquals(sol1, sol2);
+		}
+	}
 }

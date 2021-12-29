@@ -42,10 +42,10 @@ public class TapeEquilibriumTest {
 
 	@Test
 	public void testExaustiveSearch() {
-		assertEquals(SOL1, TapeEquilibrium.exhausitveSearch(A1));
-		assertEquals(SOL2, TapeEquilibrium.exhausitveSearch(A2));
-		assertEquals(SOL3, TapeEquilibrium.exhausitveSearch(A3));
-		assertEquals(SOL4, TapeEquilibrium.exhausitveSearch(A4));
+		assertEquals(SOL1, TapeEquilibrium.exhaustiveSearch(A1));
+		assertEquals(SOL2, TapeEquilibrium.exhaustiveSearch(A2));
+		assertEquals(SOL3, TapeEquilibrium.exhaustiveSearch(A3));
+		assertEquals(SOL4, TapeEquilibrium.exhaustiveSearch(A4));
 
 	}
 	
@@ -55,7 +55,7 @@ public class TapeEquilibriumTest {
 		for (int t = 0; t < NUM_TESTS; t++) {
 			final int n = MoreInts.newRandom(MIN_N, MAX_N);
 			final int[] a = MoreInts.newRandomArray(n, MIN_INT, MAX_INT);
-			final int sol1 = TapeEquilibrium.exhausitveSearch(a);
+			final int sol1 = TapeEquilibrium.exhaustiveSearch(a);
 			final int sol2 = tapeEquilibrium.solution(a);
 			if (sol1 != sol2) {
 				System.out.println(Ints.join(", ", a));
@@ -66,11 +66,10 @@ public class TapeEquilibriumTest {
 	
 	@Test
 	public void testSolutionWithConstantSpaceRandomInput() {
-		final TapeEquilibrium tapeEquilibrium = new TapeEquilibrium();
 		for (int t = 0; t < NUM_TESTS; t++) {
 			final int n = MoreInts.newRandom(MIN_N, MAX_N);
 			final int[] a = MoreInts.newRandomArray(n, MIN_INT, MAX_INT);
-			final int sol1 = TapeEquilibrium.exhausitveSearch(a);
+			final int sol1 = TapeEquilibrium.exhaustiveSearch(a);
 			final int sol2 = TapeEquilibrium.solutionWithConstantSpace(a);
 			if (sol1 != sol2) {
 				System.out.println(Ints.join(", ", a));

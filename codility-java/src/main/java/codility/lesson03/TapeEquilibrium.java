@@ -88,7 +88,7 @@ final class TapeEquilibrium {
 	 * @param A
 	 * @return
 	 */
-	public static int exhausitveSearch(final int[] A) {
+	public static int exhaustiveSearch(final int[] A) {
 		int min = Integer.MAX_VALUE;
 		for (int i = 0; i < A.length - 1; i++) {
 			int sumA = MoreInts.sum(A, 0, i);

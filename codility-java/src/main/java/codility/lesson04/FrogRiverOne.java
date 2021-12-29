@@ -1,6 +1,7 @@
 package codility.lesson04;
 
 import codility.util.MoreInts;
+import com.google.common.primitives.Ints;
 
 /**
  * A small frog wants to get to the other side of a river. The frog is initially
@@ -58,7 +59,7 @@ import codility.util.MoreInts;
 final class FrogRiverOne {
 
 	/**
-	 * Time complexity is O(N)?
+	 * Time complexity is O(X * N)
 	 * Space complexity is O(X + N)
 	 * 
 	 * @param X
@@ -92,7 +93,8 @@ final class FrogRiverOne {
 	 * @return
 	 */
     public static int efficientSolution(int X, int[] A) {
-        // earliestTime[k] = earliest time for leaf to appear in position k
+		// System.out.println("X = " + X + ", A = " + Ints.join(", ", A));
+        // earliestTime[k] = the earliest time for a leaf to appear in position k
         final int[] earliestTime = new int[X + 1];
         for (int i = 1; i <= X; i++) {
             earliestTime[i] = -1;
@@ -102,12 +104,16 @@ final class FrogRiverOne {
                 earliestTime[A[i]] = i;
             }
         }
+		// System.out.println(Ints.join(", ", earliestTime));
+		int max = -1;
         for (int i = 1; i <= X; i++) {
             if (earliestTime[i] == -1) {
                 return -1;
-            }
+            } else {
+				max = Math.max(max, earliestTime[i]);
+			}
         }
-        return earliestTime[X];
+        return max;
     }
 	
 
@@ -127,7 +133,6 @@ final class FrogRiverOne {
 				return -1;
 			}
 			firstTime = Math.max(firstTime, indexOf);
-
 		}
 		return firstTime;
 	}
@@ -145,14 +150,14 @@ final class FrogRiverOne {
 	 * @return
 	 */
 	public static boolean ensureSoundness(final int X, final int[] A, final int sol) {
-		return containsPermutation(A, X, sol + 1);
+		return containsPermutation(A, X, sol);
 	}
 
 	public static boolean containsPermutation(final int[] A, final int N, final int end) {
 		assert (end < A.length);
 		final boolean[] numbers = new boolean[N + 1];
 		numbers[0] = true;
-		for (int i = 1; i <= end; i++) {
+		for (int i = 1; i <= N; i++) {
 			numbers[i] = false;
 		}
 		for (int i = 0; i <= end; i++) {
@@ -165,5 +170,4 @@ final class FrogRiverOne {
 		}
 		return true;
 	}
-
 }
