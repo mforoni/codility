@@ -40,7 +40,7 @@ final class BinaryGap {
 
 	/**
 	 * Time complexity should be O(log(N))<br>
-	 * Space complexity is O(1)
+	 * Space complexity is O(log(N))
 	 * 
 	 * @param N
 	 * @return

@@ -5,8 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import codility.lesson04.FrogRiverOne;
-
 public class FrogRiverOneTest {
 
 	private static final int[] A1 = { 1, 3, 1, 4, 2, 3, 5, 4 };
@@ -47,7 +45,17 @@ public class FrogRiverOneTest {
 		assertEquals(SOL4, FrogRiverOne.exhaustiveSearch(X4, A4));
 		assertEquals(SOL5, FrogRiverOne.exhaustiveSearch(X5, A5));
 	}
+	
+	@Test
+	public void testEfficientSolution() {
+		assertEquals(SOL1, FrogRiverOne.efficientSolution(X1, A1));
+		assertEquals(SOL2, FrogRiverOne.efficientSolution(X2, A2));
+		assertEquals(SOL3, FrogRiverOne.efficientSolution(X3, A3));
+		assertEquals(SOL4, FrogRiverOne.efficientSolution(X4, A4));
+		assertEquals(SOL5, FrogRiverOne.efficientSolution(X5, A5));
+	}
 
+	@Test
 	public void testEnsureSoundness() {
 		assertTrue(FrogRiverOne.ensureSoundness(X1, A1, SOL1));
 		assertTrue(FrogRiverOne.ensureSoundness(X2, A2, SOL2));

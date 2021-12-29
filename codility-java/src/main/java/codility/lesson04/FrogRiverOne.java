@@ -58,8 +58,8 @@ import codility.util.MoreInts;
 final class FrogRiverOne {
 
 	/**
-	 * Time complexity is O(N)
-	 * Space complexity is O(X)=O(N)
+	 * Time complexity is O(N)?
+	 * Space complexity is O(X + N)
 	 * 
 	 * @param X
 	 * @param A
@@ -82,6 +82,33 @@ final class FrogRiverOne {
 		}
 		return -1;
 	}
+	
+	/**
+	 * Time complexity is O(X + N)
+	 * Space complexity is O(X + N)
+	 * 
+	 * @param X
+	 * @param A
+	 * @return
+	 */
+    public static int efficientSolution(int X, int[] A) {
+        // earliestTime[k] = earliest time for leaf to appear in position k
+        final int[] earliestTime = new int[X + 1];
+        for (int i = 1; i <= X; i++) {
+            earliestTime[i] = -1;
+        }
+        for (int i = 0; i < A.length; i++) {
+            if (earliestTime[A[i]] == -1) {
+                earliestTime[A[i]] = i;
+            }
+        }
+        for (int i = 1; i <= X; i++) {
+            if (earliestTime[i] == -1) {
+                return -1;
+            }
+        }
+        return earliestTime[X];
+    }
 	
 
 	/**
@@ -118,21 +145,21 @@ final class FrogRiverOne {
 	 * @return
 	 */
 	public static boolean ensureSoundness(final int X, final int[] A, final int sol) {
-		return containsPermutation(A, X, sol);
+		return containsPermutation(A, X, sol + 1);
 	}
 
 	public static boolean containsPermutation(final int[] A, final int N, final int end) {
 		assert (end < A.length);
-		final int[] numbers = new int[N + 1];
-		for (int i = 0; i < end; i++) {
-			int a = A[i];
-			if (a > N) {
-				return false;
-			}
-			numbers[a] = 1;
+		final boolean[] numbers = new boolean[N + 1];
+		numbers[0] = true;
+		for (int i = 1; i <= end; i++) {
+			numbers[i] = false;
+		}
+		for (int i = 0; i <= end; i++) {
+			numbers[A[i]] = true;
 		}
 		for (int i = 1; i <= N; i++) {
-			if (numbers[i] == 0) {
+			if (!numbers[i]) {
 				return false;
 			}
 		}

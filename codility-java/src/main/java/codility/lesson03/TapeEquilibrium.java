@@ -101,4 +101,28 @@ final class TapeEquilibrium {
 		}
 		return min;
 	}
+	
+	/**
+	 * Time complexity is O(n)<br>
+	 * Space complexity is O(1)
+	 * 
+	 * @param A
+	 * @return
+	 */
+    public static int solutionWithConstantSpace(int[] A) {
+        int sum = 0;
+        for (int a : A) {
+            sum += a;
+        }
+        int min = Integer.MAX_VALUE;
+        int firstSum = 0;
+        for (int i = 0; i < A.length - 1; i++) {
+            firstSum += A[i];
+            int current = Math.abs(firstSum - (sum - firstSum));
+            if (current < min) {
+                min = current;
+            }
+        }
+        return min;
+    }
 }

@@ -1,5 +1,7 @@
 package codility.util;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.google.common.base.Preconditions;
@@ -22,7 +24,7 @@ public final class MoreInts {
 		}
 		return a;
 	}
-	
+
 	public static int[] prefixSums(final int[] array) {
 		final int[] sums = new int[array.length];
 		for (int i = 0; i < array.length; i++) {
@@ -64,7 +66,7 @@ public final class MoreInts {
 		}
 		return minIndex;
 	}
-	
+
 	public static int max(final int[] array) {
 		return array[maxIndex(array, 0, array.length - 1)];
 	}
@@ -116,11 +118,11 @@ public final class MoreInts {
 		}
 		return -1;
 	}
-	
+
 	public static int occurrences(final int[] array, int key) {
 		int counter = 0;
 		for (int a : array) {
-			if (a ==key) {
+			if (a == key) {
 				counter++;
 			}
 		}
@@ -135,5 +137,33 @@ public final class MoreInts {
 
 	public static String toString(final int[] array) {
 		return Ints.join(",", array);
+	}
+
+	public static int[] maximumSumContinuosSubsequenceEndingAt(int[] array) {
+		final int n = array.length;
+		final int[] mscse = new int[n];
+		mscse[0] = array[0];
+		for (int i = 1; i < n; i++) {
+			mscse[i] = Math.max(mscse[i - 1] + array[i], array[i]);
+		}
+		return mscse;
+	}
+
+	public static int[] maximumSumContinuosSubsequenceStartingAt(int[] array) {
+		final int n = array.length;
+		final int[] mscss = new int[n];
+		mscss[n - 1] = array[n - 1];
+		for (int i = n - 2; i >= 0; i--) {
+			mscss[i] = Math.max(mscss[i + 1] + array[i], array[i]);
+		}
+		return mscss;
+	}
+
+	public static Set<Integer> set(final int[] array) {
+		final Set<Integer> set = new HashSet<>();
+		for (int a : array) {
+			set.add(a);
+		}
+		return set;
 	}
 }
