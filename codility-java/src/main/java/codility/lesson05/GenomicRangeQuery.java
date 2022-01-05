@@ -2,6 +2,9 @@ package codility.lesson05;
 
 import codility.util.MoreInts;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A DNA sequence can be represented as a string consisting of the letters A, C,
  * G and T, which correspond to the types of successive nucleotides in the
@@ -93,7 +96,7 @@ final class GenomicRangeQuery {
 	 * @return
 	 */
 	public int[] solution(String S, int[] P, int[] Q) {
-//		System.out.println(String.format("S=%s, P=[%s], Q=[%s]", S, MoreInts.toString(P), MoreInts.toString(Q)));
+//		System.out.println(String.format("S = %s, P = [%s], Q = [%s]", S, MoreInts.toString(P), MoreInts.toString(Q)));
 		final int[] occA = new int[S.length()];
 		occA[0] = S.charAt(0) == 'A' ? 1 : 0;
 		final int[] occC = new int[S.length()];
@@ -105,7 +108,6 @@ final class GenomicRangeQuery {
 			occA[i] = n == 'A' ? occA[i - 1] + 1 : occA[i - 1];
 			occC[i] = n == 'C' ? occC[i - 1] + 1 : occC[i - 1];
 			occG[i] = n == 'G' ? occG[i - 1] + 1 : occG[i - 1];
-
 		}
 //		System.out.println(String.format("OccA = %s", MoreInts.toString(occA)));
 //		System.out.println(String.format("OccC = %s", MoreInts.toString(occC)));
@@ -156,7 +158,7 @@ final class GenomicRangeQuery {
 	 * @param Q
 	 * @return
 	 */
-	public static int[] checker(String S, int[] P, int[] Q) {
+	public static int[] exhaustiveSearch(String S, int[] P, int[] Q) {
 		final int N = S.length();
 		final int[] factors = new int[N];
 		for (int i = 0; i < N; i++) {
@@ -194,4 +196,57 @@ final class GenomicRangeQuery {
 		}
 	}
 
+	static class SubOptimal {
+
+		/**
+		 * @param S
+		 * @param P
+		 * @param Q
+		 * @return
+		 */
+		public int[] solution(String S, int[] P, int[] Q) {
+			final List<Integer> indexesOfA = indexes(S, 'A');
+			final List<Integer> indexesOfC = indexes(S, 'C');
+			final List<Integer> indexesOfG = indexes(S, 'G');
+			final List<Integer> indexesOfT = indexes(S, 'T');
+			assert (P.length == Q.length);
+			final int[] result = new int[P.length];
+			for (int i = 0; i < P.length; i++) {
+				if (contains(indexesOfA, P[i], Q[i])) {
+					result[i] = 1;
+				} else if (contains(indexesOfC, P[i], Q[i])) {
+					result[i] = 2;
+				} else if (contains(indexesOfG, P[i], Q[i])) {
+					result[i] = 3;
+				} else if (contains(indexesOfT, P[i], Q[i])) {
+					result[i] = 4;
+				} else {
+					throw new IllegalStateException();
+				}
+			}
+			return result;
+		}
+
+		private static boolean contains(final List<Integer> indexes, final int start, final int end) {
+			for (int index : indexes) {
+				if (start <= index && index <= end) {
+					return true;
+				}
+				if (index > end) {
+					return false; // since indexes is a sorted list.
+				}
+			}
+			return false;
+		}
+
+		private static List<Integer> indexes(final String str, final char c) {
+			final List<Integer> list = new ArrayList<>();
+			for (int i = 0; i < str.length(); i++) {
+				if (str.charAt(i) == c) {
+					list.add(i);
+				}
+			}
+			return list;
+		}
+	}
 }

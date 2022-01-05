@@ -102,7 +102,7 @@ final class MinAvgTwoSlice {
 	 * @param A
 	 * @return
 	 */
-	public static int exhausitveSearchOptimized(final int[] A) {
+	public static int exhaustiveSearchOptimized(final int[] A) {
 		int[] sums = new int[A.length];
 		sums[0] = A[0];
 		for (int i = 1; i < A.length; i++) {
@@ -130,7 +130,7 @@ final class MinAvgTwoSlice {
 	 * @param A
 	 * @return
 	 */
-	public static int exhausitveSearch(final int[] A) {
+	public static int exhaustiveSearch(final int[] A) {
 		double min = Double.MAX_VALUE;
 		int start = -1;
 		for (int s = 0; s < A.length - 1; s++) {

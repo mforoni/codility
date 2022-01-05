@@ -9,6 +9,8 @@ import codility.util.MoreInts;
 
 public class MinAvgTwoSliceTest {
 
+	private static final int NUM_TESTS = 50;
+
 	private static final int MIN_N = 2;
 	private static final int MAX_N = 10_000; // original = 100_000;
 	private static final int MIN_INT = -10_000;
@@ -28,25 +30,24 @@ public class MinAvgTwoSliceTest {
 	}
 
 	@Test
-	public void testExhausitveSearchOptimized() {
-		assertEquals(SOL1, MinAvgTwoSlice.exhausitveSearchOptimized(A1));
-		assertEquals(SOL2, MinAvgTwoSlice.exhausitveSearchOptimized(A2));
+	public void testExhaustiveSearchOptimized() {
+		assertEquals(SOL1, MinAvgTwoSlice.exhaustiveSearchOptimized(A1));
+		assertEquals(SOL2, MinAvgTwoSlice.exhaustiveSearchOptimized(A2));
 	}
 
 	@Test
-	public void testExhausitveSearch() {
-		assertEquals(SOL1, MinAvgTwoSlice.exhausitveSearch(A1));
-		assertEquals(SOL2, MinAvgTwoSlice.exhausitveSearch(A2));
+	public void testExhaustiveSearch() {
+		assertEquals(SOL1, MinAvgTwoSlice.exhaustiveSearch(A1));
+		assertEquals(SOL2, MinAvgTwoSlice.exhaustiveSearch(A2));
 	}
 
 	@Test
-	public void testMassive() {
+	public void testSolutionRandomInput() {
 		final MinAvgTwoSlice minAvgTwoSlice = new MinAvgTwoSlice();
-		int ntest = 50;
-		for (int t = 0; t < ntest; t++) {
+		for (int t = 0; t < NUM_TESTS; t++) {
 			final int N = MoreInts.newRandom(MIN_N, MAX_N);
 			final int[] A = MoreInts.newRandomArray(N, MIN_INT, MAX_INT);
-			assertEquals(MinAvgTwoSlice.exhausitveSearchOptimized(A), minAvgTwoSlice.solution(A));
+			assertEquals(MinAvgTwoSlice.exhaustiveSearchOptimized(A), minAvgTwoSlice.solution(A));
 		}
 	}
 }
