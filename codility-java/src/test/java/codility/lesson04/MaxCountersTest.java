@@ -1,13 +1,23 @@
 package codility.lesson04;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
+import codility.util.MoreInts;
+import com.google.common.primitives.Ints;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import codility.lesson04.MaxCounters;
 
+import java.util.Arrays;
+
 public class MaxCountersTest {
-	
+
+	private static final int NUM_TESTS = 10;
+	private static final int MIN_N_AND_M = 1;
+	private static final int MAX_N_AND_M  = 100_000;
+
 	private static final int[] A1 = {3, 4, 4, 6, 1, 4, 4};
 	private static final int N1 = 5;
 	private static final int[] SOL1 = {3, 2, 2, 4, 2};
@@ -24,14 +34,48 @@ public class MaxCountersTest {
 	}
 
 	@Test
+	public void testElegantSolution() {
+		assertArrayEquals(SOL1, MaxCounters.elegantSolution(N1, A1));
+		assertArrayEquals(SOL2, MaxCounters.elegantSolution(N2, A2));
+	}
+
+	@Test
 	public void testSuboptimal() {
 		assertArrayEquals(SOL1, MaxCounters.suboptimal(N1, A1));
 		assertArrayEquals(SOL2, MaxCounters.suboptimal(N2, A2));
 	}
 
 	@Test
-	public void testMaxCounter() {
-		
+	@Ignore
+	public void testElegantSolutionRandomInput() {
+		for (int t = 0; t < NUM_TESTS; t++) {
+			final int n = MoreInts.newRandom(MIN_N_AND_M, MAX_N_AND_M);
+			final int m = MoreInts.newRandom(n, MAX_N_AND_M);
+			final int[] a = MoreInts.newRandomArray(m, 1, n + 1);
+			final int[] expected = MaxCounters.suboptimal(n, a);
+			final int[] actual = MaxCounters.elegantSolution(n, a);
+			if (!Arrays.equals(expected, actual)) {
+				System.out.println(Ints.join(", ", a));
+			}
+			assertArrayEquals(expected, actual);
+		}
+	}
+
+	@Test
+	@Ignore
+	public void testSolutionRandomInput() {
+		MaxCounters maxCounters = new MaxCounters();
+		for (int t = 0; t < NUM_TESTS; t++) {
+			final int n = MoreInts.newRandom(MIN_N_AND_M, MAX_N_AND_M);
+			final int m = MoreInts.newRandom(n, MAX_N_AND_M);
+			final int[] a = MoreInts.newRandomArray(m, 1, n + 1);
+			final int[] expected = MaxCounters.suboptimal(n, a);
+			final int[] actual = maxCounters.solution(n, a);
+			if (!Arrays.equals(expected, actual)) {
+				System.out.println(Ints.join(", ", a));
+			}
+			assertArrayEquals(expected, actual);
+		}
 	}
 
 }

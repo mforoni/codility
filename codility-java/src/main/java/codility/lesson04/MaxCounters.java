@@ -1,5 +1,7 @@
 package codility.lesson04;
 
+import com.google.common.primitives.Ints;
+
 /**
  * You are given N counters, initially set to 0, and you have two possible
  * operations on them:
@@ -62,8 +64,8 @@ package codility.lesson04;
 final class MaxCounters {
 
 	/**
-	 * Time complexity is O(N+M)
-	 * Space complexity is O(M)
+	 * Time complexity is O(N + M) where M is the length of array A
+	 * Space complexity is O(N)
 	 * 
 	 * @param N
 	 * @param A
@@ -85,7 +87,7 @@ final class MaxCounters {
 					if (counters[a] < toSum) {
 						counters[a] = toSum; 
 					}
-					counters[a] += + 1;
+					counters[a] += 1;
 				}
 				if (counters[a] > max) {
 					max = counters[a];
@@ -103,7 +105,39 @@ final class MaxCounters {
 	}
 
 	/**
-	 * Time complexity is O(M*N)<br>
+	 * Time complexity is O(N + M) where M is the length of array A
+	 * Space complexity is O(N)
+	 *
+	 * @param N
+	 * @param A
+	 * @return
+	 */
+	public static int[] elegantSolution(int N, int[] A) {
+		System.out.println("Elegant solution");
+		int max = 0;
+		int lastMaximization = 0;
+		final int[] counters = new int[N];
+		for (int command : A) {
+			int index = command - 1;
+			if (command == N + 1) {
+				lastMaximization = max;
+			} else {
+				counters[index] = Math.max(lastMaximization, counters[index]) + 1;
+				max = Math.max(max, counters[index]);
+			}
+			System.out.println(String.format("c = [%s] , max = %s , lastMax = %s",
+					Ints.join(", ", counters), max, lastMaximization));
+		}
+		for (int i = 0; i < counters.length; i++) {
+			if (counters[i] < lastMaximization) {
+				counters[i] = lastMaximization;
+			}
+		}
+		return counters;
+	}
+
+	/**
+	 * Time complexity is O(M * N) where M is the length of array A<br>
 	 * Space complexity is O(N)
 	 * 
 	 * @param N
@@ -112,7 +146,7 @@ final class MaxCounters {
 	 */
 	public static int[] suboptimal(int N, int[] A) {
 		int max = 0;
-		final int[] counters = new int[N];
+		final int[] counters = new int[N];	// Array is initialized to 0, the default value of primitive type int.
 		for (int a : A) {
 			if (a <= N) {
 				counters[a - 1] += 1;

@@ -69,4 +69,23 @@ final class PermCheck {
 		}
 		return 1;
 	}
+
+	public static int solutionWithBooleanArray(int[] A) {
+		final boolean[] number = new boolean[A.length + 1];
+		number[0] = true;
+		for (int i = 1; i <= A.length; i++) {
+			number[i] = false;
+		}
+		for (int a : A) {
+			if (a < A.length + 1) {
+				number[a] = true;
+			}
+		}
+		for (int i = 1; i <= A.length; i++) {
+			if (number[i] == false) {
+				return 0;
+			}
+		}
+		return 1;
+	}
 }
