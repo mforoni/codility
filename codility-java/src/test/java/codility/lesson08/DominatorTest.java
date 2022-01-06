@@ -9,8 +9,9 @@ import codility.util.MoreInts;
 
 public class DominatorTest {
 
+	public static final int NUM_TESTS = 200;
 	private static final int MIN_N = 0;
-	private static final int MAX_N = 10_000; // original = 100_000;
+	private static final int MAX_N = 100_000; // original = 100_000;
 	private static final int MIN_INT = Integer.MIN_VALUE;
 	private static final int MAX_INT = Integer.MAX_VALUE - 1;
 
@@ -42,10 +43,9 @@ public class DominatorTest {
 	}
 
 	@Test
-	public void testMassive() {
+	public void testSolutionRandomInput() {
 		final Dominator dominator = new Dominator();
-		final int ntest = 20_000;
-		for (int t = 0; t < ntest; t++) {
+		for (int t = 0; t < NUM_TESTS; t++) {
 			final int N = MoreInts.newRandom(MIN_N, MAX_N);
 			final int[] A = MoreInts.newRandomArray(N, MIN_INT, MAX_INT);
 			assertEquals(Dominator.exhaustiveSearch(A), dominator.solution(A));

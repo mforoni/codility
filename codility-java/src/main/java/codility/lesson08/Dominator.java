@@ -41,7 +41,8 @@ import codility.util.MoreInts;
  * expected worst-case time complexity is O(N);<br>
  * expected worst-case space complexity is O(1) (not counting the storage
  * required for input arguments).
- * 
+ * @see <a href="https://app.codility.com/programmers/lessons/8-leader/dominator/">app.codility.com/programmers/lessons/8-leader/dominator</a>
+ *
  * @author Foroni Marco
  *
  */
@@ -55,6 +56,7 @@ final class Dominator {
 	 * 
 	 * @param A
 	 * @return
+	 * @see <a href="https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_majority_vote_algorithm">Boyer–Moore majority vote algorithm</a>
 	 */
 	public int solution(int[] A) {
 		if (A.length == 0) {
