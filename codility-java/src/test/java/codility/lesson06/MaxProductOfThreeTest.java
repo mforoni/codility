@@ -36,5 +36,4 @@ public class MaxProductOfThreeTest {
 		assertEquals(SOL3, MaxProductOfThree.exhaustiveSearch(A3));
 		assertEquals(SOL4, MaxProductOfThree.exhaustiveSearch(A4));
 	}
-
 }

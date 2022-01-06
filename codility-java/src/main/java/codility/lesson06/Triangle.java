@@ -81,6 +81,24 @@ final class Triangle {
 		return 0;
 	}
 
+	public static int elegantSolution(int[] A) {
+		final int n = A.length;
+		if (n <= 2) {
+			return 0;
+		}
+		Arrays.sort(A);
+		for (int i = 2; i < A.length; i++) {
+			// In a sorted array A[i] + A[i - 2] > A[i - 1] for each index i because A[i] >= A[i-1]
+			// and if A[i] = A[i-1] with A[i-2] = 0 then it is impossible that A[i-1] + A[i] > A[i-2]
+			// For the same reason A[i - 1] + A[i] > A[i - 2] for each index i
+			final long sum = (long) A[i - 2] + (long) A[i - 1];
+			if (sum > (long) A[i]) {
+				return 1;
+			}
+		}
+		return 0;
+	}
+
 	/**
 	 * Time complexity is O(N^3)<br>
 	 * Space complexity is O(1)

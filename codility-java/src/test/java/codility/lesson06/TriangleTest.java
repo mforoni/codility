@@ -4,10 +4,11 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import codility.lesson06.Triangle;
 import codility.util.MoreInts;
 
 public class TriangleTest {
+
+	private static final int NUM_TESTS = 200;
 
 	private static final int MIN_N = 0;
 	private static final int MAX_N = 100_000;
@@ -49,14 +50,21 @@ public class TriangleTest {
 	}
 
 	@Test
-	public void testMassive() {
+	public void testSolutionRandomInput() {
 		final Triangle triangle = new Triangle();
-		final int ntest = 200;
-		for (int t = 0; t < ntest; t++) {
+		for (int t = 0; t < NUM_TESTS; t++) {
 			final int N = MoreInts.newRandom(MIN_N, MAX_N);
 			final int[] A = MoreInts.newRandomArray(N, MIN_INT, MAX_INT);
 			assertEquals(Triangle.exhaustiveSearch(A), triangle.solution(A));
 		}
 	}
 
+	@Test
+	public void testElegantSolutionRandomInput() {
+		for (int t = 0; t < NUM_TESTS; t++) {
+			final int N = MoreInts.newRandom(MIN_N, MAX_N);
+			final int[] A = MoreInts.newRandomArray(N, MIN_INT, MAX_INT);
+			assertEquals(Triangle.exhaustiveSearch(A), Triangle.elegantSolution(A));
+		}
+	}
 }

@@ -94,5 +94,4 @@ final class MaxProductOfThree {
 		}
 		return max;
 	}
-
 }
