@@ -1,11 +1,9 @@
 package codility.lesson06;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
-import codility.lesson06.Distinct;
 import codility.util.MoreInts;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DistinctTest {
 

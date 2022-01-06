@@ -1,16 +1,13 @@
 package codility.lesson04;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-
 import codility.util.MoreInts;
 import com.google.common.primitives.Ints;
-import org.junit.Ignore;
-import org.junit.Test;
-
-import codility.lesson04.MaxCounters;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class MaxCountersTest {
 
@@ -46,7 +43,7 @@ public class MaxCountersTest {
 	}
 
 	@Test
-	@Ignore
+	@Disabled
 	public void testElegantSolutionRandomInput() {
 		for (int t = 0; t < NUM_TESTS; t++) {
 			final int n = MoreInts.newRandom(MIN_N_AND_M, MAX_N_AND_M);
@@ -62,7 +59,7 @@ public class MaxCountersTest {
 	}
 
 	@Test
-	@Ignore
+	@Disabled
 	public void testSolutionRandomInput() {
 		MaxCounters maxCounters = new MaxCounters();
 		for (int t = 0; t < NUM_TESTS; t++) {

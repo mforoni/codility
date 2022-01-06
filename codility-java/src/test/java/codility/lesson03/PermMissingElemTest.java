@@ -1,15 +1,14 @@
 package codility.lesson03;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import codility.lesson03.PermMissingElem;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PermMissingElemTest {
 
 	private static final int[] A1 = {2, 3, 1, 5};
 	private static final int SOL1 = 4;
+
 	private static final int[] A2 = {};
 	private static final int SOL2 = 1;
 	
@@ -18,14 +17,11 @@ public class PermMissingElemTest {
 		final PermMissingElem permMissingElem = new PermMissingElem();
 		assertEquals(SOL1, permMissingElem.solution(A1));
 		assertEquals(SOL2, permMissingElem.solution(A2));
-		
 	}
 
 	@Test
 	public void testSaveFound() {
 		assertEquals(SOL1, PermMissingElem.saveFound(A1));
 		assertEquals(SOL2, PermMissingElem.saveFound(A2));
-		
 	}
-
 }

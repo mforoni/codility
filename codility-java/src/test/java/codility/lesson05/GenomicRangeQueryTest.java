@@ -1,13 +1,11 @@
 package codility.lesson05;
 
-import static org.junit.Assert.assertArrayEquals;
-
-import org.junit.Test;
-
-import codility.lesson05.GenomicRangeQuery;
 import codility.util.MoreInts;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class GenomicRangeQueryTest {
 

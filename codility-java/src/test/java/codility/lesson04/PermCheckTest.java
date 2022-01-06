@@ -1,10 +1,8 @@
 package codility.lesson04;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import codility.lesson04.PermCheck;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PermCheckTest {
 

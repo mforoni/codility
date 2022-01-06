@@ -1,5 +1,7 @@
 package codility.lesson07;
 
+import java.util.Stack;
+
 /**
  * A string S consisting of N characters is called properly nested if:
  * <p>
@@ -46,7 +48,6 @@ final class Nesting {
 		int counter = 0;
 		for (int i = 0; i < S.length(); i++) {
 			final char c = S.charAt(i);
-
 			if (c == '(') {
 				counter++;
 			} else {
@@ -58,5 +59,35 @@ final class Nesting {
 			}
 		}
 		return counter == 0 ? 1 : 0;
+	}
+
+	/**
+	 * Idea: Use a LIFO queue for storing opening brackets
+	 * Time complexity is O(N)<br>
+	 * Space complexity is O(N)
+	 *
+	 * @param S
+	 * @return
+	 */
+	public static int subOptimal(String S) {
+		if (S.isEmpty()) {
+			return 1;
+		}
+		// Stack (LIFO queue) for storing opening brackets
+		Stack<Character> stack = new Stack<>();
+		for (int i = 0; i < S.length(); i++) {
+			final char c = S.charAt(i);
+			if (c == '(') {
+				stack.push(c);
+			} else if (c == ')') {
+				if (stack.isEmpty()) {
+					return 0;
+				}
+				stack.pop();
+			} else {
+				throw new AssertionError();
+			}
+		}
+		return stack.isEmpty() ? 1 : 0;
 	}
 }

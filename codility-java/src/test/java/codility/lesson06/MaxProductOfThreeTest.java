@@ -1,10 +1,8 @@
 package codility.lesson06;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import codility.lesson06.MaxProductOfThree;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MaxProductOfThreeTest {
 

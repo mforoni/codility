@@ -1,12 +1,10 @@
 package codility.lesson05;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
-
-import codility.lesson05.PassingCars;
 import codility.util.MoreInts;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PassingCarsTest {
 	
@@ -38,5 +36,4 @@ public class PassingCarsTest {
 			assertTrue(passingCars.solution(a) >= -1);
 		}
 	}
-
 }

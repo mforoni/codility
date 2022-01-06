@@ -1,12 +1,10 @@
 package codility.lesson03;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
-import com.google.common.primitives.Ints;
-
 import codility.util.MoreInts;
+import com.google.common.primitives.Ints;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TapeEquilibriumTest {
 
@@ -41,7 +39,7 @@ public class TapeEquilibriumTest {
 	}
 
 	@Test
-	public void testExaustiveSearch() {
+	public void testExhaustiveSearch() {
 		assertEquals(SOL1, TapeEquilibrium.exhaustiveSearch(A1));
 		assertEquals(SOL2, TapeEquilibrium.exhaustiveSearch(A2));
 		assertEquals(SOL3, TapeEquilibrium.exhaustiveSearch(A3));

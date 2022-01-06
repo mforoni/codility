@@ -1,16 +1,15 @@
 package codility.lesson06;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.Test;
-
-import codility.lesson06.NumberOfDiscIntersections;
 import codility.util.MoreInts;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NumberOfDiscIntersectionsTest {
 
+	public static final int NUM_TEST = 100;
 	private static final int MIN_N = 0;
-	private static final int MAX_N = 1_000; // original = 100_000;
+	private static final int MAX_N = 100_000; // original = 100_000;
 	private static final int MIN_INT = 0;
 	private static final int MAX_INT = Integer.MAX_VALUE - 1;
 
@@ -37,7 +36,6 @@ public class NumberOfDiscIntersectionsTest {
 		assertEquals(SOL3, numberOfDiscIntersections.solution(A3));
 		assertEquals(SOL4, numberOfDiscIntersections.solution(A4));
 		assertEquals(SOL5, numberOfDiscIntersections.solution(A5));
-
 	}
 
 	@Test
@@ -50,14 +48,36 @@ public class NumberOfDiscIntersectionsTest {
 	}
 
 	@Test
-	public void testMassive() {
+	public void testElegantSolution() {
+		assertEquals(SOL1, NumberOfDiscIntersections.elegantSolution(A1));
+		assertEquals(SOL2, NumberOfDiscIntersections.elegantSolution(A2));
+		assertEquals(SOL3, NumberOfDiscIntersections.elegantSolution(A3));
+		assertEquals(SOL4, NumberOfDiscIntersections.elegantSolution(A4));
+		assertEquals(SOL5, NumberOfDiscIntersections.elegantSolution(A5));
+	}
+
+	@Test
+	public void testSolutionRandomInput() {
 		final NumberOfDiscIntersections numberOfDiscIntersections = new NumberOfDiscIntersections();
-		final int ntest = 10_000;
-		for (int t = 0; t < ntest; t++) {
+		for (int t = 0; t < NUM_TEST; t++) {
 			final int N = MoreInts.newRandom(MIN_N, MAX_N);
 			final int[] A = MoreInts.newRandomArray(N, MIN_INT, MAX_INT);
 			try {
 				assertEquals(NumberOfDiscIntersections.exhaustiveSearch(A), numberOfDiscIntersections.solution(A));
+			} catch (AssertionError e) {
+				System.out.println(MoreInts.toString(A));
+				throw e;
+			}
+		}
+	}
+
+	@Test
+	public void testElegantSolutionRandomInput() {
+		for (int t = 0; t < NUM_TEST; t++) {
+			final int N = MoreInts.newRandom(MIN_N, MAX_N);
+			final int[] A = MoreInts.newRandomArray(N, MIN_INT, MAX_INT);
+			try {
+				assertEquals(NumberOfDiscIntersections.exhaustiveSearch(A), NumberOfDiscIntersections.elegantSolution(A));
 			} catch (AssertionError e) {
 				System.out.println(MoreInts.toString(A));
 				throw e;

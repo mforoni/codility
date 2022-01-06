@@ -1,12 +1,10 @@
 package codility.lesson09;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.Test;
-
-import codility.lesson09.MaxSliceSum;
 import codility.util.MoreInts;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MaxSliceSumTest {
 

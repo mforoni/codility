@@ -1,10 +1,8 @@
 package codility.lesson05;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import codility.lesson05.CountDiv;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CountDivTest {
 
@@ -61,5 +59,4 @@ public class CountDivTest {
 		assertEquals(SOL3, CountDiv.checkerOptimized(A3, B3, K3));
 		assertEquals(SOL4, CountDiv.checkerOptimized(A4, B4, K4));
 	}
-
 }

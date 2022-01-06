@@ -2,9 +2,9 @@ package codility.lesson04;
 
 import codility.util.MoreInts;
 import com.google.common.primitives.Ints;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FrogRiverOneTest {
 

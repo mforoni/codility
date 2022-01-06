@@ -124,4 +124,33 @@ final class Brackets {
 		}
 		return rb == 0 && cb == 0 && sb == 0 ? 1 : 0;
 	}
+
+	public static int elegantSolution(String S) {
+		if (S.isEmpty()) {
+			return 1;
+		}
+		final Stack<Character> stack = new Stack<>();
+		for (int i = 0; i < S.length(); i++) {
+			final char c = S.charAt(i);
+			if (c == '{' || c == '[' || c == '(') {
+				stack.push(c);
+			} else {
+				if (stack.isEmpty()) {
+					return 0;
+				}
+				final char last = stack.pop();
+				if (c == '}' && last != '{') {
+					return 0;
+				}
+				if (c == ']' && last != '[') {
+					return 0;
+				}
+				if (c == ')' && last != '(') {
+					return 0;
+				}
+			}
+			// System.out.println(stack);
+		}
+		return stack.isEmpty() ? 1 : 0;
+	}
 }

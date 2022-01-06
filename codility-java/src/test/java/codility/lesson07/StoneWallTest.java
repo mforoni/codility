@@ -1,10 +1,8 @@
 package codility.lesson07;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import codility.lesson07.StoneWall;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StoneWallTest {
 

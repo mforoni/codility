@@ -60,7 +60,7 @@ final class NumberOfDiscIntersections {
 	 * p[i] = min(s[j], e[k])
 	 * <p>
 	 * oc[i] = open circles at position p[i] on the X axis = 
-	 * oc[i + 1] + 1 if p[i] in s
+	 * oc[i - 1] + 1 if p[i] in s
 	 * oc[i - 1] - 1 if p[i] in e
 	 * <p>
 	 * inters[i] = total intersections till position p[i] on the X axis = 
@@ -82,10 +82,9 @@ final class NumberOfDiscIntersections {
 		}
 		Arrays.sort(start);
 		Arrays.sort(end);
-		// System.out.println(String.format("start=%s, end=%s",
-		// MoreInts.toString(start), MoreInts.toString(end)));
+		// System.out.println(String.format("start=%s, end=%s", MoreInts.toString(start), MoreInts.toString(end)));
 		final int[] oc = new int[2 * A.length]; // oc[i] = open circles at position i on x axis
-		final int[] inters = new int[2 * A.length]; // inters[i] = number of intersections at position i on x axis
+		final int[] inters = new int[2 * A.length]; // inters[i] = number of intersections at position i on X axis
 		assert (start[0] <= end[0]);
 		oc[0] = 1;
 		inters[0] = 0;
@@ -104,8 +103,7 @@ final class NumberOfDiscIntersections {
 				return -1;
 			}
 			i++;
-			// System.out.println(String.format("inters=%s, o.c.=%s",
-			// MoreInts.toString(inters), MoreInts.toString(oc)));
+			// System.out.println(String.format("inters=%s, o.c.=%s", MoreInts.toString(inters), MoreInts.toString(oc)));
 		}
 		return inters[2 * A.length - 1];
 	}
@@ -130,5 +128,65 @@ final class NumberOfDiscIntersections {
 			}
 		}
 		return counter;
+	}
+
+	/**
+	 * FIXME: https://app.codility.com/demo/results/trainingX2GPUS-NHD/ 93% not 100%
+	 * FIXME: https://app.codility.com/demo/results/trainingUDA9BS-SJE/ 93% not 100%
+	 *
+	 * @param A
+	 * @return
+	 */
+	public static int elegantSolution(int[] A) {
+		final Point[] points = new Point[A.length * 2];
+		for (int i = 0; i < A.length; i++) {
+			points[2 * i] = new Point(i - A[i], true);
+			points[2 * i + 1] = new Point(i + A[i], false);
+		}
+		Arrays.sort(points);
+		// System.out.println(Arrays.toString(points));
+		int discIntersections = 0;
+		int openDiscs = 0;
+		for (Point p : points) {
+			if (p.start) {
+				openDiscs += 1;
+			} else {
+				openDiscs -= 1;
+				discIntersections += openDiscs;
+			}
+			if (discIntersections > 10_000_000) {
+				return -1;
+			}
+			// System.out.println(String.format("Open discs: %d, Intersections: %d.", openDiscs, discIntersections));
+		}
+		return discIntersections;
+	}
+
+	static final class Point implements Comparable<Point> {
+		private final long x;
+		private final boolean start;
+
+		Point(final long x, final boolean start) {
+			this.x = x;
+			this.start = start;
+		}
+
+		@Override
+		public String toString() {
+			return start ? x + "(" : x + ")";
+		}
+
+		@Override
+		public int compareTo(Point p){
+			if (x == p.x) {
+				if (start == p.start) {
+					return 0;
+				} else {
+					return start ? -1 : 1;
+				}
+			} else {
+				return Long.compare(x, p.x);
+			}
+		}
 	}
 }

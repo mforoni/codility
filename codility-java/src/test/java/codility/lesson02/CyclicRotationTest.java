@@ -1,10 +1,8 @@
 package codility.lesson02;
 
-import static org.junit.Assert.assertArrayEquals;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import codility.lesson02.CyclicRotation;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class CyclicRotationTest {
 

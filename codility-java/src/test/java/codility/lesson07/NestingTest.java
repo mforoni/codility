@@ -1,10 +1,8 @@
 package codility.lesson07;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-
-import codility.lesson07.Nesting;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NestingTest {
 
@@ -24,5 +22,12 @@ public class NestingTest {
 		assertEquals(SOL1, nesting.solution(S1));
 		assertEquals(SOL2, nesting.solution(S2));
 		assertEquals(SOL3, nesting.solution(S3));
+	}
+
+	@Test
+	public void testSubOptimal() {
+		assertEquals(SOL1, Nesting.subOptimal(S1));
+		assertEquals(SOL2, Nesting.subOptimal(S2));
+		assertEquals(SOL3, Nesting.subOptimal(S3));
 	}
 }
