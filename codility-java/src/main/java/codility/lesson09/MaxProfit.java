@@ -47,19 +47,15 @@ package codility.lesson09;
  * expected worst-case time complexity is O(N);<br>
  * expected worst-case space complexity is O(1) (not counting the storage
  * required for input arguments).
- * 
- * @author Foroni Marco
+ * @see <a href="https://app.codility.com/programmers/lessons/9-maximum_slice_problem/max_profit/">app.codility.com/programmers/lessons/9-maximum_slice_problem/max_profit</a>
  *
+ * @author Foroni Marco
  */
 final class MaxProfit {
 
 	/**
-	 * Time complexity is O(N)<br>
-	 * Space complexity is O(1)
-	 * <p>
 	 * Idea: we need to compute the minimum value Min(i) i.e. the minimum value in
 	 * the array A till i-1:
-	 * 
 	 * <pre>
 	 * Min(0) = +INFINITE
 	 * Min(i) = min(Min(i-1), A[i-1])
@@ -70,6 +66,9 @@ final class MaxProfit {
 	 * MP(0) = 0
 	 * MP(i) = max(MP(i-1), A[i] - Min(i-1))
 	 * </pre>
+	 *
+	 * Time complexity is O(N)<br>
+	 * Space complexity is O(1)
 	 * 
 	 * @param A
 	 * @return
@@ -87,10 +86,40 @@ final class MaxProfit {
 	}
 
 	/**
+	 * Time complexity is O(N)<br>
+	 * Space complexity is O(N)
+	 *
+	 * @param A
+	 * @return
+	 * @see <a href="https://app.codility.com/demo/results/training4DB6BV-8US/">app.codility.com/demo/results/training4DB6BV-8US</a>
+	 */
+	public static int subOptimal(int[] A) {
+		if (A.length == 0) {
+			return 0;
+		}
+		final int[] min = new int[A.length];
+		min[0] = A[0];
+		for (int i = 1; i < A.length; i++) {
+			min[i] = Math.min(min[i-1], A[i]);
+		}
+		final int[] maxProfit = new int[A.length];
+		maxProfit[0] = 0;
+		for (int i = 1; i < A.length; i++) {
+			maxProfit[i] = Math.max(maxProfit[i-1], A[i] - min[i-1]);
+		}
+		int max = maxProfit[0];
+		for (int i = 1; i < A.length; i++) {
+			max = Math.max(maxProfit[i], max);
+		}
+		return max;
+	}
+
+	/**
+	 * Idea: compute all possible profits and return the maximum value
+	 * <p>
 	 * Time complexity is O(N^2)<br>
 	 * Space complexity is O(1)
-	 * <p>
-	 * Idea: compute all possible profits and return the maximum value
+	 * </p>
 	 * 
 	 * @param A
 	 * @return
