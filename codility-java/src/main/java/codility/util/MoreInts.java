@@ -120,9 +120,14 @@ public final class MoreInts {
 	}
 
 	public static int occurrences(final int[] array, int key) {
+		return occurrences(array, key, 0, array.length - 1);
+	}
+
+	public static int occurrences(final int[] array, int key, int start, int end) {
+		assert start <= end;
 		int counter = 0;
-		for (int a : array) {
-			if (a == key) {
+		for (int i = start; i <= end; i++) {
+			if (array[i] == key) {
 				counter++;
 			}
 		}
