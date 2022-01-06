@@ -2,6 +2,8 @@ package codility.lesson09;
 
 import codility.util.MoreInts;
 
+import java.util.Arrays;
+
 /**
  * A non-empty array A consisting of N integers is given. A pair of integers (P,
  * Q), such that 0 ≤ P ≤ Q < N, is called a slice of array A. The sum of a slice
@@ -34,55 +36,52 @@ import codility.util.MoreInts;
  * expected worst-case time complexity is O(N);<br>
  * expected worst-case space complexity is O(N) (not counting the storage
  * required for input arguments).
- * 
+ * @see <a href="https://app.codility.com/programmers/lessons/9-maximum_slice_problem/max_slice_sum/">
+ *     app.codility.com/programmers/lessons/9-maximum_slice_problem/max_slice_sum</a>
+ *
  * @author Foroni Marco
  *
  */
 final class MaxSliceSum {
 
 	/**
-	 * Time complexity is O(N)<br>
-	 * Space complexity is O(2*N) = O(N)
+	 * Idea: MSSE[i] = Max slice sum ending at index i
+	 * <pre>
+	 *     MSSE[0] = A[0]
+	 *     MSSE[i] = Max(MSSE[i-1] + A[i], A[i])
+	 * </pre>
+	 * MSS = Max element in MSSE array.
 	 * <p>
-	 * Idea: We need to compute the msse[i] = maximum slice sum ending at index i:
-	 * 
-	 * <pre>
-	 * msse[0] = A[0] 
-	 * msse[i] = Max(A[i], msse[i-1] + A[i])
-	 * </pre>
-	 * 
-	 * then the mss[i] = maximum slice sum in sub-array of A from 0 to i:
-	 * 
-	 * <pre>
-	 * mss[0] = A[0]
-	 * mss[i] = Max(mss[i-1], msse[i-1] + A[i], A[i]) = Max(mss[i-1], msse[i])
-	 * </pre>
-	 * 
+	 * Time complexity is O(N)<br>
+	 * Space complexity is O(N)
+	 * </p>
+	 *
 	 * @param A
 	 * @return
+	 * @see <a href="https://app.codility.com/demo/results/training5AETQJ-JUK/">app.codility.com/demo/results/training5AETQJ-JUK</a>
 	 */
 	public int solution(int[] A) {
-		final int[] msse = new int[A.length]; // msse[i] = maximum slice sum ending at i
+		final int[] msse = new int[A.length];
 		msse[0] = A[0];
 		for (int i = 1; i < A.length; i++) {
-			msse[i] = Math.max(A[i], msse[i - 1] + A[i]);
+			msse[i] = Math.max(msse[i-1] + A[i], A[i]);
 		}
-		final int[] mss = new int[A.length]; // mss[i] = maximum slice sum in sub-array of A from 0 to i
-		mss[0] = A[0];
-		for (int i = 1; i < A.length; i++) {
-			mss[i] = Math.max(mss[i - 1], msse[i]);
-			// System.out.println(String.format("i=%s, mss=%s", i, MoreInts.toString(mss)));
+		// System.out.println(Arrays.toString(msse));
+		int max = msse[0];
+		for (int i = 1; i < msse.length; i++) {
+			max = Math.max(max, msse[i]);
 		}
-		return MoreInts.max(mss);
+		return max;
 	}
 
 	/**
-	 * Time complexity is O(N^2)<br>
-	 * Space complexity is O(N)
-	 * <p>
 	 * Idea: Compute prefix sums at the beginning, then find maximum sum for all
 	 * possible slices.
-	 * 
+	 * <p>
+	 * Time complexity is O(N^2)<br>
+	 * Space complexity is O(N)
+	 * </p>
+	 *
 	 * @param A
 	 * @return
 	 */
