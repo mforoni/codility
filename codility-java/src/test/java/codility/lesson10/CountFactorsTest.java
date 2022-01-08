@@ -41,7 +41,7 @@ public class CountFactorsTest {
 	public void testSolutionRandomInput() {
 		final CountFactors countFactors = new CountFactors();
 		for (int t = 0; t < NUM_TESTS; t++) {
-			final int n = MoreInts.newRandom(1, 10_000_000);
+			final int n = MoreInts.newRandom(1, 7_000_000);
 			assertEquals(CountFactors.exhaustiveSearch(n), countFactors.solution(n));
 		}
 	}
@@ -49,7 +49,7 @@ public class CountFactorsTest {
 	@Test
 	public void testCountingDivisorsRandomInput() {
 		for (int t = 0; t < NUM_TESTS; t++) {
-			final int n = MoreInts.newRandom(1, 10_000_000);
+			final int n = MoreInts.newRandom(1, 7_000_000);
 			assertEquals(CountFactors.exhaustiveSearch(n), CountFactors.countingDivisors(n));
 		}
 	}

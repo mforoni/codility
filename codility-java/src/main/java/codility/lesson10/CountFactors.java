@@ -35,15 +35,16 @@ final class CountFactors {
 	 * </p>
 	 * Time complexity is O(SQRT(N))<br>
 	 * Space complexity is O(1)
+	 * @see <a href="https://app.codility.com/demo/results/trainingDUCGCX-PR6/">app.codility.com/demo/results/trainingDUCGCX-PR6</a>
 	 * 
-	 * @param n
+	 * @param N
 	 * @return
 	 */
-	public int solution(int n) {
+	public int solution(int N) {
 		int counter = 0;
-		for (int i = 1; i <= Math.sqrt(n); i++) {
-			if (n % i == 0) {
-				int factor = n / i;
+		for (int i = 1; i <= Math.sqrt(N); i++) {
+			if (N % i == 0) {
+				int factor = N / i;
 				if (factor != i) {
 					counter += 2;
 				} else {
