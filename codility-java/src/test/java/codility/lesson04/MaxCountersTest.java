@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class MaxCountersTest {
 
-	private static final int NUM_TESTS = 10;
+	private static final int NUM_TESTS = 200;
 	private static final int MIN_N_AND_M = 1;
 	private static final int MAX_N_AND_M  = 100_000;
 
@@ -43,7 +43,6 @@ public class MaxCountersTest {
 	}
 
 	@Test
-	@Disabled
 	public void testElegantSolutionRandomInput() {
 		for (int t = 0; t < NUM_TESTS; t++) {
 			final int n = MoreInts.newRandom(MIN_N_AND_M, MAX_N_AND_M);
@@ -59,7 +58,6 @@ public class MaxCountersTest {
 	}
 
 	@Test
-	@Disabled
 	public void testSolutionRandomInput() {
 		MaxCounters maxCounters = new MaxCounters();
 		for (int t = 0; t < NUM_TESTS; t++) {
@@ -74,5 +72,4 @@ public class MaxCountersTest {
 			assertArrayEquals(expected, actual);
 		}
 	}
-
 }

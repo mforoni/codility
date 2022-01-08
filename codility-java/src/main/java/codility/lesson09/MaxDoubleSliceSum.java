@@ -1,7 +1,5 @@
 package codility.lesson09;
 
-import com.google.common.base.Preconditions;
-
 import codility.util.MoreInts;
 
 /**
@@ -70,7 +68,7 @@ final class MaxDoubleSliceSum {
 	}
 
 	public static int[] maximumSumContinuosSubsequenceExtremesExcludedEndingAt(int[] array) {
-		Preconditions.checkArgument(array.length > 1);
+		assert (array.length > 1);
 		final int n = array.length;
 		final int[] mscse = new int[n];
 		mscse[1] = array[1];
@@ -81,7 +79,7 @@ final class MaxDoubleSliceSum {
 	}
 
 	public static int[] maximumSumContinuosSubsequenceExtremesExcludedStartingAt(int[] array) {
-		Preconditions.checkArgument(array.length > 1);
+		assert (array.length > 1);
 		final int n = array.length;
 		final int[] mscss = new int[n];
 		mscss[n - 2] = array[n - 2];

@@ -1,6 +1,6 @@
 package codility.lesson04;
 
-import com.google.common.primitives.Ints;
+import java.util.Arrays;
 
 /**
  * You are given N counters, initially set to 0, and you have two possible
@@ -94,7 +94,7 @@ final class MaxCounters {
 					maxIndex = a;
 				}
 			}
-//			System.out.println(String.format("%s | %s | %s | %s | %s", Ints.join(", ", counters), a+1, max, maxIndex+1, toSum));
+			//System.out.println(String.format("%s | %s | %s | %s | %s", Arrays.toString(counters), a+1, max, maxIndex+1, toSum));
 		}
 		for (int i = 0; i < counters.length; i++) {
 			if (counters[i] <= toSum) {
@@ -113,7 +113,7 @@ final class MaxCounters {
 	 * @return
 	 */
 	public static int[] elegantSolution(int N, int[] A) {
-		System.out.println("Elegant solution");
+		//System.out.println("Elegant solution");
 		int max = 0;
 		int lastMaximization = 0;
 		final int[] counters = new int[N];
@@ -125,8 +125,7 @@ final class MaxCounters {
 				counters[index] = Math.max(lastMaximization, counters[index]) + 1;
 				max = Math.max(max, counters[index]);
 			}
-			System.out.println(String.format("c = [%s] , max = %s , lastMax = %s",
-					Ints.join(", ", counters), max, lastMaximization));
+			//System.out.println(String.format("c = [%s] , max = %s , lastMax = %s", Arrays.toString(counters), max, lastMaximization));
 		}
 		for (int i = 0; i < counters.length; i++) {
 			if (counters[i] < lastMaximization) {

@@ -1,8 +1,9 @@
 package codility.lesson04;
 
 import codility.util.MoreInts;
-import com.google.common.primitives.Ints;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -79,8 +80,7 @@ public class FrogRiverOneTest {
 			final int sol1 = FrogRiverOne.exhaustiveSearch(x, a);
 			final int sol2 = frogRiverOne.solution(x, a);
 			if (sol1 != sol2) {
-				System.out.println("A = " + Ints.join(", ", a));
-				System.out.println("X = " + x);
+				System.out.println(String.format("X = %d, A = %s.", x, Arrays.toString(a)));
 			}
 			assertEquals(sol1, sol2);
 		}
@@ -95,8 +95,7 @@ public class FrogRiverOneTest {
 			final int sol1 = FrogRiverOne.exhaustiveSearch(x, a);
 			final int sol2 = FrogRiverOne.efficientSolution(x, a);
 			if (sol1 != sol2) {
-				System.out.println("A = " + Ints.join(", ", a));
-				System.out.println("X = " + x);
+				System.out.println(String.format("X = %d, A = %s.", x, Arrays.toString(a)));
 			}
 			assertEquals(sol1, sol2);
 		}

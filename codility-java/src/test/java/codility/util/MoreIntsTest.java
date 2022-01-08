@@ -84,10 +84,4 @@ public class MoreIntsTest {
 	public void testSwap() {
 
 	}
-
-	@Test
-	public void testToStringIntArray() {
-		assertEquals("3,2,-6,4,0", MoreInts.toString(A1));
-	}
-
 }

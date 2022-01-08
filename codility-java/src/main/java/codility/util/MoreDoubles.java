@@ -1,7 +1,5 @@
 package codility.util;
 
-import com.google.common.primitives.Doubles;
-
 public final class MoreDoubles {
 
 	private MoreDoubles() {
@@ -31,9 +29,5 @@ public final class MoreDoubles {
 			}
 		}
 		return minIndex;
-	}
-	
-	public static String toString(final double[] A) {
-		return Doubles.join(",", A);
 	}
 }

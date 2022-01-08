@@ -4,9 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
-import com.google.common.base.Preconditions;
-import com.google.common.primitives.Ints;
-
 public final class MoreInts {
 
 	private MoreInts() {
@@ -109,8 +106,8 @@ public final class MoreInts {
 	}
 
 	public static int indexOf(final int[] array, final int target, final int from, final int end) {
-		Preconditions.checkArgument(from <= end);
-		Preconditions.checkArgument(end < array.length);
+		assert (from <= end);
+		assert (end < array.length);
 		for (int i = from; i <= end; i++) {
 			if (array[i] == target) {
 				return i;
@@ -138,10 +135,6 @@ public final class MoreInts {
 		final int tmp = array[i];
 		array[i] = array[j];
 		array[j] = tmp;
-	}
-
-	public static String toString(final int[] array) {
-		return Ints.join(",", array);
 	}
 
 	public static int[] maximumSumContinuosSubsequenceEndingAt(int[] array) {

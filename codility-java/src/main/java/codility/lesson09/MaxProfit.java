@@ -47,7 +47,8 @@ package codility.lesson09;
  * expected worst-case time complexity is O(N);<br>
  * expected worst-case space complexity is O(1) (not counting the storage
  * required for input arguments).
- * @see <a href="https://app.codility.com/programmers/lessons/9-maximum_slice_problem/max_profit/">app.codility.com/programmers/lessons/9-maximum_slice_problem/max_profit</a>
+ * @see <a href="https://app.codility.com/programmers/lessons/9-maximum_slice_problem/max_profit/">
+ *     app.codility.com/programmers/lessons/9-maximum_slice_problem/max_profit</a>
  *
  * @author Foroni Marco
  */

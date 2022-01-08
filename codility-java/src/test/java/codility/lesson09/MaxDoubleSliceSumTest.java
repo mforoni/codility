@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MaxDoubleSliceSumTest {
 
+	public static final int NUM_TESTS = 100;
 	private static final int MIN_N = 3;
 	private static final int MAX_N = 1_000; //100_000;
 	private static final int MIN_INT = -10_000;
@@ -33,8 +34,7 @@ public class MaxDoubleSliceSumTest {
 	@Test
 	public void testMassive() {
 		final MaxDoubleSliceSum maxDoubleSliceSum = new MaxDoubleSliceSum();
-		final int ntest = 200;
-		for (int t = 0; t < ntest; t++) {
+		for (int t = 0; t < NUM_TESTS; t++) {
 			final int N = MoreInts.newRandom(MIN_N, MAX_N);
 			final int[] A = MoreInts.newRandomArray(N, MIN_INT, MAX_INT);
 			assertEquals(MaxDoubleSliceSum.exhaustiveSearch(A), maxDoubleSliceSum.solution(A));

@@ -1,7 +1,8 @@
 package codility.lesson04;
 
 import codility.util.MoreInts;
-import com.google.common.primitives.Ints;
+
+import java.util.Arrays;
 
 /**
  * A small frog wants to get to the other side of a river. The frog is initially
@@ -52,6 +53,8 @@ import com.google.common.primitives.Ints;
  * expected worst-case time complexity is O(N);<br>
  * expected worst-case space complexity is O(X) (not counting the storage
  * required for input arguments).
+ * @see <a href="https://app.codility.com/programmers/lessons/4-counting_elements/frog_river_one/">
+ *     app.codility.com/programmers/lessons/4-counting_elements/frog_river_one</a>
  * 
  * @author Foroni Marco
  *
@@ -93,7 +96,7 @@ final class FrogRiverOne {
 	 * @return
 	 */
     public static int efficientSolution(int X, int[] A) {
-		// System.out.println("X = " + X + ", A = " + Ints.join(", ", A));
+		//System.out.println(String.format("X = %d, A = %s", X, Arrays.toString(A)));
         // earliestTime[k] = the earliest time for a leaf to appear in position k
         final int[] earliestTime = new int[X + 1];
         for (int i = 1; i <= X; i++) {
@@ -104,7 +107,7 @@ final class FrogRiverOne {
                 earliestTime[A[i]] = i;
             }
         }
-		// System.out.println(Ints.join(", ", earliestTime));
+		//System.out.println(Arrays.toString(earliestTime));
 		int max = -1;
         for (int i = 1; i <= X; i++) {
             if (earliestTime[i] == -1) {

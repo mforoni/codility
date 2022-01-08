@@ -3,6 +3,8 @@ package codility.lesson06;
 import codility.util.MoreInts;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class NumberOfDiscIntersectionsTest {
@@ -62,12 +64,12 @@ public class NumberOfDiscIntersectionsTest {
 		for (int t = 0; t < NUM_TEST; t++) {
 			final int N = MoreInts.newRandom(MIN_N, MAX_N);
 			final int[] A = MoreInts.newRandomArray(N, MIN_INT, MAX_INT);
-			try {
-				assertEquals(NumberOfDiscIntersections.exhaustiveSearch(A), numberOfDiscIntersections.solution(A));
-			} catch (AssertionError e) {
-				System.out.println(MoreInts.toString(A));
-				throw e;
+			final int expected = NumberOfDiscIntersections.exhaustiveSearch(A);
+			final int actual = numberOfDiscIntersections.solution(A);
+			if (expected != actual) {
+				System.out.println(Arrays.toString(A));
 			}
+			assertEquals(expected, actual);
 		}
 	}
 
@@ -76,12 +78,12 @@ public class NumberOfDiscIntersectionsTest {
 		for (int t = 0; t < NUM_TEST; t++) {
 			final int N = MoreInts.newRandom(MIN_N, MAX_N);
 			final int[] A = MoreInts.newRandomArray(N, MIN_INT, MAX_INT);
-			try {
-				assertEquals(NumberOfDiscIntersections.exhaustiveSearch(A), NumberOfDiscIntersections.elegantSolution(A));
-			} catch (AssertionError e) {
-				System.out.println(MoreInts.toString(A));
-				throw e;
+			final int expected = NumberOfDiscIntersections.exhaustiveSearch(A);
+			final int actual = NumberOfDiscIntersections.elegantSolution(A);
+			if (expected != actual) {
+				System.out.println(Arrays.toString(A));
 			}
+			assertEquals(expected, actual);
 		}
 	}
 }

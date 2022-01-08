@@ -30,11 +30,5 @@
       <version>5.8.1</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-	  <version>21.0</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 </project>
