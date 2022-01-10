@@ -3,8 +3,6 @@ package codility.lesson12;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.google.common.base.Preconditions;
-
 /**
  * Two positive integers N and M are given. Integer N represents the number of
  * chocolates arranged in a circle, numbered from 0 to N − 1.
@@ -38,22 +36,24 @@ import com.google.common.base.Preconditions;
  * <p>
  * Write an efficient algorithm for the following assumptions:<br>
  * N and M are integers within the range [1..1,000,000,000].
- * 
- * @author Marco Foroni
+ * @see <a href="https://app.codility.com/programmers/lessons/12-euclidean_algorithm/chocolates_by_numbers/">
+ *     app.codility.com/programmers/lessons/12-euclidean_algorithm/chocolates_by_numbers</a>
  *
+ * @author Marco Foroni
  */
 final class ChocolatesByNumbers {
 
 	/**
 	 * Given that: LCM(a,b) = a * b / GCD(a,b)
 	 * <p>
-	 * We have to compute LCM(a,b) / b = a / GCD(a,b) 
+	 * We have to compute LCM(a,b) / b that is the same of computing a / GCD(a,b)
 	 * <p>
 	 * Time complexity is O(log(N+M))=O(logN)
-	 * 
+	 * @see <a href="https://app.codility.com/demo/results/trainingZ2W4ZW-HFX/">app.codility.com/demo/results/trainingZ2W4ZW-HFX</a>
+	 *
 	 * @param N
 	 * @param M
-	 * @return LCM(N, M) * M
+	 * @return LCM(N, M) / M
 	 */
 	public int solution(int N, int M) {
 		int gcd = N >= M ? gcd(N, M) : gcd(M, N); 
@@ -70,7 +70,7 @@ final class ChocolatesByNumbers {
 	 * @return
 	 */
 	public static int gcd(int a, int b) {
-		Preconditions.checkArgument(a >= b);
+		assert (a >= b);
 		if (a % b == 0)
 			return b;
 		else
@@ -78,9 +78,7 @@ final class ChocolatesByNumbers {
 	}
 
 	/**
-	 * Time complexity is O(n)*
-	 * <p>
-	 * * if module operation is O(1)
+	 * Time complexity is O(n) if module operation is O(1)
 	 * 
 	 * @param n
 	 * @param m
