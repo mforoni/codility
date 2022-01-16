@@ -231,23 +231,6 @@ final class FibFrog {
 	}
 
 	/**
-	 * Time complexity is O(N)<br>
-	 * Space complexity is O(N)
-	 *
-	 * @param n
-	 * @return
-	 */
-	static int[] fibonacci(int n) {
-		final int[] fib = new int[n];
-		fib[0] = 0;
-		fib[1] = 1;
-		for (int i = 2; i < n; i++) {
-			fib[i] = fib[i - 1] + fib[i - 2];
-		}
-		return fib;
-	}
-
-	/**
 	 * Returns count of fibonacci numbers in [low, high].
 	 * <p>
 	 * Time complexity is O(logN)<br>

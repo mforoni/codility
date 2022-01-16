@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FibFrogTest {
 
-	public static final int NUM_TESTS = 200;
+	private static final int NUM_TESTS = 200;
 	private static final int MIN_N = 0;
 	private static final int MAX_N = 100_000;
 	private static final int MIN_INT = 0;
@@ -81,8 +81,8 @@ public class FibFrogTest {
 		for (int t = 0; t < NUM_TESTS; t++) {
 			final int N = MoreInts.newRandom(MIN_N, 50);
 			final int[] A = MoreInts.newRandomArray(N, MIN_INT, MAX_INT);
-			int expected = exhaustiveSearch.solution(A);
-			int actual = fibFrog.solution(A);
+			final int expected = exhaustiveSearch.solution(A);
+			final int actual = fibFrog.solution(A);
 			if (expected != actual) {
 				System.out.printf("N = %d, A = %s", N, Arrays.toString(A));
 			}
