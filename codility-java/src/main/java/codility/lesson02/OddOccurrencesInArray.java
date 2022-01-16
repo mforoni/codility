@@ -40,20 +40,21 @@ import codility.util.MoreInts;
  * expected worst-case time complexity is O(N);<br>
  * expected worst-case space complexity is O(1) (not counting the storage
  * required for input arguments).
+ * @see <a href="https://app.codility.com/programmers/lessons/2-arrays/odd_occurrences_in_array/">
+ *     app.codility.com/programmers/lessons/2-arrays/odd_occurrences_in_array</a>
  * 
- * @author Foroni
- *
+ * @author Marco Foroni
  */
 final class OddOccurrencesInArray {
 
 	/**
+	 * Idea: use xor operator
+	 * <br><br>
 	 * Time complexity is O(N)<br>
 	 * Space complexity is O(1)
-	 * <p>
-	 * Idea use xor operator
-	 * 
-	 * @param A
-	 * @return
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingVSZ35Q-8XN/">
+	 *     app.codility.com/demo/results/trainingVSZ35Q-8XN</a>
 	 */
 	public int solution(int[] A) {
 		int result = 0;
@@ -64,11 +65,33 @@ final class OddOccurrencesInArray {
 	}
 
 	/**
-	 * Time complexity is O(N^2)?<br>
+	 * Idea: use a Map for mapping the occurrences of each element in array A.<br>
+	 * <br>
+	 * Time complexity is O(N)<br>
+	 * Space complexity is O(N)<br>
+	 * <br>
+	 * Space complexity can be reduced.
+	 */
+	public static int subOptimal(int[] A) {
+		final Map<Integer, Integer> map = new HashMap<>();
+		for (int a : A) {
+			final Integer value = map.get(a);
+			final int counter = value == null ? 1 : value + 1;
+			map.put(a, counter);
+		}
+		for (int a : map.keySet()) {
+			final int value = map.get(a);
+			// System.out.printf("%d occur %s times%n", a, value);
+			if (value % 2 == 1) {
+				return a;
+			}
+		}
+		throw new AssertionError();
+	}
+
+	/**
+	 * Time complexity is O(N^2)<br>
 	 * Space complexity is O(1)
-	 * 
-	 * @param A
-	 * @return
 	 */
 	public static int moveUnpairedToTheEnd(final int[] A) {
 		int i = 0;
@@ -89,30 +112,4 @@ final class OddOccurrencesInArray {
 		}
 		return A[A.length - 1];
 	}
-
-	/**
-	 * Time complexity is O(N)<br>
-	 * Space complexity is O(N)
-	 * 
-	 * @param A
-	 * @return
-	 */
-	public static int withMap(int[] A) {
-		final Map<Integer, Integer> map = new HashMap<>(); // Mapping occurrences by a in A
-		for (int a : A) {
-			final Integer value = map.get(a);
-			final int counter = value == null ? 1 : value + 1;
-			map.put(a, counter);
-		}
-		for (int a : map.keySet()) {
-			final Integer value = map.get(a);
-			// System.out.println(String.format("%s occurr %s times", a, value));
-			assert (value != null);
-			if (value.intValue() % 2 == 1) {
-				return a;
-			}
-		}
-		throw new AssertionError();
-	}
-
 }

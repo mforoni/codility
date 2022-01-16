@@ -49,12 +49,20 @@ package codility.lesson02;
  * <p>
  * In your solution, focus on correctness. The performance of your solution will
  * not be the focus of the assessment.
- * 
- * @author Foroni Marco
+ * @see <a href="https://app.codility.com/programmers/lessons/2-arrays/cyclic_rotation/">
+ *     app.codility.com/programmers/lessons/2-arrays/cyclic_rotation</a>
  *
+ * @author Marco Foroni
  */
 final class CyclicRotation {
 
+	/**
+	 * Time complexity is O(K*N)<br>
+	 * Space complexity is O(1)
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingC2HATD-MM3/">
+	 *     app.codility.com/demo/results/trainingC2HATD-MM3</a>
+	 */
 	public int[] solution(int[] A, int K) {
 		if (A.length > 0 && K > 0) {
 			final int times = K > A.length ? K % A.length : K;
@@ -65,6 +73,10 @@ final class CyclicRotation {
 		return A;
 	}
 
+	/**
+	 * Time complexity is O(N)<br>
+	 * Space complexity is O(1)
+	 */
 	public static void rotate(int[] A) {
 		final int last = A[A.length - 1];
 		for (int i = A.length - 1; i > 0; i--) {
