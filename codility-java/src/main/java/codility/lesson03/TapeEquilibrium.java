@@ -43,18 +43,27 @@ import codility.util.MoreInts;
  * expected worst-case time complexity is O(N);<br>
  * expected worst-case space complexity is O(N) (not counting the storage
  * required for input arguments).
- * 
- * @author Foroni
  *
+ * @see <a href="https://app.codility.com/programmers/lessons/3-time_complexity/tape_equilibrium/">
+ *     app.codility.com/programmers/lessons/3-time_complexity/tape_equilibrium/</a>
+ * 
+ * @author Marco Foroni
  */
 final class TapeEquilibrium {
 
 	/**
+	 * <pre>
+	 * Idea: Use prefix sum.
+	 * sum[i] = A[0] + A[i] + ... + A[i]
+	 * P[i] = abs(sum[i - 1] - (sum[N - 1] - sum[i - 1]))
+	 * The solution is the minimum element in P.
+	 * </pre>
+	 *
 	 * Time complexity is O(n)<br>
 	 * Space complexity is O(n)
-	 * 
-	 * @param A
-	 * @return
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/training6W6DSH-8CP/">
+	 *     app.codility.com/demo/results/training6W6DSH-8CP</a>
 	 */
 	public int solution(int[] A) {
 		final int[] sum = new int[A.length];
@@ -73,7 +82,6 @@ final class TapeEquilibrium {
 	public static int min(final int A[], final int start) {
 		int min = Integer.MAX_VALUE;
 		for (int i = start; i < A.length; i++) {
-//			System.out.println(A[i]);
 			if (A[i] < min) {
 				min = A[i];
 			}
@@ -84,9 +92,6 @@ final class TapeEquilibrium {
 	/**
 	 * Time complexity is O(n^2)<br>
 	 * Space complexity is O(1)
-	 * 
-	 * @param A
-	 * @return
 	 */
 	public static int exhaustiveSearch(final int[] A) {
 		int min = Integer.MAX_VALUE;
@@ -105,9 +110,6 @@ final class TapeEquilibrium {
 	/**
 	 * Time complexity is O(n)<br>
 	 * Space complexity is O(1)
-	 * 
-	 * @param A
-	 * @return
 	 */
     public static int solutionWithConstantSpace(int[] A) {
         int sum = 0;

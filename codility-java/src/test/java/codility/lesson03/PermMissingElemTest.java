@@ -20,8 +20,8 @@ public class PermMissingElemTest {
 	}
 
 	@Test
-	public void testSaveFound() {
-		assertEquals(SOL1, PermMissingElem.saveFound(A1));
-		assertEquals(SOL2, PermMissingElem.saveFound(A2));
+	public void testSuboptimal() {
+		assertEquals(SOL1, PermMissingElem.suboptimal(A1));
+		assertEquals(SOL2, PermMissingElem.suboptimal(A2));
 	}
 }

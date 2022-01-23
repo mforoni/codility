@@ -29,24 +29,27 @@ package codility.lesson03;
  * expected worst-case time complexity is O(N);<br>
  * expected worst-case space complexity is O(1) (not counting the storage
  * required for input arguments).
- * 
- * @author Foroni Marco
  *
+ * @see <a href="https://app.codility.com/programmers/lessons/3-time_complexity/perm_missing_elem/">
+ *     app.codility.com/programmers/lessons/3-time_complexity/perm_missing_elem/</a>
+ * 
+ * @author Marco Foroni
  */
 final class PermMissingElem {
 
-	/** 
+	/**
+	 * Idea: Sum(1,...,n+1) = 1 + ... + x + ... + n + n+1 = x + Sum(a in A)<br>
+	 * <br>
+	 * Therefore:<br>
+	 * <br>
+	 * x = Sum(1,...,n+1) - Sum(a in A)<br>
+	 * <br>
+	 *
 	 * Time complexity is O(n)<br>
 	 * Space complexity is O(1)
-	 * <p>
-	 * Idea: Sum(1,...,n+1) = 1 + ... + x + ... + n + n+1 = x + Sum(a in A)
-	 * <p>
-	 * Therefore:
-	 * <p>
-	 * x = Sum(1,...,n+1) - Sum(a in A)
-	 * 
-	 * @param A
-	 * @return
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingS4KGHF-TMP/">
+	 *     app.codility.com/demo/results/trainingS4KGHF-TMP/</a>
 	 */
 	public int solution(int[] A) {
 		final int max = A.length + 1;
@@ -62,13 +65,12 @@ final class PermMissingElem {
 	}
 
 	/**
-	 * 
-	 * Time complexity is O(n) Space complexity is O(n)
-	 * 
-	 * @param A
-	 * @return
+	 * Idea: Count occurrences of each element in A. Return the first element with occurrences equal to zero.<br>
+	 * <br>
+	 * Time complexity is O(n)<br>
+	 * Space complexity is O(n)
 	 */
-	public static int saveFound(final int[] A) {
+	public static int suboptimal(final int[] A) {
 		final int max = A.length + 2;
 		final int[] occ = new int[max];
 		for (int a : A) {

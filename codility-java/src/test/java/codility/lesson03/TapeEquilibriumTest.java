@@ -14,15 +14,18 @@ public class TapeEquilibriumTest {
 	private static final int MAX_N  = 100_000;
 	private static final int MIN_INT = -1_000;
 	private static final int MAX_INT = 1_000;
-	private static final int[] A1 = new int[] { 3, 1, 2, 4, 3 };
+
+	private static final int[] A1 = { 3, 1, 2, 4, 3 };
 	private static final int SOL1 = 1;
-	private static final int[] A2 = new int[] { 20, 1, 2, 3, 4, 5 };
+
+	private static final int[] A2 = { 20, 1, 2, 3, 4, 5 };
 	private static final int SOL2 = 5;
-	private static final int[] A3 = new int[] { 20, 1};
+
+	private static final int[] A3 = { 20, 1};
 	private static final int SOL3 = 19;
-	private static final int[] A4 = new int[] { 1, 10};
+
+	private static final int[] A4 = { 1, 10};
 	private static final int SOL4 = 9;
-	
 
 	@Test
 	public void testSolution() {
@@ -54,12 +57,12 @@ public class TapeEquilibriumTest {
 		for (int t = 0; t < NUM_TESTS; t++) {
 			final int n = MoreInts.newRandom(MIN_N, 10_000);
 			final int[] a = MoreInts.newRandomArray(n, MIN_INT, MAX_INT);
-			final int sol1 = TapeEquilibrium.exhaustiveSearch(a);
-			final int sol2 = tapeEquilibrium.solution(a);
-			if (sol1 != sol2) {
+			final int expected = TapeEquilibrium.exhaustiveSearch(a);
+			final int actual = tapeEquilibrium.solution(a);
+			if (expected != actual) {
 				System.out.println(Arrays.toString(a));
 			}
-			assertEquals(sol1, sol2);
+			assertEquals(expected, actual);
 		}
 	}
 	
@@ -68,12 +71,12 @@ public class TapeEquilibriumTest {
 		for (int t = 0; t < NUM_TESTS; t++) {
 			final int n = MoreInts.newRandom(MIN_N, 10_000);
 			final int[] a = MoreInts.newRandomArray(n, MIN_INT, MAX_INT);
-			final int sol1 = TapeEquilibrium.exhaustiveSearch(a);
-			final int sol2 = TapeEquilibrium.solutionWithConstantSpace(a);
-			if (sol1 != sol2) {
+			final int expected = TapeEquilibrium.exhaustiveSearch(a);
+			final int actual = TapeEquilibrium.solutionWithConstantSpace(a);
+			if (expected != actual) {
 				System.out.println(Arrays.toString(a));
 			}
-			assertEquals(sol1, sol2);
+			assertEquals(expected, actual);
 		}
 	}
 
@@ -83,12 +86,12 @@ public class TapeEquilibriumTest {
 		for (int t = 0; t < NUM_TESTS; t++) {
 			final int n = MoreInts.newRandom(MIN_N, MAX_N);
 			final int[] a = MoreInts.newRandomArray(n, MIN_INT, MAX_INT);
-			final int sol1 = TapeEquilibrium.solutionWithConstantSpace(a);
-			final int sol2 = tapeEquilibrium.solution(a);
-			if (sol1 != sol2) {
+			final int expected = TapeEquilibrium.solutionWithConstantSpace(a);
+			final int actual = tapeEquilibrium.solution(a);
+			if (expected != actual) {
 				System.out.println(Arrays.toString(a));
 			}
-			assertEquals(sol1, sol2);
+			assertEquals(expected, actual);
 		}
 	}
 }

@@ -30,20 +30,20 @@ package codility.lesson03;
  * <p>
  * expected worst-case time complexity is O(1);<br>
  * expected worst-case space complexity is O(1).
- * 
- * @author Foroni
  *
+ * @see <a href="https://app.codility.com/programmers/lessons/3-time_complexity/frog_jmp/">
+ *     app.codility.com/programmers/lessons/3-time_complexity/frog_jmp</a>
+ * 
+ * @author Marco Foroni
  */
 final class FrogJump {
 
 	/**
 	 * Time complexity is O(1)<br>
 	 * Space complexity is O(1)
-	 * 
-	 * @param X
-	 * @param Y
-	 * @param D
-	 * @return
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/training43RDJS-RVC/">
+	 *     app.codility.com/demo/results/training43RDJS-RVC/</a>
 	 */
 	public int solution(int X, int Y, int D) {
 		return (int) Math.ceil((double) (Y - X) / D);
