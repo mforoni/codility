@@ -44,16 +44,17 @@ import java.util.Set;
 final class ChocolatesByNumbers {
 
 	/**
-	 * Given that: LCM(a,b) = a * b / GCD(a,b)
-	 * <p>
-	 * We have to compute LCM(a,b) / b that is the same of computing a / GCD(a,b)
-	 * <p>
-	 * Time complexity is O(log(N+M))=O(logN)
-	 * @see <a href="https://app.codility.com/demo/results/trainingZ2W4ZW-HFX/">app.codility.com/demo/results/trainingZ2W4ZW-HFX</a>
+	 * Given that:
+	 * <pre>
+	 * LCM(a,b) = a * b / GCD(a,b)
+	 * </pre>
+	 * We have to compute LCM(a,b) / b that is the same of computing a / GCD(a,b)<br>
+	 * <br>
+	 * Time complexity is O(log(N+M)) = O(logN)
 	 *
-	 * @param N
-	 * @param M
 	 * @return LCM(N, M) / M
+	 * @see <a href="https://app.codility.com/demo/results/trainingZ2W4ZW-HFX/">
+	 *     app.codility.com/demo/results/trainingZ2W4ZW-HFX</a>
 	 */
 	public int solution(int N, int M) {
 		int gcd = N >= M ? gcd(N, M) : gcd(M, N); 
@@ -61,13 +62,9 @@ final class ChocolatesByNumbers {
 	}
 
 	/**
-	 * Euclidean algorithm by division.
-	 * <p>
+	 * Euclidean algorithm by division.<br>
+	 * <br>
 	 * Time complexity is O(log(a + b))
-	 * 
-	 * @param a
-	 * @param b
-	 * @return
 	 */
 	public static int gcd(int a, int b) {
 		assert (a >= b);
@@ -79,10 +76,6 @@ final class ChocolatesByNumbers {
 
 	/**
 	 * Time complexity is O(n) if module operation is O(1)
-	 * 
-	 * @param n
-	 * @param m
-	 * @return
 	 */
 	public static int exhaustiveSearch(int n, int m) {
 		final Set<Integer> set = new HashSet<>();

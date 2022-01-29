@@ -16,18 +16,18 @@ public class ChocolatesByNumbersTest {
 	private static final int SOL1 = 5;
 
 	@Test
-	public void testSolution() {
+	public void solution() {
 		final ChocolatesByNumbers chocolatesByNumbers = new ChocolatesByNumbers();
 		assertEquals(SOL1, chocolatesByNumbers.solution(N1, M1));
 	}
 
 	@Test
-	public void testExhaustiveSearch() {
+	public void exhaustiveSearch() {
 		assertEquals(SOL1, ChocolatesByNumbers.exhaustiveSearch(N1, M1));
 	}
 
 	@Test
-	public void testSolutionRandomInput() {
+	public void solutionRandomInput() {
 		final ChocolatesByNumbers chocolatesByNumbers = new ChocolatesByNumbers();
 		for (int t = 0; t < NUM_TESTS; t++) {
 			final int n = MoreInts.newRandom(MIN_N_AND_M, 250_000);
