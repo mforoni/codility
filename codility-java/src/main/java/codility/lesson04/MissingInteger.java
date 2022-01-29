@@ -31,25 +31,26 @@ import java.util.Set;
  * expected worst-case time complexity is O(N);<br>
  * expected worst-case space complexity is O(N) (not counting the storage
  * required for input arguments).
+ * @see <a href="https://app.codility.com/programmers/lessons/4-counting_elements/missing_integer/">
+ *     app.codility.com/programmers/lessons/4-counting_elements/missing_integer/</a>
  * 
- * 
- * @author Foroni Marco
+ * @author Marco Foroni
  *
  */
 final class MissingInteger {
 
 	/**
-	 * Time complexity is O(N)<br>
-	 * Space complexity is O(N)
-	 * <p>
-	 * Idea: use an array P of size N where P[i] = 1 if i is present in array A.
-	 * <p>
+	 * Idea: use an array P of size N where P[i] = 1 if the number i is present in array A.<br>
+	 * <br>
 	 * Note:<br>
 	 * the integers in A greater than N can be skipped<br>
-	 * the integers in A lesser than 0 can be skipped
+	 * the integers in A lesser than 0 can be skipped<br>
+	 * <br>
+	 * Time complexity is O(N)<br>
+	 * Space complexity is O(N)
 	 * 
-	 * @param A
-	 * @return
+	 * @see <a href="https://app.codility.com/demo/results/trainingX3DS3X-KP7/">
+	 *     app.codility.com/demo/results/trainingX3DS3X-KP7/</a>
 	 */
 	public int solution(final int[] A) {
 		final int N = A.length;
@@ -70,12 +71,9 @@ final class MissingInteger {
 
 	/**
 	 * Time complexity is O(N*log(N))<br>
-	 * Space complexity is O(1) - destroy the input
-	 * 
-	 * @param A
-	 * @return
+	 * Space complexity is O(1) but destroy the input
 	 */
-	public static int sortAndFind(final int[] A) {
+	public static int solutionBySorting(final int[] A) {
 		int x = 1;
 		Arrays.sort(A);
 		for (int a : A) {
@@ -89,11 +87,11 @@ final class MissingInteger {
 	/**
 	 * Time complexity is O(N+N)=O(N)<br>
 	 * Space complexity is O(N)
-	 * 
-	 * @param A
-	 * @return
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingZYX9AP-U7A/">
+	 *     app.codility.com/demo/results/trainingZYX9AP-U7A</a>
 	 */
-	public static int withHashSet(final int[] A) {
+	public static int solutionWithHashSet(final int[] A) {
 		final Set<Integer> set = new HashSet<>(A.length);
 		for (int a : A) {
 			if (a > 0) {
@@ -105,12 +103,5 @@ final class MissingInteger {
 			x++;
 		}
 		return x;
-		/*
-		 * other way to make it clear that the time required is O(n) in the worst case
-		 */
-		// int x = 1;
-		// for (; x <= A.length; x++) { if (!set.contains(x)) { return x; } }
-		// return x;
 	}
-
 }

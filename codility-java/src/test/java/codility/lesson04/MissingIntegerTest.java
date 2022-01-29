@@ -1,13 +1,18 @@
 package codility.lesson04;
 
 import codility.util.MoreInts;
-import com.google.common.primitives.Ints;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MissingIntegerTest {
 
+	public static final int NUM_TESTS = 200;
 	private static final int MIN = -1_000_000;
 	private static final int MAX = 1_000_000;
 	private static final int N = 100_000;
@@ -25,7 +30,7 @@ public class MissingIntegerTest {
 	private static final int SOL4 = 2;
 
 	@Test
-	public void testSolution() {
+	public void solution() {
 		final MissingInteger missingInteger = new MissingInteger();
 		assertEquals(SOL1, missingInteger.solution(A1));
 		assertEquals(SOL2, missingInteger.solution(A2));
@@ -34,43 +39,34 @@ public class MissingIntegerTest {
 	}
 
 	@Test
-	public void testSortAndFind() {
-		assertEquals(SOL1, MissingInteger.sortAndFind(A1.clone()));
-		assertEquals(SOL2, MissingInteger.sortAndFind(A2.clone()));
-		assertEquals(SOL3, MissingInteger.sortAndFind(A3.clone()));
-		assertEquals(SOL4, MissingInteger.sortAndFind(A4.clone()));
+	public void solutionBySorting() {
+		assertEquals(SOL1, MissingInteger.solutionBySorting(A1.clone()));
+		assertEquals(SOL3, MissingInteger.solutionBySorting(A3.clone()));
+		assertEquals(SOL4, MissingInteger.solutionBySorting(A4.clone()));
 	}
 
 	@Test
-	public void testWithHashSet() {
-		assertEquals(SOL1, MissingInteger.withHashSet(A1));
-		assertEquals(SOL2, MissingInteger.withHashSet(A2));
-		assertEquals(SOL3, MissingInteger.withHashSet(A3));
-		assertEquals(SOL4, MissingInteger.withHashSet(A4));
+	public void solutionWithHashSet() {
+		assertEquals(SOL1, MissingInteger.solutionWithHashSet(A1));
+		assertEquals(SOL2, MissingInteger.solutionWithHashSet(A2));
+		assertEquals(SOL3, MissingInteger.solutionWithHashSet(A3));
+		assertEquals(SOL4, MissingInteger.solutionWithHashSet(A4));
 	}
 
 	@Test
-	public void testMassive() {
+	public void solutionRandomInput() {
 		final MissingInteger missingInteger = new MissingInteger();
-		final int ntest = 200;
-		for (int t = 0; t < ntest; t++) {
+		for (int t = 0; t < NUM_TESTS; t++) {
 			final int n = MoreInts.newRandom(1, N);
 			final int[] a = MoreInts.newRandomArray(n, MIN, MAX);
-			final int[] b = a.clone();
-			final int expected = MissingInteger.withHashSet(a);
-			final int sol1 = missingInteger.solution(a);
-			final int sol2 = MissingInteger.sortAndFind(b);
-			if (sol1 != expected) {
-				System.out.println(String.format("Array contains expected value %s? %s", expected, Ints.contains(a, expected)));
-				System.out.println(String.format("Array contains solution %s? %s", sol1, Ints.contains(a, sol1)));
+			final int expected = MissingInteger.solutionWithHashSet(a);
+			final int actual = missingInteger.solution(a);
+			if (actual != expected) {
+				final List<Integer> list = Arrays.stream(a).boxed().collect(Collectors.toList());
+				System.out.printf("Array contains expected value %s? %s%n", expected, list.contains(expected));
+				System.out.printf("Array contains solution %s? %s%n", actual, list.contains(actual));
 			}
-			if (sol2 != expected) {
-				System.out.println(String.format("Array contains expected value %s? %s", expected, Ints.contains(a, expected)));
-				System.out.println(String.format("Array contains solution %s? %s", sol2, Ints.contains(a, sol2)));
-			}
-			assertEquals(expected, sol1);
-			assertEquals(expected, sol2);
-			
+			assertEquals(expected, actual);
 		}
 	}
 }

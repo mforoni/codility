@@ -56,20 +56,22 @@ import java.util.Arrays;
  * expected worst-case time complexity is O(N+M);<br>
  * expected worst-case space complexity is O(N) (not counting the storage
  * required for input arguments).
+ * @see <a href="https://app.codility.com/programmers/lessons/4-counting_elements/max_counters/">
+ *     app.codility.com/programmers/lessons/4-counting_elements/max_counters/</a>
  * 
- * 
- * @author Foroni Marco
- *
+ * @author Marco Foroni
  */
 final class MaxCounters {
 
 	/**
-	 * Time complexity is O(N + M) where M is the length of array A
+	 * Idea: keep track of current maximum value, current index of the maximum value and amount to sum. Perform
+	 * the max counter operation only once after all increase(X) operations.<br>
+	 * <br>
+	 * Time complexity is O(N + M) where M is the length of array A<br>
 	 * Space complexity is O(N)
-	 * 
-	 * @param N
-	 * @param A
-	 * @return
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingCRSRMS-CSK/">
+	 *     app.codility.com/demo/results/trainingCRSRMS-CSK/</a>
 	 */
 	public int[] solution(int N, int[] A) {
 		final int[] counters = new int[N];
@@ -81,14 +83,12 @@ final class MaxCounters {
 			if (a == N) {
 				toSum = max;
 			} else {
-				if (a == maxIndex) {
-					counters[a] += 1;
-				} else {
+				if (a != maxIndex) {
 					if (counters[a] < toSum) {
-						counters[a] = toSum; 
+						counters[a] = toSum;
 					}
-					counters[a] += 1;
 				}
+				counters[a] += 1;
 				if (counters[a] > max) {
 					max = counters[a];
 					maxIndex = a;
@@ -105,15 +105,16 @@ final class MaxCounters {
 	}
 
 	/**
-	 * Time complexity is O(N + M) where M is the length of array A
+	 * Idea: keep track of maximum value and last maximization (value used for max counter operation). Perform max
+	 * counter operation only after all the increase(X) operations.<br>
+	 * <br>
+	 * Time complexity is O(N + M) where M is the length of array A<br>
 	 * Space complexity is O(N)
 	 *
-	 * @param N
-	 * @param A
-	 * @return
+	 * @see <a href="https://app.codility.com/demo/results/trainingJ68XWN-NA5/">
+	 *     app.codility.com/demo/results/trainingJ68XWN-NA5/</a>
 	 */
 	public static int[] elegantSolution(int N, int[] A) {
-		//System.out.println("Elegant solution");
 		int max = 0;
 		int lastMaximization = 0;
 		final int[] counters = new int[N];

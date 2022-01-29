@@ -39,19 +39,22 @@ package codility.lesson04;
  * expected worst-case time complexity is O(N);<br>
  * expected worst-case space complexity is O(N) (not counting the storage
  * required for input arguments).
- * 
- * @author Foroni Marco
  *
+ * @see <a href="https://app.codility.com/programmers/lessons/4-counting_elements/perm_check/">
+ *     app.codility.com/programmers/lessons/4-counting_elements/perm_check/</a>
+ * 
+ * @author Marco Foroni
  */
 final class PermCheck {
 
 	/**
+	 * Idea: Use int array to count occurrences.
+	 * <br>
 	 * Time complexity is O(N)<br>
 	 * Space complexity is O(N)
-	 * 
-	 * @param A
-	 * @param N
-	 * @return
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingUBNYU2-6HC/">
+	 *     app.codility.com/demo/results/trainingUBNYU2-6HC/</a>
 	 */
 	public int solution(int A[]) {
 		final int N = A.length;
@@ -70,7 +73,16 @@ final class PermCheck {
 		return 1;
 	}
 
-	public static int solutionWithBooleanArray(int[] A) {
+	/**
+	 * Idea: Use boolean array to mark occurrences.<br>
+	 * <br>
+	 * Time complexity is O(N)<br>
+	 * Space complexity is O(N)
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/training7Q4ZNM-VK4/">
+	 *     app.codility.com/demo/results/training7Q4ZNM-VK4</a>
+	 */
+	public static int elegantSolution(int[] A) {
 		final boolean[] number = new boolean[A.length + 1];
 		number[0] = true;
 		for (int i = 1; i <= A.length; i++) {

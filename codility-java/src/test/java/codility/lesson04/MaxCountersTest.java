@@ -1,8 +1,6 @@
 package codility.lesson04;
 
 import codility.util.MoreInts;
-import com.google.common.primitives.Ints;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -24,26 +22,26 @@ public class MaxCountersTest {
 	private static final int[] SOL2 = {4, 3, 3, 4, 3};
 	
 	@Test
-	public void testSolution() {
+	public void solution() {
 		final MaxCounters maxCounters = new MaxCounters();
 		assertArrayEquals(SOL1, maxCounters.solution(N1, A1));
 		assertArrayEquals(SOL2, maxCounters.solution(N2, A2));
 	}
 
 	@Test
-	public void testElegantSolution() {
+	public void elegantSolution() {
 		assertArrayEquals(SOL1, MaxCounters.elegantSolution(N1, A1));
 		assertArrayEquals(SOL2, MaxCounters.elegantSolution(N2, A2));
 	}
 
 	@Test
-	public void testSuboptimal() {
+	public void suboptimal() {
 		assertArrayEquals(SOL1, MaxCounters.suboptimal(N1, A1));
 		assertArrayEquals(SOL2, MaxCounters.suboptimal(N2, A2));
 	}
 
 	@Test
-	public void testElegantSolutionRandomInput() {
+	public void elegantSolutionRandomInput() {
 		for (int t = 0; t < NUM_TESTS; t++) {
 			final int n = MoreInts.newRandom(MIN_N_AND_M, MAX_N_AND_M);
 			final int m = MoreInts.newRandom(n, MAX_N_AND_M);
@@ -51,14 +49,14 @@ public class MaxCountersTest {
 			final int[] expected = MaxCounters.suboptimal(n, a);
 			final int[] actual = MaxCounters.elegantSolution(n, a);
 			if (!Arrays.equals(expected, actual)) {
-				System.out.println(Ints.join(", ", a));
+				System.out.println(Arrays.toString(a));
 			}
 			assertArrayEquals(expected, actual);
 		}
 	}
 
 	@Test
-	public void testSolutionRandomInput() {
+	public void solutionRandomInput() {
 		MaxCounters maxCounters = new MaxCounters();
 		for (int t = 0; t < NUM_TESTS; t++) {
 			final int n = MoreInts.newRandom(MIN_N_AND_M, MAX_N_AND_M);
@@ -67,7 +65,7 @@ public class MaxCountersTest {
 			final int[] expected = MaxCounters.suboptimal(n, a);
 			final int[] actual = maxCounters.solution(n, a);
 			if (!Arrays.equals(expected, actual)) {
-				System.out.println(Ints.join(", ", a));
+				System.out.println(Arrays.toString(a));
 			}
 			assertArrayEquals(expected, actual);
 		}

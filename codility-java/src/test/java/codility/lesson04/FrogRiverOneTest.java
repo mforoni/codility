@@ -34,7 +34,7 @@ public class FrogRiverOneTest {
 	private static final int SOL5 = 1;
 
 	@Test
-	public void testSolution() {
+	public void solution() {
 		final FrogRiverOne frogRiverOne = new FrogRiverOne();
 		assertEquals(SOL1, frogRiverOne.solution(X1, A1));
 		assertEquals(SOL2, frogRiverOne.solution(X2, A2));
@@ -44,25 +44,25 @@ public class FrogRiverOneTest {
 	}
 
 	@Test
-	public void testExhaustiveSearch() {
+	public void elegantSolution() {
+		assertEquals(SOL1, FrogRiverOne.elegantSolution(X1, A1));
+		assertEquals(SOL2, FrogRiverOne.elegantSolution(X2, A2));
+		assertEquals(SOL3, FrogRiverOne.elegantSolution(X3, A3));
+		assertEquals(SOL4, FrogRiverOne.elegantSolution(X4, A4));
+		assertEquals(SOL5, FrogRiverOne.elegantSolution(X5, A5));
+	}
+
+	@Test
+	public void exhaustiveSearch() {
 		assertEquals(SOL1, FrogRiverOne.exhaustiveSearch(X1, A1));
 		assertEquals(SOL2, FrogRiverOne.exhaustiveSearch(X2, A2));
 		assertEquals(SOL3, FrogRiverOne.exhaustiveSearch(X3, A3));
 		assertEquals(SOL4, FrogRiverOne.exhaustiveSearch(X4, A4));
 		assertEquals(SOL5, FrogRiverOne.exhaustiveSearch(X5, A5));
 	}
-	
-	@Test
-	public void testEfficientSolution() {
-		assertEquals(SOL1, FrogRiverOne.efficientSolution(X1, A1));
-		assertEquals(SOL2, FrogRiverOne.efficientSolution(X2, A2));
-		assertEquals(SOL3, FrogRiverOne.efficientSolution(X3, A3));
-		assertEquals(SOL4, FrogRiverOne.efficientSolution(X4, A4));
-		assertEquals(SOL5, FrogRiverOne.efficientSolution(X5, A5));
-	}
 
 	@Test
-	public void testEnsureSoundness() {
+	public void ensureSoundness() {
 		assertTrue(FrogRiverOne.ensureSoundness(X1, A1, SOL1));
 		assertFalse(FrogRiverOne.ensureSoundness(X2, A2, SOL2));
 		assertTrue(FrogRiverOne.ensureSoundness(X3, A3, SOL3));
@@ -71,33 +71,33 @@ public class FrogRiverOneTest {
 	}
 
 	@Test
-	public void testSolutionRandomInput() {
+	public void solutionRandomInput() {
 		final FrogRiverOne frogRiverOne = new FrogRiverOne();
 		for (int t = 0; t < NUM_TESTS; t++) {
 			final int x = MoreInts.newRandom(MIN_N_AND_X, MAX_N_AND_X);
 			final int n = MoreInts.newRandom(x, MAX_N_AND_X);
 			final int[] a = MoreInts.newRandomArray(n, 1, x);
-			final int sol1 = FrogRiverOne.exhaustiveSearch(x, a);
-			final int sol2 = frogRiverOne.solution(x, a);
-			if (sol1 != sol2) {
-				System.out.println(String.format("X = %d, A = %s.", x, Arrays.toString(a)));
+			final int expected = FrogRiverOne.exhaustiveSearch(x, a);
+			final int actual = frogRiverOne.solution(x, a);
+			if (expected != actual) {
+				System.out.printf("X = %d, A = %s.%n", x, Arrays.toString(a));
 			}
-			assertEquals(sol1, sol2);
+			assertEquals(expected, actual);
 		}
 	}
 
 	@Test
-	public void testEfficientSolutionRandomInput() {
+	public void elegantSolutionRandomInput() {
 		for (int t = 0; t < NUM_TESTS; t++) {
 			final int x = MoreInts.newRandom(MIN_N_AND_X, MAX_N_AND_X);
 			final int n = MoreInts.newRandom(x, MAX_N_AND_X);
 			final int[] a = MoreInts.newRandomArray(n, 1, x);
-			final int sol1 = FrogRiverOne.exhaustiveSearch(x, a);
-			final int sol2 = FrogRiverOne.efficientSolution(x, a);
-			if (sol1 != sol2) {
-				System.out.println(String.format("X = %d, A = %s.", x, Arrays.toString(a)));
+			final int expected = FrogRiverOne.exhaustiveSearch(x, a);
+			final int actual = FrogRiverOne.elegantSolution(x, a);
+			if (expected != actual) {
+				System.out.printf("X = %d, A = %s.%n", x, Arrays.toString(a));
 			}
-			assertEquals(sol1, sol2);
+			assertEquals(expected, actual);
 		}
 	}
 }

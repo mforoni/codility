@@ -2,8 +2,6 @@ package codility.lesson04;
 
 import codility.util.MoreInts;
 
-import java.util.Arrays;
-
 /**
  * A small frog wants to get to the other side of a river. The frog is initially
  * located on one bank of the river (position 0) and wants to get to the
@@ -56,7 +54,7 @@ import java.util.Arrays;
  * @see <a href="https://app.codility.com/programmers/lessons/4-counting_elements/frog_river_one/">
  *     app.codility.com/programmers/lessons/4-counting_elements/frog_river_one</a>
  * 
- * @author Foroni Marco
+ * @author Marco Foroni
  *
  */
 final class FrogRiverOne {
@@ -65,9 +63,8 @@ final class FrogRiverOne {
 	 * Time complexity is O(X * N)
 	 * Space complexity is O(X + N)
 	 * 
-	 * @param X
-	 * @param A
-	 * @return
+	 * @see <a href="https://app.codility.com/demo/results/trainingX4P2VA-9F5/">
+	 *     app.codility.com/demo/results/trainingX4P2VA-9F5</a>
 	 */
 	public int solution(int X, int[] A) {
 		int x = 0; // frog can reach leaf x at the current time/iteration
@@ -88,16 +85,17 @@ final class FrogRiverOne {
 	}
 	
 	/**
-	 * Time complexity is O(X + N)
+	 * Idea: compute the array:<br>
+	 * earliestTime[k] = the earliest time for a leaf to appear in position k<br>
+	 * <br>
+	 * Time complexity is O(X + N)<br>
 	 * Space complexity is O(X + N)
 	 * 
-	 * @param X
-	 * @param A
-	 * @return
+	 * @see <a href="https://app.codility.com/demo/results/trainingKVRF8F-86X/">
+	 *     app.codility.com/demo/results/trainingKVRF8F-86X</a>
 	 */
-    public static int efficientSolution(int X, int[] A) {
+    public static int elegantSolution(int X, int[] A) {
 		//System.out.println(String.format("X = %d, A = %s", X, Arrays.toString(A)));
-        // earliestTime[k] = the earliest time for a leaf to appear in position k
         final int[] earliestTime = new int[X + 1];
         for (int i = 1; i <= X; i++) {
             earliestTime[i] = -1;
@@ -123,10 +121,6 @@ final class FrogRiverOne {
 	/**
 	 * Time complexity is O(X*N) = O(N^2) in the worst case with X = N<br>
 	 * Space complexity is O(1)
-	 * 
-	 * @param X
-	 * @param A
-	 * @return
 	 */
 	public static int exhaustiveSearch(final int X, final int[] A) {
 		int firstTime = 0;
@@ -146,11 +140,6 @@ final class FrogRiverOne {
 	 * <p>
 	 * Time complexity is O(N)<br>
 	 * Space complexity is O(X)
-	 * 
-	 * @param X
-	 * @param A
-	 * @param sol
-	 * @return
 	 */
 	public static boolean ensureSoundness(final int X, final int[] A, final int sol) {
 		return containsPermutation(A, X, sol);
