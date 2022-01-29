@@ -41,47 +41,27 @@ import java.util.Arrays;
  * expected worst-case time complexity is O(N*log(N));<br>
  * expected worst-case space complexity is O(N) (not counting the storage
  * required for input arguments).
- * 
- * @author Foroni Marco
+ * @see <a href="https://app.codility.com/programmers/lessons/6-sorting/triangle/">
+ *     app.codility.com/programmers/lessons/6-sorting/triangle/</a>
  *
+ * @author Marco Foroni
  */
 final class Triangle {
 
 	/**
-	 * Time complexity is O(N*log(N))<br>
-	 * Space complexity is O(N)
-	 * <p>
 	 * N is the length of the array A.<br>
-	 * Suppose that A is sorted: for each i in {0...N-1} A[i] < A[i+1]
-	 * <p>
-	 * Therefore for each i in {0...N-1} A[i] < A[i+1] + A[i+2] AND A[i+1] < A[i+2]
-	 * + A[i]
-	 * <p>
-	 * So in a sorted array for each i,j,k in {0...N-1} such that i<j<k the
-	 * equations (2) and (3) are true.
-	 * <p>
-	 * We have to check if exists an i such that A[i+2] < A[i] + A[i+1]
-	 * 
+	 * Suppose that A is sorted: for each i in {0...N-1} A[i] < A[i+1]<br>
+	 * Therefore, for each i in {0...N-1} A[i] < A[i+1] + A[i+2] AND A[i+1] < A[i+2] + A[i]<br>
+	 * So in a sorted array for each i,j,k in {0...N-1} such that i<j<k the equations (2) and (3) are true.<br>
+	 * We have to check if exists an i such that A[i+2] < A[i] + A[i+1]<br>
+	 * <br>
+	 * Time complexity is O(N*logN)
+	 * Space complexity is O(1)
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingUPVCNQ-NGZ/">
+	 *     app.codility.com/demo/results/trainingUPVCNQ-NGZ</a>
 	 */
 	public int solution(int[] A) {
-		final int[] S = A.clone();
-		Arrays.sort(S);
-		for (int i = S.length - 1; i >= 2; i--) {
-			try {
-				if (S[i] < Math.addExact(S[i - 1], S[i - 2])) { // an integer overflow may occur
-					return 1;
-				}
-			} catch (ArithmeticException e) {
-				long sum = (long) S[i - 1] + (long) S[i - 2];
-				if (S[i] < sum) {
-					return 1;
-				}
-			}
-		}
-		return 0;
-	}
-
-	public static int elegantSolution(int[] A) {
 		final int n = A.length;
 		if (n <= 2) {
 			return 0;
@@ -100,11 +80,30 @@ final class Triangle {
 	}
 
 	/**
+	 * Time complexity is O(N*log(N))<br>
+	 * Space complexity is O(N)
+	 */
+	public static int subOptimal(int[] A) {
+		final int[] S = A.clone();
+		Arrays.sort(S);
+		for (int i = S.length - 1; i >= 2; i--) {
+			try {
+				if (S[i] < Math.addExact(S[i - 1], S[i - 2])) { // an integer overflow may occur
+					return 1;
+				}
+			} catch (ArithmeticException e) {
+				long sum = (long) S[i - 1] + (long) S[i - 2];
+				if (S[i] < sum) {
+					return 1;
+				}
+			}
+		}
+		return 0;
+	}
+
+	/**
 	 * Time complexity is O(N^3)<br>
 	 * Space complexity is O(1)
-	 * 
-	 * @param A
-	 * @return
 	 */
 	public static int exhaustiveSearch(final int[] A) {
 		if (A.length < 3) {

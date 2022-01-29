@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TriangleTest {
 
 	private static final int NUM_TESTS = 200;
-
 	private static final int MIN_N = 0;
 	private static final int MAX_N = 100_000;
 	private static final int MIN_INT = Integer.MIN_VALUE;
@@ -30,7 +29,7 @@ public class TriangleTest {
 	private static final int SOL5 = 0;
 
 	@Test
-	public void testSolution() {
+	public void solution() {
 		final Triangle triangle = new Triangle();
 		assertEquals(SOL1, triangle.solution(A1));
 		assertEquals(SOL2, triangle.solution(A2));
@@ -40,7 +39,16 @@ public class TriangleTest {
 	}
 
 	@Test
-	public void testExhaustiveSearch() {
+	public void subOptimal() {
+		assertEquals(SOL1, Triangle.subOptimal(A1));
+		assertEquals(SOL2, Triangle.subOptimal(A2));
+		assertEquals(SOL3, Triangle.subOptimal(A3));
+		assertEquals(SOL4, Triangle.subOptimal(A4));
+		assertEquals(SOL5, Triangle.subOptimal(A5));
+	}
+
+	@Test
+	public void exhaustiveSearch() {
 		assertEquals(SOL1, Triangle.exhaustiveSearch(A1));
 		assertEquals(SOL2, Triangle.exhaustiveSearch(A2));
 		assertEquals(SOL3, Triangle.exhaustiveSearch(A3));
@@ -49,21 +57,12 @@ public class TriangleTest {
 	}
 
 	@Test
-	public void testSolutionRandomInput() {
+	public void solutionRandomInput() {
 		final Triangle triangle = new Triangle();
 		for (int t = 0; t < NUM_TESTS; t++) {
 			final int N = MoreInts.newRandom(MIN_N, MAX_N);
 			final int[] A = MoreInts.newRandomArray(N, MIN_INT, MAX_INT);
 			assertEquals(Triangle.exhaustiveSearch(A), triangle.solution(A));
-		}
-	}
-
-	@Test
-	public void testElegantSolutionRandomInput() {
-		for (int t = 0; t < NUM_TESTS; t++) {
-			final int N = MoreInts.newRandom(MIN_N, MAX_N);
-			final int[] A = MoreInts.newRandomArray(N, MIN_INT, MAX_INT);
-			assertEquals(Triangle.exhaustiveSearch(A), Triangle.elegantSolution(A));
 		}
 	}
 }

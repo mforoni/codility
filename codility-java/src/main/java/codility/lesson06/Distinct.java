@@ -27,21 +27,21 @@ import java.util.Set;
  * expected worst-case time complexity is O(N*log(N));<br>
  * expected worst-case space complexity is O(N) (not counting the storage
  * required for input arguments).
- * 
- * @author Foroni Marco
+ * @see <a href="https://app.codility.com/programmers/lessons/6-sorting/distinct/">
+ *     app.codility.com/programmers/lessons/6-sorting/distinct/</a>
  *
+ * @author Marco Foroni
  */
 final class Distinct {
 
 	/**
+	 * Idea: sort the array A and count the elements in A such that A[i] != A[i-1].<br>
+	 * <br>
 	 * Time complexity is O(N*log(N))<br>
-	 * Space complexity is O(N) (but can be reduced to O(1) if we are willing to
-	 * destroy the input)
-	 * <p>
-	 * Idea: sort the array A and count the elements in A such that A[i] != A[i-1].
-	 * 
-	 * @param A
-	 * @return
+	 * Space complexity is O(N) (but can be reduced to O(1) if we are willing to destroy the input)
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingFTUMUY-9VA/">
+	 *     app.codility.com/demo/results/trainingFTUMUY-9VA</a>
 	 */
 	public int solution(int[] A) {
 		if (A.length == 0) {
@@ -59,15 +59,15 @@ final class Distinct {
 	}
 
 	/**
+	 * Idea: use HashSet<br>
+	 * <br>
 	 * Time complexity is O(N)<br>
 	 * Space complexity is O(N)
-	 * <p>
-	 * Idea: use HashSet
-	 * 
-	 * @param A
-	 * @return
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/training3KYMXQ-JGX/">
+	 *     app.codility.com/demo/results/training3KYMXQ-JGX</a>
 	 */
-	public static int checker(int[] A) {
+	public static int solutionWithHashSet(int[] A) {
 		final Set<Integer> set = new HashSet<>();
 		for (int a : A) {
 			set.add(a);

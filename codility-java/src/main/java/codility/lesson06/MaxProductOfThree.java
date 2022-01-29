@@ -31,36 +31,35 @@ import java.util.Arrays;
  * <p>
  * Assume that:
  * <p>
- * N is an integer within the range [3..100,000]; each element of array A is an
- * integer within the range [−1,000..1,000]. Complexity:
+ * N is an integer within the range [3..100,000];
+ * each element of array A is an integer within the range [−1,000..1,000].
  * <p>
+ * Complexity:
  * expected worst-case time complexity is O(N*log(N));<br>
  * expected worst-case space complexity is O(1) (not counting the storage
  * required for input arguments).
- * 
- * @author Foroni Marco
+ * @see <a href="https://app.codility.com/programmers/lessons/6-sorting/max_product_of_three/">
+ *     app.codility.com/programmers/lessons/6-sorting/max_product_of_three/</a>
  *
+ * @author Marco Foroni
  */
 final class MaxProductOfThree {
 
 	/**
+	 * <ul>
+	 * <li>If A contains only positive integers the solution is simple sort the array and returns the product of the
+	 * last three values.</li>
+	 * <li>If A contains only negative integers the best solutions is the same for only positive integers.</li>
+	 * <li>If A contains both positive and negative integers we need to pay attention to the fact that (-)*(-)*(+) is a
+	 * positive number potential greater than the maximal positive product of the last three. What is the best triplet
+	 * of that form? In a sorted array we can easily choose the first two greatest negative numbers and the last one,
+	 * the greater positive number.</li>
+	 * </ul>
 	 * Time complexity is O(N*log(N))<br>
 	 * Space complexity is O(1) but destroys the input
-	 * <p>
-	 * If A contains only positive integers the solution is simple sort the array
-	 * and returns the product of the last three values.
-	 * <p>
-	 * If A contains only negative integers the best solutions is the same for only
-	 * positive integers.
-	 * <p>
-	 * If A contains both positive and negative integers we need to pay attention to
-	 * the fact that (-)*(-)*(+) is a positive number potential greater than the
-	 * maximal positive product of the last three. What is the best triplet of that
-	 * form? In a sorted array we can easily choose the first two greatest negative
-	 * numbers and the last one, the greater positive number.
-	 * 
-	 * @param A
-	 * @return
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingE76HYW-UJR/">
+	 *     app.codility.com/demo/results/trainingE76HYW-UJR</a>
 	 */
 	public int solution(int[] A) {
 		final int N = A.length;
@@ -74,9 +73,6 @@ final class MaxProductOfThree {
 	/**
 	 * Time complexity is O(N^3)<br>
 	 * Space complexity is O(1)
-	 * 
-	 * @param A
-	 * @return
 	 */
 	public static int exhaustiveSearch(final int[] A) {
 		final int N = A.length;
