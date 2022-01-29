@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FibFrogTest {
 
-	private static final int NUM_TESTS = 200;
+	private static final int NUM_TESTS = 100;
 	private static final int MIN_N = 0;
 	private static final int MAX_N = 100_000;
 	private static final int MIN_INT = 0;
@@ -42,7 +42,7 @@ public class FibFrogTest {
 	private static final List<Integer> MIN_FIB_JUMP_SEQ6 = Arrays.asList(13, 2, 5);
 
 	@Test
-	public void testSolution() {
+	public void solution() {
 		final FibFrog fibFrog = new FibFrog();
 		assertEquals(SOL1, fibFrog.solution(A1));
 		assertEquals(SOL2, fibFrog.solution(A2));
@@ -53,7 +53,7 @@ public class FibFrogTest {
 	}
 
 	@Test
-	public void testExhaustiveSearch() {
+	public void exhaustiveSearch() {
 		final FibFrog.ExhaustiveSearch exhaustiveSearch = new FibFrog.ExhaustiveSearch();
 		assertEquals(SOL1, exhaustiveSearch.solution(A1));
 		assertEquals(SOL2, exhaustiveSearch.solution(A2));
@@ -64,7 +64,7 @@ public class FibFrogTest {
 	}
 
 	@Test
-	public void testMinFibJumSequence() {
+	public void minFibJumSequence() {
 		final FibFrog.MinFibJumpSequence minFibJumpSequence = new FibFrog.MinFibJumpSequence();
 		assertEquals(MIN_FIB_JUMP_SEQ1, minFibJumpSequence.solution(A1));
 		assertEquals(MIN_FIB_JUMP_SEQ2, minFibJumpSequence.solution(A2));
@@ -75,7 +75,7 @@ public class FibFrogTest {
 	}
 
 	@Test
-	public void testSolutionRandomInput() {
+	public void solutionRandomInput() {
 		final FibFrog fibFrog = new FibFrog();
 		final FibFrog.ExhaustiveSearch exhaustiveSearch = new FibFrog.ExhaustiveSearch();
 		for (int t = 0; t < NUM_TESTS; t++) {

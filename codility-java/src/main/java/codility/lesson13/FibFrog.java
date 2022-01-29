@@ -74,12 +74,11 @@ final class FibFrog {
 	 * Time complexity is O(N * logN) = O(N * logN) because the number of fibonacci numbers less or equal to n is O(logN)
 	 * by Binet's formula
 	 * Space complexity is O(N)
-	 * @see <a href="https://app.codility.com/demo/results/trainingG64FNB-F2A/">app.codility.com/demo/results/trainingG64FNB-F2A</a>
+	 *
 	 * @see <a href="https://math.stackexchange.com/questions/67707/how-many-numbers-are-in-the-fibonacci-sequence-below-a-given-threshold">
 	 *     How many numbers are in the Fibonacci sequence below a given threshold?</a>
-	 *
-	 * @param A
-	 * @return
+	 * @see <a href="https://app.codility.com/demo/results/trainingG64FNB-F2A/">
+	 *     app.codility.com/demo/results/trainingG64FNB-F2A</a>
 	 */
 	public int solution(int[] A) {
 		final int n = A.length;
@@ -118,9 +117,6 @@ final class FibFrog {
 	/**
 	 * Time complexity is O(N)<br>
 	 * Space complexity is O(N)
-	 *
-	 * @param n
-	 * @return
 	 */
 	static Set<Integer> fibSet(int n) {
 		final Set<Integer> set = new HashSet<>();
@@ -148,14 +144,11 @@ final class FibFrog {
 	}
 
 	/**
-	 * Idea:
+	 * Idea: Recursive approach
 	 */
 	static class ExhaustiveSearch {
 		/**
 		 * Time complexity is exponential
-		 *
-		 * @param A
-		 * @return
 		 */
 		public int solution(int[] A) {
 			final int n = A.length;
@@ -166,18 +159,12 @@ final class FibFrog {
 		}
 
 		/**
-		 * <pre>
 		 * Idea:
 		 * MinFibJobs(A, pos) =
 		 * 	1 if pos + f = N
 		 * 	Min(1 + MinFibJobs(A, pos + f)) for each f in Fibonacci(N)
-		 * </pre>
+		 * <br>
 		 * Time complexity is O(?)
-		 *
-		 * @param A
-		 * @param pos
-		 * @param fibSet
-		 * @return
 		 */
 		private int minFibJumps(int[] A, int pos, Set<Integer> fibSet) {
 			int min = Integer.MAX_VALUE;
