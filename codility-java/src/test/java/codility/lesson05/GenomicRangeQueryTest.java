@@ -1,6 +1,7 @@
 package codility.lesson05;
 
 import codility.util.MoreInts;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -21,29 +22,23 @@ public class GenomicRangeQueryTest {
 	private static final int[] SOL1 = { 2, 4, 1 };
 
 	@Test
-	public void testSolution() {
+	public void solution() {
 		final GenomicRangeQuery genomicRangeQuery = new GenomicRangeQuery();
 		assertArrayEquals(SOL1, genomicRangeQuery.solution(S1, P1, Q1));
 	}
 
 	@Test
-	public void testExhaustiveSearch() {
+	public void exhaustiveSearch() {
 		assertArrayEquals(SOL1, GenomicRangeQuery.exhaustiveSearch(S1, P1, Q1));
 	}
 
 	@Test
-	public void testSubOptimal() {
-		final GenomicRangeQuery.SubOptimal subOptimal = new GenomicRangeQuery.SubOptimal();
-		assertArrayEquals(SOL1, subOptimal.solution(S1, P1, Q1));
-	}
-
-	@Test
-	public void testSolutionRandomInput() {
+	public void solutionRandomInput() {
 		final GenomicRangeQuery genomicRangeQuery = new GenomicRangeQuery();
 		for (int t = 0; t < NUM_TESTS; t++) {
-			final int n = MoreInts.newRandom(MIN_N, 25_000);
+			final int n = MoreInts.newRandom(MIN_N, 10_000);
 			final int[] s = MoreInts.newRandomArray(n, 1, 4);
-			final int m = MoreInts.newRandom(MIN_M, MAX_M);
+			final int m = MoreInts.newRandom(MIN_M, 5_000);
 			final int[] P = new int[m];
 			final int[] Q = new int[m];
 			for (int i = 0; i < m; i++) {
@@ -54,32 +49,42 @@ public class GenomicRangeQueryTest {
 			final int[] expected = GenomicRangeQuery.exhaustiveSearch(S, P, Q);
 			final int[] actual = genomicRangeQuery.solution(S, P, Q);
 			if (!Arrays.equals(expected, actual)) {
-				System.out.println(String.format("S = %s, P = [%s], Q = [%s]", S, Arrays.toString(P), Arrays.toString(Q)));
+				System.out.printf("S = %s, P = [%s], Q = [%s]%n", S, Arrays.toString(P), Arrays.toString(Q));
 			}
 			assertArrayEquals(expected, actual);
 		}
 	}
 
-	@Test
-	public void testSubOptimalRandomInput() {
-		final GenomicRangeQuery.SubOptimal subOptimal = new GenomicRangeQuery.SubOptimal();
-		for (int t = 0; t < NUM_TESTS; t++) {
-			final int n = MoreInts.newRandom(MIN_N, 10_000);
-			final int[] s = MoreInts.newRandomArray(n, 1, 4);
-			final int m = MoreInts.newRandom(MIN_M, MAX_M);
-			final int[] P = new int[m];
-			final int[] Q = new int[m];
-			for (int i = 0; i < m; i++) {
-				P[i] = MoreInts.newRandom(0, n-1);
-				Q[i] = MoreInts.newRandom(P[i], n-1);
+	@Nested
+	class TestSubOptimal {
+
+		private final GenomicRangeQuery.SubOptimal target = new GenomicRangeQuery.SubOptimal();
+
+		@Test
+		public void solution() {
+			assertArrayEquals(SOL1, target.solution(S1, P1, Q1));
+		}
+
+		@Test
+		public void solutionRandomInput() {
+			for (int t = 0; t < NUM_TESTS; t++) {
+				final int n = MoreInts.newRandom(MIN_N, 10_000);
+				final int[] s = MoreInts.newRandomArray(n, 1, 4);
+				final int m = MoreInts.newRandom(MIN_M, 5_000);
+				final int[] P = new int[m];
+				final int[] Q = new int[m];
+				for (int i = 0; i < m; i++) {
+					P[i] = MoreInts.newRandom(0, n-1);
+					Q[i] = MoreInts.newRandom(P[i], n-1);
+				}
+				final String S = parse(s);
+				final int[] expected = GenomicRangeQuery.exhaustiveSearch(S, P, Q);
+				final int[] actual = target.solution(S, P, Q);
+				if (!Arrays.equals(expected, actual)) {
+					System.out.printf("S = %s, P = [%s], Q = [%s]%n", S, Arrays.toString(P), Arrays.toString(Q));
+				}
+				assertArrayEquals(expected, actual);
 			}
-			final String S = parse(s);
-			final int[] expected = GenomicRangeQuery.exhaustiveSearch(S, P, Q);
-			final int[] actual = subOptimal.solution(S, P, Q);
-			if (!Arrays.equals(expected, actual)) {
-				System.out.println(String.format("S = %s, P = [%s], Q = [%s]", S, Arrays.toString(P), Arrays.toString(Q)));
-			}
-			assertArrayEquals(expected, actual);
 		}
 	}
 

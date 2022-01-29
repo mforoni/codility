@@ -3,6 +3,7 @@ package codility.lesson05;
 import codility.util.MoreInts;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -66,37 +67,28 @@ import java.util.List;
  * expected worst-case time complexity is O(N+M);<br>
  * expected worst-case space complexity is O(N) (not counting the storage
  * required for input arguments).
+ * @see <a href="https://app.codility.com/programmers/lessons/5-prefix_sums/genomic_range_query/">
+ *     app.codility.com/programmers/lessons/5-prefix_sums/genomic_range_query/</a>
  * 
- * 
- * @author Foroni Marco
- *
+ * @author Marco Foroni
  */
 final class GenomicRangeQuery {
 
 	/**
+	 * Idea: Simplify the problem answer the question is A present in the
+	 * subsequence of S starting from s and ending at e?<br>
+	 * Using an array O to store the occurrences of A till the corresponding index in S:<br>
+	 * O[i] = number of occurrences of A in S till the index i<br>
+	 * Therefore:<br>
+	 * A is present in the subsequence of S starting from s and ending at e if O[e] - O[s] > 0.<br>
+	 * <br>
 	 * Time complexity is O(N+M)<br>
 	 * Space complexity is O(N+M)
-	 * <p>
-	 * Idea: Simplify the problem answer the question is A present in the
-	 * subsequence of S starting from s and ending at e?
-	 * <p>
-	 * Using an array O to store the occurrences of A till the corresponding index
-	 * in S:
-	 * <p>
-	 * O[i] = number of occurrences of A in S till the index i
-	 * <p>
-	 * Therefore:
-	 * <p>
-	 * A is present in the subsequence of S starting from s and ending at e if O[e]
-	 * - O[s] > 0.
-	 * 
-	 * @param S
-	 * @param P
-	 * @param Q
-	 * @return
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingFMBG4N-EY2/">
+	 *     app.codility.com/demo/results/trainingFMBG4N-EY2</a>
 	 */
 	public int[] solution(String S, int[] P, int[] Q) {
-//		System.out.println(String.format("S = %s, P = [%s], Q = [%s]", S, MoreInts.toString(P), MoreInts.toString(Q)));
 		final int[] occA = new int[S.length()];
 		occA[0] = S.charAt(0) == 'A' ? 1 : 0;
 		final int[] occC = new int[S.length()];
@@ -109,9 +101,9 @@ final class GenomicRangeQuery {
 			occC[i] = n == 'C' ? occC[i - 1] + 1 : occC[i - 1];
 			occG[i] = n == 'G' ? occG[i - 1] + 1 : occG[i - 1];
 		}
-//		System.out.println(String.format("OccA = %s", MoreInts.toString(occA)));
-//		System.out.println(String.format("OccC = %s", MoreInts.toString(occC)));
-//		System.out.println(String.format("OccG = %s", MoreInts.toString(occG)));
+		// System.out.printf("OccA = %s%n", Arrays.toString(occA));
+		// System.out.printf("OccC = %s%n", Arrays.toString(occC));
+		// System.out.printf("OccG = %s%n", Arrays.toString(occG));
 		assert (P.length == Q.length);
 		final int[] results = new int[P.length];
 		for (int i = 0; i < P.length; i++) {
@@ -125,9 +117,8 @@ final class GenomicRangeQuery {
 				} else if (occG[end] > 0) {
 					results[i] = 3;
 				} else {
-					// ensured by the fact that S is composed just by A, C, G and T
-					// and at this point is verified that A, C, and G does not occur
-					// in S between start and end:
+					// ensured by the fact that S is composed just by A, C, G and T and at this point is verified
+					// that A, C, and G does not occur in S between start and end:
 					results[i] = 4;
 				}
 			} else {
@@ -139,24 +130,16 @@ final class GenomicRangeQuery {
 					results[i] = 3;
 				} else {
 					// ensured by the fact that S is composed just by A, C, G and T
-					// and at this point is verified that A, C, and G does not occur
-					// in S between start and end:
 					results[i] = 4;
 				}
 			}
 		}
-//		System.out.println(MoreInts.toString(results));
 		return results;
 	}
 
 	/**
 	 * Time complexity is O(M*N)<br>
-	 * Space complexity is O(N) 
-	 * 
-	 * @param S
-	 * @param P
-	 * @param Q
-	 * @return
+	 * Space complexity is O(N)
 	 */
 	public static int[] exhaustiveSearch(String S, int[] P, int[] Q) {
 		final int N = S.length();
@@ -176,10 +159,7 @@ final class GenomicRangeQuery {
 	}
 
 	/**
-	 * Time and space complexity is O(1);
-	 * 
-	 * @param n
-	 * @return
+	 * Time and space complexity is O(1)
 	 */
 	public static int getFactor(final char n) {
 		switch (n) {
@@ -196,13 +176,16 @@ final class GenomicRangeQuery {
 		}
 	}
 
+	/**
+	 * Idea: Compute the list of indexes where nucleotide A is occurring. Do the same for other nucleotides.
+	 * Be indexesA this list. IndexesA is sorted. IndexesA contains a value between P and Q?
+	 *
+	 */
 	static class SubOptimal {
 
 		/**
-		 * @param S
-		 * @param P
-		 * @param Q
-		 * @return
+		 * Time complexity is O(N^2)<br>
+		 * Space complexity is O(N)
 		 */
 		public int[] solution(String S, int[] P, int[] Q) {
 			final List<Integer> indexesOfA = indexes(S, 'A');

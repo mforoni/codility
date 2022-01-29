@@ -21,43 +21,32 @@ package codility.lesson05;
  * <p>
  * expected worst-case time complexity is O(1);<br>
  * expected worst-case space complexity is O(1).
+ * @see <a href="https://app.codility.com/programmers/lessons/5-prefix_sums/count_div/">
+ *     app.codility.com/programmers/lessons/5-prefix_sums/count_div/</a>
  * 
- * 
- * @author Foroni Marco
- *
+ * @author Marco Foroni
  */
 final class CountDiv {
 
-	public int solution(int A, int B, int K) {
-		return constantTime(A, B, K);
-	}
-
 	/**
 	 * Time and space complexity is O(1)
-	 * 
-	 * @param A
-	 * @param B
-	 * @param K
-	 * @return
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingJKWGCW-QZ5/">
+	 *     app.codility.com/demo/results/trainingJKWGCW-QZ5</a>
 	 */
-	public static int constantTime(int A, int B, int K) {
-		final int Btimes = B / K;
+	public int solution(int A, int B, int K) {
+		final int bTimes = B / K;
 		if (A != 0) {
-			final int Atimes = (A - 1) / K;
-			return Btimes - Atimes;
+			final int aTimes = (A - 1) / K;
+			return bTimes - aTimes;
 		} else {
-			return 1 + Btimes; 
+			return 1 + bTimes;
 		}
 	}
 
 	/**
 	 * Time complexity is O(B-A)<br>
 	 * Space complexity is O(1)
-	 * 
-	 * @param A
-	 * @param B
-	 * @param K
-	 * @return
 	 */
 	public static int checker(int A, int B, int K) {
 		int counter = 0;
@@ -69,15 +58,9 @@ final class CountDiv {
 		return counter;
 	}
 	
-	
 	/**
 	 * Time complexity is O((B-A)/K+K)<br>
 	 * Space complexity is O(1)
-	 * 
-	 * @param A
-	 * @param B
-	 * @param K
-	 * @return
 	 */
 	public static int checkerOptimized(int A, int B, int K) {
 		int counter = 0;

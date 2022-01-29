@@ -43,28 +43,28 @@ package codility.lesson05;
  * expected worst-case time complexity is O(N);<br>
  * expected worst-case space complexity is O(1) (not counting the storage
  * required for input arguments).
- * 
- * @author Foroni marco
+ * @see <a href="https://app.codility.com/programmers/lessons/5-prefix_sums/passing_cars/">
+ *     app.codility.com/programmers/lessons/5-prefix_sums/passing_cars/</a>
  *
+ * @author Marco Foroni
  */
 final class PassingCars {
 
 	private static final int LIMIT = 1_000_000_000;
 	
 	/**
+	 * Idea: Be PC the number of Passing Cars till index i<br>
+	 * PC[0] = 0<br>
+	 * zeroCounter = 0<br>
+	 * Then<br>
+	 * 	PC[i] = PC[i-1] + 1 * zeroCounter if A[i] = 1<br>
+	 * 	PC[i] = PC[i-1] and zeroCounter += 1 if A[i] = 0<br>
+	 * <br>
 	 * Time complexity is O(N)<br>
 	 * Space complexity is O(1)
-	 * <pre>
-	 * PC = Passing Cars
-	 * PC[0] = 0
-	 * zeroCounter = 0
-	 * 
-	 * PC[i] = PC[i-1] + 1 * zeroCounter if A[i] = 1
-	 * PC[i] = PC[i-1] and zeroCounter++ if A[i] = 0
-	 * </pre>
-	 * 
-	 * @param A
-	 * @return
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingKNRTX3-4ER/">
+	 *     app.codility.com/demo/results/trainingKNRTX3-4ER</a>
 	 */
 	public int solution(int[] A) {
 		int zeroes = 0;
@@ -79,9 +79,30 @@ final class PassingCars {
 				assert (a == 0);
 				zeroes++;
 			}
-			
 		}
 		return passingCars;
 	}
 
+	/**
+	 * Time complexity is O(N^2)<br>
+	 * Space complexity is O(1)
+	 */
+	public static final int exhaustiveSearch(int[] A) {
+		int passingCars = 0;
+		for (int i = 0; i < A.length - 1; i++) {
+			if (A[i] == 0) {
+				int countOnes = 0;
+				for (int j = i + 1; j < A.length; j++) {
+					if (A[j] == 1) {
+						countOnes++;
+					}
+				}
+				passingCars += countOnes;
+				if (passingCars > LIMIT) {
+					return -1;
+				}
+			}
+		}
+		return passingCars;
+	}
 }

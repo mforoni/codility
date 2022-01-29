@@ -1,6 +1,5 @@
 package codility.lesson05;
 
-import codility.util.MoreDoubles;
 import codility.util.MoreInts;
 
 /**
@@ -46,26 +45,24 @@ import codility.util.MoreInts;
  * expected worst-case time complexity is O(N);<br>
  * expected worst-case space complexity is O(N) (not counting the storage
  * required for input arguments).
- * 
- * @author Foroni Marco
+ * @see <a href="https://app.codility.com/programmers/lessons/5-prefix_sums/min_avg_two_slice/">
+ *     app.codility.com/programmers/lessons/5-prefix_sums/min_avg_two_slice/</a>
  *
+ * @author Marco Foroni
  */
 final class MinAvgTwoSlice {
 
 	/**
+	 * Idea: use dynamic programming to compute the following two arrays:<br>
+	 * lenMinAvg[i] = length of the slice starting from i whose average is minimal<br>
+	 * minAvg[i] = minimal average of the slice starting from i<br>
+	 * The index of the minimal value in minAvg is the solution.
+	 * <br>
 	 * Time complexity is O(N)<br>
 	 * Space complexity is O(N)
-	 * <p>
-	 * Idea: use dynamic programming to compute the following two arrays:
-	 * <p>
-	 * lenMinAvg[i] = length of the slice starting from i whose average is
-	 * minimal<br>
-	 * minAvg[i] = minimal average of the slice starting from i
-	 * <p>
-	 * The index of the minimal value in minAvg is the solution.
-	 * 
-	 * @param A
-	 * @return
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingHUVNPH-7KQ/">
+	 *     app.codility.com/demo/results/trainingHUVNPH-7KQ</a>
 	 */
 	public int solution(int[] A) {
 		final int N = A.length;
@@ -78,29 +75,35 @@ final class MinAvgTwoSlice {
 			final double a = (minAvg[i + 1] * lenMinAvg[i + 1] + A[i]) / (lenMinAvg[i + 1] + 1);
 			final double b = ((double) A[i] + (double) A[i + 1]) / 2;
 			if (b <= a) {
-				// crucial: for a==b we need to prioritize the slice with lesser length because
-				// it is "more minimizable"
+				// crucial: for a==b we need to prioritize the slice with lesser length because it is "more minimizable"
 				minAvg[i] = b;
 				lenMinAvg[i] = 2;
 			} else {
 				minAvg[i] = a;
 				lenMinAvg[i] = lenMinAvg[i + 1] + 1;
 			}
-			// System.out.println(String.format("minAvg=[%s], lenMinAvg=[%s]",
-			// MoreDoubles.toString(minAvg),
-			// MoreDoubles.toString(lenMinAvg)));
+			//System.out.printf("minAvg=[%s], lenMinAvg=[%s]%n", Arrays.toString(minAvg), Arrays.toString(lenMinAvg));
 		}
-		return MoreDoubles.minIndex(minAvg);
+		return minIndex(minAvg);
+	}
+
+	private static int minIndex(final double[] array) {
+		double min = Double.MAX_VALUE;
+		int minIndex = -1;
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] < min) {
+				min = array[i];
+				minIndex = i;
+			}
+		}
+		return minIndex;
 	}
 
 	/**
+	 * Idea: Use dynamic programming prefix sum to compute the sum of all elements in A till index i.<br>
+	 * <br>
 	 * Time complexity is O(N^2)<br>
 	 * Space complexity is O(N)
-	 * <p>
-	 * Use dynamic programming to compute the sums for all the possible slices.
-	 * 
-	 * @param A
-	 * @return
 	 */
 	public static int exhaustiveSearchOptimized(final int[] A) {
 		int[] sums = new int[A.length];
@@ -126,9 +129,6 @@ final class MinAvgTwoSlice {
 	/**
 	 * Time complexity is O(N^3)<br>
 	 * Space complexity is O(1)
-	 * 
-	 * @param A
-	 * @return
 	 */
 	public static int exhaustiveSearch(final int[] A) {
 		double min = Double.MAX_VALUE;
@@ -141,8 +141,7 @@ final class MinAvgTwoSlice {
 					min = avg;
 					start = s;
 				}
-				// System.out.println(String.format("s=%s, e=%s, avg=%s, min=%s", s, e, avg,
-				// min));
+				//System.out.printf("s=%s, e=%s, avg=%s, min=%s%n", s, e, avg, min);
 			}
 		}
 		return start;

@@ -21,26 +21,26 @@ public class MinAvgTwoSliceTest {
 	private static final int SOL2 = 0;
 
 	@Test
-	public void testSolution() {
+	public void solution() {
 		final MinAvgTwoSlice minAvgTwoSlice = new MinAvgTwoSlice();
 		assertEquals(SOL1, minAvgTwoSlice.solution(A1));
 		assertEquals(SOL2, minAvgTwoSlice.solution(A2));
 	}
 
 	@Test
-	public void testExhaustiveSearchOptimized() {
+	public void exhaustiveSearchOptimized() {
 		assertEquals(SOL1, MinAvgTwoSlice.exhaustiveSearchOptimized(A1));
 		assertEquals(SOL2, MinAvgTwoSlice.exhaustiveSearchOptimized(A2));
 	}
 
 	@Test
-	public void testExhaustiveSearch() {
+	public void exhaustiveSearch() {
 		assertEquals(SOL1, MinAvgTwoSlice.exhaustiveSearch(A1));
 		assertEquals(SOL2, MinAvgTwoSlice.exhaustiveSearch(A2));
 	}
 
 	@Test
-	public void testSolutionRandomInput() {
+	public void solutionRandomInput() {
 		final MinAvgTwoSlice minAvgTwoSlice = new MinAvgTwoSlice();
 		for (int t = 0; t < NUM_TESTS; t++) {
 			final int N = MoreInts.newRandom(MIN_N, 5_000);
