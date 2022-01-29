@@ -23,7 +23,7 @@ public class CountNonDivisibleTest {
 	private static final int[] SOL3 = { 5, 4, 7, 7, 5, 5, 4, 4 };
 	
 	@Test
-	public void testSolution() {
+	public void solution() {
 		final CountNonDivisible countNonDivisible = new CountNonDivisible();
 		assertArrayEquals(SOL1, countNonDivisible.solution(A1));
 		assertArrayEquals(SOL2, countNonDivisible.solution(A2));
@@ -31,14 +31,14 @@ public class CountNonDivisibleTest {
 	}
 
 	@Test
-	public void testExhaustiveSearch() {
+	public void exhaustiveSearch() {
 		assertArrayEquals(SOL1, CountNonDivisible.exhaustiveSearch(A1));
 		assertArrayEquals(SOL2, CountNonDivisible.exhaustiveSearch(A2));
 		assertArrayEquals(SOL3, CountNonDivisible.exhaustiveSearch(A3));
 	}
 
 	@Test
-	public void testSolutionRandomInput() {
+	public void solutionRandomInput() {
 		final CountNonDivisible countNonDivisible = new CountNonDivisible();
 		for (int t = 0; t < NUM_TESTS; t++) {
 			final int N = MoreInts.newRandom(MIN_N, 2_000);

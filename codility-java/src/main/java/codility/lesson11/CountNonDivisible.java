@@ -45,14 +45,12 @@ import java.util.stream.Collectors;
 final class CountNonDivisible {
 
 	/**
-	 * <p>
-	 * Idea: for each element e in array A calculate the number of divisors of e.
-	 * </p>
+	 * Idea: for each element e in array A we calculate the number of divisors of e.<br>
+	 * <br>
 	 * Time complexity is O(N*SQRT(N)+M)
-	 * @see <a href="https://app.codility.com/demo/results/training3VC7JK-S99/">app.codility.com/demo/results/training3VC7JK-S99</a>
 	 *
-	 * @param A
-	 * @return
+	 * @see <a href="https://app.codility.com/demo/results/training3VC7JK-S99/">
+	 *     app.codility.com/demo/results/training3VC7JK-S99</a>
 	 */
 	public int[] solution(int[] A) {
 		//System.out.println("A = " + Arrays.toString(A));
@@ -68,14 +66,11 @@ final class CountNonDivisible {
 	}
 
 	/**
-	 * Compute the number of divisors of n in A given an array counting the occurrences for each element of A.
-	 * <p>
-	 *     occurrences[i] = number of occurrences of i in A
-	 * </p>
+	 * Compute the number of divisors of n contained in A given an array counting the occurrences for each element of
+	 * A:<br>
+	 * occurrences[i] = number of occurrences of i in A<br>
+	 * <br>
 	 * Time complexity is O(SQRT(N))
-	 *
-	 * @param n
-	 * @return
 	 */
 	static int divisors(int n, int[] occurrences) {
 		int counter = 0;
@@ -92,13 +87,9 @@ final class CountNonDivisible {
 	}
 
 	/**
-	 * <p>
-	 * Find max element in A
-	 * </p>
+	 * Find max element in A<br>
+	 * <br>
 	 * Time complexity is O(N)
-	 *
-	 * @param A
-	 * @return
 	 */
 	static int max(final int[] A) {
 		int max = A[0];
@@ -110,9 +101,6 @@ final class CountNonDivisible {
 
 	/**
 	 * Time complexity is O(N+M)
-	 * 
-	 * @param A
-	 * @return
 	 */
 	static int[] occurrences(final int[] A) {
 		int n = A.length;
@@ -127,11 +115,9 @@ final class CountNonDivisible {
 	/**
 	 * Time complexity is O(N^2)<br>
 	 * Space complexity is O(1)
+	 *
 	 * @see <a href="https://app.codility.com/demo/results/trainingB7SN68-5EG/">
 	 *     app.codility.com/demo/results/trainingB7SN68-5EG</a>
-	 * 
-	 * @param A
-	 * @return
 	 */
 	public static int[] exhaustiveSearch(int[] A) {
 		final int[] nonDivisors = new int[A.length];
