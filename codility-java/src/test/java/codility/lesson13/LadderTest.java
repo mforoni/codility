@@ -1,7 +1,6 @@
 package codility.lesson13;
 
 import codility.util.MoreInts;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -35,9 +34,9 @@ class LadderTest {
     @Test
     void solutionRandomInput() {
         final Ladder ladder = new Ladder();
-        final Ladder.ExhaustiveSearch exhaustiveSearch = new Ladder.ExhaustiveSearch();
+        final Ladder.ExhaustiveSearchOptimized exhaustiveSearch = new Ladder.ExhaustiveSearchOptimized();
         for (int t = 0; t < NUM_TESTS; t++) {
-            final int L = MoreInts.newRandom(MIN_L, 1_000); // MAX_L);
+            final int L = MoreInts.newRandom(MIN_L, MAX_L / 10);
             final int[] A = MoreInts.newRandomArray(L, 1, L);
             final int[] B = MoreInts.newRandomArray(L, 1, MAX_B);
             final int[] expected = exhaustiveSearch.solution(A, B);
@@ -46,6 +45,29 @@ class LadderTest {
                 System.out.printf("A = %s, B = %s", Arrays.toString(A), Arrays.toString(B));
             }
             assertArrayEquals(expected, actual);
+        }
+    }
+
+    @Nested
+    class ExhaustiveSearchOptimizedTest {
+        private final Ladder.ExhaustiveSearchOptimized target = new Ladder.ExhaustiveSearchOptimized();
+
+        @Test
+        void exhaustiveSearch() {
+            assertArrayEquals(SOL1, target.solution(A1, B1));
+        }
+
+        @Test
+        void solutionRandomInput() {
+            for (int t = 0; t < NUM_TESTS; t++) {
+                final int L = MoreInts.newRandom(MIN_L, MAX_L / 10);
+                final int[] A = MoreInts.newRandomArray(L, 1, L);
+                final int[] B = MoreInts.newRandomArray(L, 1, MAX_B);
+                final int[] sol = target.solution(A, B);
+                for (int i = 0; i < sol.length; i++) {
+                    assertTrue(sol[i] >= 0);
+                }
+            }
         }
     }
 
@@ -61,7 +83,7 @@ class LadderTest {
         @Test
         void solutionRandomInput() {
             for (int t = 0; t < NUM_TESTS; t++) {
-                final int L = MoreInts.newRandom(MIN_L, 1_000); // MAX_L);
+                final int L = MoreInts.newRandom(MIN_L, MAX_L / 100);
                 final int[] A = MoreInts.newRandomArray(L, 1, L);
                 final int[] B = MoreInts.newRandomArray(L, 1, MAX_B);
                 final int[] sol = target.solution(A, B);

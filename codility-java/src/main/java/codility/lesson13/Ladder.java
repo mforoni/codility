@@ -1,6 +1,7 @@
 package codility.lesson13;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 
 /**
  * <pre>
@@ -60,65 +61,112 @@ import java.math.BigInteger;
  * @author Marco Foroni
  */
 public class Ladder {
+
     /**
-     * Idea: Be W(n) the number of ways to climb a ladder of n rungs. This is the same to compute the (n+1)-th
-     * fibonacci number. Compute the max value in A and compute once fibonacci numbers till max.
-     * <p>
-     * Use BigInteger to avoid overflows.
-     * </p>
-     * Time complexity is O(L)<br>
-     * Space complexity is O(L)
-     * @see <a href="https://app.codility.com/demo/results/training24YF5C-HKZ/">
-     *     app.codility.com/demo/results/training24YF5C-HKZ</a>
+     * Be W(n) the number of ways to climb a ladder of n rungs. This is the same to compute the (n+1)-th
+     * fibonacci number. Compute the max value in A and compute once fibonacci numbers till max.<br>
+     * Compute the fibonacci sequence module b for each possible value of b.<br>
+     * <br>
+     * Time complexity is O(L*30) = O(L)
+     * Space complexity is the same
+     *
+     * @see <a href="https://app.codility.com/demo/results/trainingC2YUTY-8RB/">
+     *     app.codility.com/demo/results/trainingC2YUTY-8RB</a>
      */
     public int[] solution(int[] A, int[] B) {
         assert A.length == B.length;
         final int L = A.length;
-        int max = A[0];
-        for (int i = 1; i < L; i++) {
-            max = Math.max(max, A[i]);
+        final int maxA = max(A);
+        final int maxB = max(B);
+        final int[][] fib = new int[maxB + 1][maxA + 2];
+        for (int e = 1; e <= maxB; e++) {
+            fib[e] = new int[maxA + 2];
+            final int modulo = (int) Math.pow(2, e); // 2^30 < Integer.MAX_VALUE
+            fib[e][0] = 0;
+            fib[e][1] = 1;
+            for (int i = 2; i <= maxA + 1; i++) {
+                fib[e][i] = (fib[e][i - 1] + fib[e][i - 2]) % modulo;
+            }
         }
-        final BigInteger[] fib = fibonacci(max + 1);
         final int[] result = new int[L];
         for (int i = 0; i < L; i++) {
-            BigInteger ways = fib[A[i] + 1];
-            final int modulo = (int) Math.pow(2, B[i]); // 2^30 < Integer.MAX_VALUE
-            ways = ways.mod(BigInteger.valueOf(modulo));
-            result[i] = ways.intValue();
+            result[i] = fib[B[i]][A[i] + 1];
         }
         return result;
     }
 
-    /**
-     * Time complexity is O(N)<br>
-     * Space complexity is O(N)
-     *
-     * @param n
-     * @return
-     */
-    static BigInteger[] fibonacci(int n) {
-        final BigInteger[] fib = new BigInteger[n + 1];
-        fib[0] = BigInteger.ZERO;
-        fib[1] = BigInteger.ONE;
-        for (int i = 2; i <= n; i++) {
-            BigInteger result = fib[i - 1];
-            result = result.add(fib[i - 2]);
-            fib[i] = result;
+    private static int max(final int[] array) {
+        int max = array[0];
+        for (int i = 1; i < array.length; i++) {
+            max = Math.max(max, array[i]);
         }
-        return fib;
+        return max;
     }
 
     /**
      * Idea: Be W(n) the number of ways to climb a ladder of n rungs. This is the same to compute the (n+1)-th
-     * fibonacci number.
-     * <p>
+     * fibonacci number. Compute the max value in A and compute once fibonacci numbers till max.<br>
      * Use BigInteger to avoid overflows.
-     * </p>
+     */
+    static class ExhaustiveSearchOptimized {
+        /**
+         * Time complexity is O(L)<br>
+         * Space complexity is O(L)<br>
+         * Note: Assuming time complexity of BigInteger sum operation is constant
+         * @see <a href="https://stackoverflow.com/questions/2154117/what-complexity-are-operations-on-biginteger">
+         *     stackoverflow.com/questions/2154117/what-complexity-are-operations-on-biginteger</a>
+         *
+         * @see <a href="https://app.codility.com/demo/results/training24YF5C-HKZ/">
+         *     app.codility.com/demo/results/training24YF5C-HKZ</a>
+         */
+        public int[] solution(int[] A, int[] B) {
+            assert A.length == B.length;
+            final int L = A.length;
+            int max = A[0];
+            for (int i = 1; i < L; i++) {
+                max = Math.max(max, A[i]);
+            }
+            final BigInteger[] fib = fibonacci(max + 1);
+            final int[] result = new int[L];
+            for (int i = 0; i < L; i++) {
+                BigInteger ways = fib[A[i] + 1];
+                final int modulo = (int) Math.pow(2, B[i]); // 2^30 < Integer.MAX_VALUE
+                ways = ways.mod(BigInteger.valueOf(modulo));
+                result[i] = ways.intValue();
+            }
+            return result;
+        }
+
+        /**
+         * Time complexity is O(N)<br>
+         * Space complexity is O(N)
+         */
+        private BigInteger[] fibonacci(int n) {
+            final BigInteger[] fib = new BigInteger[n + 1];
+            fib[0] = BigInteger.ZERO;
+            fib[1] = BigInteger.ONE;
+            for (int i = 2; i <= n; i++) {
+                BigInteger result = fib[i - 1];
+                result = result.add(fib[i - 2]);
+                fib[i] = result;
+            }
+            return fib;
+        }
+    }
+
+    /**
+     * Idea: Be W(n) the number of ways to climb a ladder of n rungs. This is the same to compute the (n+1)-th
+     * fibonacci number.<br>
+     * Use BigInteger to avoid overflows.
      */
     static class ExhaustiveSearch {
         /**
          * Time complexity is O(L*N) where N is the maximum value in array A, therefore it is O(L^2)<br>
-         * Space complexity is O(L)
+         * Space complexity is O(L)<br>
+         * Note: Assuming time complexity of BigInteger sum operation is constant
+         * @see <a href="https://stackoverflow.com/questions/2154117/what-complexity-are-operations-on-biginteger">
+         *     stackoverflow.com/questions/2154117/what-complexity-are-operations-on-biginteger</a>
+         *
          * @see <a href="https://app.codility.com/demo/results/training2NDAYE-4PG/">
          *     app.codility.com/demo/results/training2NDAYE-4PG</a>
          */
