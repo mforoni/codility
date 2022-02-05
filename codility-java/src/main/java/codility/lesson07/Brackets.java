@@ -34,27 +34,29 @@ import java.util.Stack;
  * expected worst-case time complexity is O(N);<br>
  * expected worst-case space complexity is O(N) (not counting the storage
  * required for input arguments).
- * 
- * @author Foroni Marco
  *
+ * @see <a href="https://app.codility.com/programmers/lessons/7-stacks_and_queues/brackets/">
+ *     app.codility.com/programmers/lessons/7-stacks_and_queues/brackets</a>
+ *
+ * @author Marco Foroni
  */
 final class Brackets {
 
 	/**
+	 * Idea: use a stack LIFO ADT<br>
+	 * <br>
 	 * Time complexity is O(N)<br>
 	 * Space complexity is O(N)
-	 * <p>
-	 * Idea: use a stack LIFO ADT
-	 * 
-	 * @param S
-	 * @return
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingFJV54W-5US/">
+	 *     app.codility.com/demo/results/trainingFJV54W-5US</a>
 	 */
 	public int solution(String S) {
 		final Stack<Character> stack = new Stack<>();
 		for (int i = 0; i < S.length(); i++) {
 			final char c = S.charAt(i);
 			if (isOpeningBracket(c)) {
-//				System.out.println("Pushing " + c);
+				//System.out.println("Pushing " + c);
 				stack.push(c);
 			} else {
 				assert(isClosingBracket(c));
@@ -62,7 +64,7 @@ final class Brackets {
 					return 0;
 				}
 				final char ob = stack.pop();
-//				System.out.println(String.format("Popping %s, current %s", ob, c));
+				//System.out.printf("Popping %s, current %s%n", ob, c);
 				if (!isProperlyNested(ob, c)) {
 					return 0;
 				}
@@ -71,16 +73,52 @@ final class Brackets {
 		return stack.isEmpty() ? 1 : 0;
 	}
 
-	public static boolean isProperlyNested(final char ob, final char cb) {
+	static boolean isProperlyNested(final char ob, final char cb) {
 		return (ob == '(' && cb == ')') || (ob == '[' && cb == ']') || (ob == '{' && cb == '}');
 	}
 
-	public static boolean isOpeningBracket(final char c) {
+	static boolean isOpeningBracket(final char c) {
 		return c == '(' || c == '[' || c == '{';
 	}
 
-	public static boolean isClosingBracket(final char c) {
+	static boolean isClosingBracket(final char c) {
 		return c == ')' || c == ']' || c == '}';
+	}
+
+	/**
+	 * Time complexity is O(N)<br>
+	 * Space complexity is O(N)
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingE9X63D-QBM/">
+	 *     app.codility.com/demo/results/trainingE9X63D-QBM</a>
+	 */
+	public static int elegantSolution(String S) {
+		if (S.isEmpty()) {
+			return 1;
+		}
+		final Stack<Character> stack = new Stack<>();
+		for (int i = 0; i < S.length(); i++) {
+			final char c = S.charAt(i);
+			if (c == '{' || c == '[' || c == '(') {
+				stack.push(c);
+			} else {
+				if (stack.isEmpty()) {
+					return 0;
+				}
+				final char last = stack.pop();
+				if (c == '}' && last != '{') {
+					return 0;
+				}
+				if (c == ']' && last != '[') {
+					return 0;
+				}
+				if (c == ')' && last != '(') {
+					return 0;
+				}
+			}
+			// System.out.println(stack);
+		}
+		return stack.isEmpty() ? 1 : 0;
 	}
 
 	/**
@@ -123,34 +161,5 @@ final class Brackets {
 			}
 		}
 		return rb == 0 && cb == 0 && sb == 0 ? 1 : 0;
-	}
-
-	public static int elegantSolution(String S) {
-		if (S.isEmpty()) {
-			return 1;
-		}
-		final Stack<Character> stack = new Stack<>();
-		for (int i = 0; i < S.length(); i++) {
-			final char c = S.charAt(i);
-			if (c == '{' || c == '[' || c == '(') {
-				stack.push(c);
-			} else {
-				if (stack.isEmpty()) {
-					return 0;
-				}
-				final char last = stack.pop();
-				if (c == '}' && last != '{') {
-					return 0;
-				}
-				if (c == ']' && last != '[') {
-					return 0;
-				}
-				if (c == ')' && last != '(') {
-					return 0;
-				}
-			}
-			// System.out.println(stack);
-		}
-		return stack.isEmpty() ? 1 : 0;
 	}
 }

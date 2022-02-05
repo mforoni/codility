@@ -29,7 +29,7 @@ public class BracketsTest {
 	private static final int SOL7 = 0;
 
 	@Test
-	public void testSolution() {
+	public void solution() {
 		final Brackets brackets = new Brackets();
 		assertEquals(SOL1, brackets.solution(S1));
 		assertEquals(SOL2, brackets.solution(S2));
@@ -41,7 +41,18 @@ public class BracketsTest {
 	}
 
 	@Test
-	public void testWrongSolution() {
+	public void elegantSolution() {
+		assertEquals(SOL1, Brackets.elegantSolution(S1));
+		assertEquals(SOL2, Brackets.elegantSolution(S2));
+		assertEquals(SOL3, Brackets.elegantSolution(S3));
+		assertEquals(SOL4, Brackets.elegantSolution(S4));
+		assertEquals(SOL5, Brackets.elegantSolution(S5));
+		assertEquals(SOL6, Brackets.elegantSolution(S6));
+		assertEquals(SOL7, Brackets.elegantSolution(S7));
+	}
+
+	@Test
+	public void wrongSolution() {
 		assertEquals(SOL1, Brackets.wrongSolution(S1));
 		assertNotEquals(SOL2, Brackets.wrongSolution(S2));
 		assertEquals(SOL3, Brackets.wrongSolution(S3));

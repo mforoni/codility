@@ -31,18 +31,20 @@ import java.util.Stack;
  * expected worst-case time complexity is O(N); <br>
  * expected worst-case space complexity is O(1) (not counting the storage
  * required for input arguments).
- * 
- * @author Foroni Marco
  *
+ * @see <a href="https://app.codility.com/programmers/lessons/7-stacks_and_queues/nesting/">
+ *     app.codility.com/programmers/lessons/7-stacks_and_queues/nesting</a>
+ *
+ * @author Marco Foroni
  */
 final class Nesting {
 
 	/**
 	 * Time complexity is O(N)<br>
 	 * Space complexity is O(1)
-	 * 
-	 * @param S
-	 * @return
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingZNWH8M-Z6P/">
+	 *     app.codility.com/demo/results/trainingZNWH8M-Z6P</a>
 	 */
 	public int solution(String S) {
 		int counter = 0;
@@ -62,12 +64,13 @@ final class Nesting {
 	}
 
 	/**
-	 * Idea: Use a LIFO queue for storing opening brackets
+	 * Idea: Use a LIFO queue for storing opening brackets<br>
+	 * <br>
 	 * Time complexity is O(N)<br>
-	 * Space complexity is O(N)
+	 * Space complexity is O(N) but can be reduced
 	 *
-	 * @param S
-	 * @return
+	 * @see <a href="https://app.codility.com/demo/results/trainingPJEZRD-J48/">
+	 *     app.codility.com/demo/results/trainingPJEZRD-J48</a>
 	 */
 	public static int subOptimal(String S) {
 		if (S.isEmpty()) {
