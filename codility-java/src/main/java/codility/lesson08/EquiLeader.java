@@ -43,7 +43,8 @@ import codility.util.MoreInts;
  * - N is an integer within the range [1..100,000];
  * - each element of array A is an integer within the range [−1,000,000,000..1,000,000,000].
  * </pre>
- * @see <a href="https://app.codility.com/programmers/lessons/8-leader/equi_leader/">app.codility.com/programmers/lessons/8-leader/equi_leader</a>
+ * @see <a href="https://app.codility.com/programmers/lessons/8-leader/equi_leader/">
+ *     app.codility.com/programmers/lessons/8-leader/equi_leader</a>
  */
 public class EquiLeader {
 
@@ -59,16 +60,15 @@ public class EquiLeader {
      * Space complexity is O(1)
      * </p>
      *
-     * @param A
-     * @return
-     * @see <a href="https://app.codility.com/demo/results/trainingJ5NUN6-XW9/">app.codility.com/demo/results/trainingJ5NUN6-XW9</a>
+     * @see <a href="https://app.codility.com/demo/results/trainingJ5NUN6-XW9/">
+     *     app.codility.com/demo/results/trainingJ5NUN6-XW9</a>
      */
     public int solution(int[] A) {
         if (A.length == 1) {
             return 0;
         }
         final int leader = leader(A, 0, A.length - 1);
-        //System.out.println("Leader: " + leader);
+        //System.out.printf("Leader: %d%n", leader);
         final int[] leaderOccurrences = new int[A.length];
         leaderOccurrences[0] = A[0] == leader ? 1 : 0;
         for (int i = 1; i < A.length; i++) {
@@ -77,10 +77,10 @@ public class EquiLeader {
         int counter = 0;
         for (int i = 0; i < A.length - 1; i++) {
             int occFirstSubArray = leaderOccurrences[i];
-            //System.out.println(String.format("Occurrences 1st sub array: %d, limit: %d.", occFirstSubArray, (i + 1) / 2));
+            //System.out.printf("Occurrences 1st sub array: %d, limit: %d.%n", occFirstSubArray, (i + 1) / 2);
             if (occFirstSubArray > (i + 1) / 2 ) {
                 int occSecondSubArray = leaderOccurrences[A.length - 1] - leaderOccurrences[i];
-                //System.out.println(String.format("Occurrences 2nd sub array: %d, limit: %d.",  occSecondSubArray, (A.length - i - 1) / 2));
+                //System.out.printf("Occurrences 2nd sub array: %d, limit: %d.%n",  occSecondSubArray, (A.length - i - 1) / 2);
                 if (occSecondSubArray > (A.length - i - 1) / 2) {
                     counter += 1;
                 }
@@ -90,14 +90,10 @@ public class EquiLeader {
     }
 
     /**
-     * Idea: For each index use the Boyer–Moore majority vote algorithm to find the leader for the sub-arrays.
-     * <p>
+     * Idea: For each index use the Boyer–Moore majority vote algorithm to find the leader for the sub-arrays.<br>
+     * <br>
      * Time complexity is O(N^2)<br>
      * Space complexity is O(1)
-     * </p>
-     *
-     * @param A
-     * @return
      */
     public static int exhaustiveSearch(final int[] A) {
         if (A.length == 1) {
@@ -106,10 +102,10 @@ public class EquiLeader {
         int counter = 0;
         for (int i = 0; i < A.length - 1; i++) {
             final int leader1 = leader(A, 0, i);
-            //System.out.println(String.format("Sub array [%d, %d] has leader %d.", 0, i, leader1));
+            //System.out.printf("Sub array [%d, %d] has leader %d.%n", 0, i, leader1);
             if (leader1 != -1) {
                 final int leader2 = leader(A, i + 1, A.length - 1);
-                //System.out.println(String.format("Sub array [%d, %d] has leader %d.", i + 1, A.length - 1, leader2));
+                //System.out.printf("Sub array [%d, %d] has leader %d.%n", i + 1, A.length - 1, leader2);
                 if (leader1 == leader2) {
                     counter += 1;
                 }
@@ -120,16 +116,11 @@ public class EquiLeader {
 
     /**
      * Idea: Use the Boyer–Moore majority vote algorithm to find the leader in the sub-array starting
-     * from index start and ending with index end included.
-     * <p>
+     * from index start and ending with index end included.<br>
+     * <br>
      * Time complexity is O(N)<br>
      * Space complexity is O(1)
-     * </p>
      *
-     * @param A
-     * @param start
-     * @param end
-     * @return
      * @see <a href="https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_majority_vote_algorithm">Boyer–Moore majority vote algorithm</a>
      */
     private static int leader(final int[] A, final int start, final int end) {
@@ -154,8 +145,18 @@ public class EquiLeader {
         if (k == 0) {
             return -1;
         }
-        final int occurrences = MoreInts.occurrences(A, candidate);
+        final int occurrences = occurrences(A, candidate);
         final double limit = (double) A.length / 2;
         return occurrences > limit ? candidate : -1;
+    }
+
+    static int occurrences(final int[] array, int key) {
+        int counter = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == key) {
+                counter++;
+            }
+        }
+        return counter;
     }
 }

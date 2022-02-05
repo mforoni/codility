@@ -41,10 +41,11 @@ import codility.util.MoreInts;
  * expected worst-case time complexity is O(N);<br>
  * expected worst-case space complexity is O(1) (not counting the storage
  * required for input arguments).
- * @see <a href="https://app.codility.com/programmers/lessons/8-leader/dominator/">app.codility.com/programmers/lessons/8-leader/dominator</a>
  *
- * @author Foroni Marco
+ * @see <a href="https://app.codility.com/programmers/lessons/8-leader/dominator/">
+ *     app.codility.com/programmers/lessons/8-leader/dominator</a>
  *
+ * @author Marco Foroni
  */
 final class Dominator {
 
@@ -53,10 +54,12 @@ final class Dominator {
 	 * <p>
 	 * Time complexity is O(N)<br>
 	 * Space complexity is O(1)
-	 * 
-	 * @param A
-	 * @return
-	 * @see <a href="https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_majority_vote_algorithm">Boyer–Moore majority vote algorithm</a>
+	 *
+	 * @see <a href="https://en.wikipedia.org/wiki/Boyer%E2%80%93Moore_majority_vote_algorithm">
+	 *     Boyer–Moore majority vote algorithm</a>
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/training97TZ6S-D4E/">
+	 *     app.codility.com/demo/results/training97TZ6S-D4E</a>
 	 */
 	public int solution(int[] A) {
 		if (A.length == 0) {
@@ -79,19 +82,35 @@ final class Dominator {
 		if (k == 0) {
 			return -1;
 		}
-		final int occurrences = MoreInts.occurrences(A, candidate);
+		final int occurrences = occurrences(A, candidate);
 		final double limit = (double) A.length / (double) 2;
-		return occurrences > limit ? MoreInts.indexOf(A, candidate) : -1;
+		return occurrences > limit ? indexOf(A, candidate) : -1;
+	}
+
+	static int occurrences(final int[] array, int key) {
+		int counter = 0;
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] == key) {
+				counter++;
+			}
+		}
+		return counter;
+	}
+
+	static int indexOf(final int[] array, final int key) {
+		for (int i = 0; i < array.length; i++) {
+			if (array[i] == key) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 	/**
+	 * Idea: Use a Map to count the occurrences of each element in A<br>
+	 * <br>
 	 * Time complexity is O(N)<br>
 	 * Space complexity is O(N)
-	 * <p>
-	 * Idea: Use a Map to count the occurrences of each element in A
-	 * 
-	 * @param A
-	 * @return
 	 */
 	public static int exhaustiveSearch(int[] A) {
 		final Map<Integer, Integer> map = new HashMap<>();
@@ -107,7 +126,7 @@ final class Dominator {
 		for (int a : map.keySet()) {
 			int counter = map.get(a);
 			if (counter > limit) {
-				return MoreInts.indexOf(A, a);
+				return indexOf(A, a);
 			}
 		}
 		return -1;
