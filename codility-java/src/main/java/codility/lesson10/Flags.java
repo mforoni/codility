@@ -1,9 +1,5 @@
 package codility.lesson10;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * A non-empty array A consisting of N integers is given.<br>
  * A peak is an array element which is larger than its neighbours. More
@@ -48,6 +44,7 @@ import java.util.List;
  * <p>
  * N is an integer within the range [1..400,000];<br>
  * each element of array A is an integer within the range [0..1,000,000,000].
+ *
  * @see <a href="https://app.codility.com/programmers/lessons/10-prime_and_composite_numbers/flags/">
  *     app.codility.com/programmers/lessons/10-prime_and_composite_numbers/flags</a>
  *
@@ -55,13 +52,9 @@ import java.util.List;
  */
 final class Flags {
 
-	/**
-	 * @param A
-	 * @return
-	 */
 	public int solution(int[] A) {
-		final SubOptimal subOptimal = new SubOptimal();
-		return subOptimal.solution(A);
+		final BisectionMethod bisectionMethod = new BisectionMethod();
+		return bisectionMethod.solution(A);
 	}
 
 	/**
@@ -73,15 +66,14 @@ final class Flags {
 	 * </ul>
 	 * We can use the bisection method to compute all the possible flag values in O(logN) time.
 	 */
-	static class SubOptimal {
+	static class BisectionMethod {
 
 		/**
 		 * Time complexity is O(NlogN)<br>
 		 * Space complexity is O(N)
-		 * @see <a href="https://app.codility.com/demo/results/trainingMMCVQV-MCH/">app.codility.com/demo/results/trainingMMCVQV-MCH</a>
 		 *
-		 * @param A
-		 * @return
+		 * @see <a href="https://app.codility.com/demo/results/trainingMMCVQV-MCH/">
+		 *     app.codility.com/demo/results/trainingMMCVQV-MCH</a>
 		 */
 		public int solution(int[] A) {
 			//System.out.println(Arrays.toString(A));
@@ -127,15 +119,10 @@ final class Flags {
 		}
 
 		/**
-		 * <p>
-		 * Idea: Check if K flags can be placed in array A.
-		 * </p>
+		 * Idea: Check if K flags can be placed in array A.<br>
+		 * <br>
 		 * Time complexity is O(N)<br>
 		 * Space complexity is O(N)
-		 *
-		 * @param isPeak
-		 * @param flags
-		 * @return
 		 */
 		private boolean checkFlags(boolean[] isPeak, final int flags)	{
 			final int n = isPeak.length;
@@ -152,7 +139,6 @@ final class Flags {
 			return f == flags;
 		}
 	}
-
 
 	/**
 	 * Def: A peak is an array element which is larger than its neighbours. More precisely, it is an index P such that
@@ -171,9 +157,6 @@ final class Flags {
 		/**
 		 * Time complexity is O(N^2)<br>
 		 * Space complexity is O(1)
-		 *
-		 * @param A
-		 * @return
 		 */
 		public int solution(int[] A) {
 			int max = 0;
@@ -189,9 +172,6 @@ final class Flags {
 		/**
 		 * Time complexity is O(N)<br>
 		 * Space complexity is O(1)
-		 *
-		 * @param A
-		 * @return
 		 */
 		private int peaks(final int[] A) {
 			int counter = 0;
@@ -205,10 +185,6 @@ final class Flags {
 
 		/**
 		 * Time and space complexity is O(1)
-		 *
-		 * @param A
-		 * @param i
-		 * @return
 		 */
 		private boolean isPeak(final int[] A, final int i) {
 			return A[i] > A[i - 1] && A[i] > A[i + 1];
@@ -217,10 +193,6 @@ final class Flags {
 		/**
 		 * Time complexity is O(N)<br>
 		 * Space complexity is O(1)
-		 *
-		 * @param A
-		 * @param f
-		 * @return
 		 */
 		private boolean canSetFlags(final int[] A, final int f) {
 			int previousFlag = -1;

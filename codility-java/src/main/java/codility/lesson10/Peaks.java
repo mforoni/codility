@@ -64,27 +64,26 @@ import java.util.List;
  * 
  * N is an integer within the range [1..100,000];<br>
  * each element of array A is an integer within the range [0..1,000,000,000].
+ *
  * @see <a href="https://app.codility.com/programmers/lessons/10-prime_and_composite_numbers/peaks/">
  *     app.codility.com/programmers/lessons/10-prime_and_composite_numbers/peaks</a>
  * 
  * @author Marco Foroni
- *
  */
 final class Peaks {
 
 	/**
-	 * Note: P is the number of peaks. The upper bound of P is N/2. Consider the
-	 * array: A = [1 2 1 2 1 2 1]. |A|=7, P=3.
-	 * <p>
+	 * Note: P is the number of peaks. The upper bound of P is N/2.
+	 * Consider the array: A = [1 2 1 2 1 2 1]. |A|=7, P=3.<br>
+	 * <br>
 	 * Idea: Compute the possible ways for dividing array A in blocks having the same length, i.e. the number of divisor
-	 * of N where N is the length of A. Compute peaks[i] = the total number of peaks till the index i.
-	 * </p>
+	 * of N where N is the length of A. Compute peaks[i] = the total number of peaks till the index i.<br>
+	 * <br>
 	 * Time complexity is O(SQRT(N) * SQRT(N)) = O(N)<br>
 	 * Space complexity is O(N)
-	 * @see <a href="https://app.codility.com/demo/results/trainingJDA5AJ-AQ6/">app.codility.com/demo/results/trainingJDA5AJ-AQ6</a>
-	 * 
-	 * @param A
-	 * @return
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingJDA5AJ-AQ6/">
+	 *     app.codility.com/demo/results/trainingJDA5AJ-AQ6</a>
 	 */
 	public int solution(int[] A) {
 		final int n = A.length;
@@ -102,11 +101,11 @@ final class Peaks {
 		for (int f1 : factors(n)) {
 			int f2 = n / f1;
 			if (hasPeak(peaks, f1, f2)) {
-				//System.out.println(String.format("%d blocks with peak", f1));
+				//System.out.printf("%d blocks with peak%n", f1);
 				max = Math.max(max, f1);
 			}
 			if (f1 != f2 && hasPeak(peaks, f2, f1)) {
-				//System.out.println(String.format("%d blocks with peak", f2));
+				//System.out.printf("%d blocks with peak%n", f2);
 				max = Math.max(max, f2);
 			}
 		}
@@ -115,11 +114,6 @@ final class Peaks {
 
 	/**
 	 * Time complexity is O(SQRT(N))
-	 *
-	 * @param peaks
-	 * @param numBlocks
-	 * @param lenBlock
-	 * @return
 	 */
 	private static boolean hasPeak(int[] peaks, int numBlocks, int lenBlock) {
 		for (int k = 0; k < numBlocks; k++) {
@@ -132,11 +126,6 @@ final class Peaks {
 
 	/**
 	 * Time complexity is O(1)
-	 *
-	 * @param peaks
-	 * @param start
-	 * @param end
-	 * @return
 	 */
 	private static boolean blockHasPeak(int[] peaks, int start, int end) {
 		return start == 0 ? peaks[end] > 0 : peaks[end] > peaks[start - 1];
@@ -145,9 +134,6 @@ final class Peaks {
 	/**
 	 * Time complexity is O(SQRT(N))<br>
 	 * Space complexity is O(SQRT(N))
-	 *
-	 * @param n
-	 * @return
 	 */
 	static List<Integer> factors(final int n) {
 		final List<Integer> factors = new ArrayList<>();
@@ -160,21 +146,17 @@ final class Peaks {
 	}
 
 	/**
-	 * Note: The array must be divided in blocks containing the same number of elements.
-	 * <p>
+	 * Note: The array must be divided in blocks containing the same number of elements.<br>
+	 * <br>
 	 * Idea: For each possible way to split the array A in K blocks compute if each blocks has a peak. The possible ways
 	 * for dividing the array A in blocks having the same number of elements is the same of computing the divisor of N
 	 * where N is the length of array A.
-	 * </p>
 	 */
 	static class ExhaustiveSearch {
 
 		/**
 		 * Time complexity is O(SQRT(N) * 2N) = O(N * SQRT(N))<br>
 		 * Space complexity is O(SQRT(N))
-		 *
-		 * @param A
-		 * @return
 		 */
 		public int solution(int[] A) {
 			final int n = A.length;
@@ -194,11 +176,6 @@ final class Peaks {
 
 		/**
 		 * Time complexity is O(N)
-		 *
-		 * @param A
-		 * @param size
-		 * @param groups
-		 * @return
 		 */
 		private boolean hasPeaks(int[] A, int size, int groups) {
 			for (int g = 0; g < groups; g++) {

@@ -29,25 +29,23 @@ import java.util.List;
  *
  * N is an integer within the range [1..1,000,000,000].
  * </pre>
+ *
  * @see <a href="https://app.codility.com/programmers/lessons/10-prime_and_composite_numbers/min_perimeter_rectangle/">
  *     app.codility.com/programmers/lessons/10-prime_and_composite_numbers/min_perimeter_rectangle</a>
  *
- * @author Foroni Marco
+ * @author Marco Foroni
  */
 public class MinPerimeterRectangle {
 
     /**
-     * <p>
      * Idea: Find all divisors of N till SQRT(N), compute the other divisor and the perimeter. Find the minimum value
-     * for the perimeter.
-     * </p>
+     * for the perimeter.<br>
+     * <br>
      * Time complexity is O(SQRT(N))
      * Space complexity is O(SQRT(N))
+     *
      * @see <a href="https://app.codility.com/demo/results/training7WEHJN-KN8/">
      *     app.codility.com/demo/results/training7WEHJN-KN8</a>
-     *
-     * @param N
-     * @return
      */
     public int solution(int N) {
         final List<Integer> divisors = divisors(N);

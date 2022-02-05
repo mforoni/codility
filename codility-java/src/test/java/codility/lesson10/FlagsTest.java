@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FlagsTest {
 
-	public static final int NUM_TESTS = 100;
+	public static final int NUM_TESTS = 80;
 	private static final int MIN_N = 1;
 	private static final int MAX_N = 400_000;
 	private static final int MIN_INT = 0;
@@ -23,7 +23,7 @@ public class FlagsTest {
 	private static final int SOL3 = 1;
 	
 	@Test
-	public void testSolution() {
+	public void solution() {
 		final Flags flags = new Flags();
 		assertEquals(SOL1, flags.solution(A1));
 		assertEquals(SOL2, flags.solution(A2));
@@ -31,7 +31,7 @@ public class FlagsTest {
 	}
 
 	@Test
-	public void testExhaustiveSearch() {
+	public void exhaustiveSearch() {
 		final Flags.ExhaustiveSearch exhaustiveSearch = new Flags.ExhaustiveSearch();
 		assertEquals(SOL1, exhaustiveSearch.solution(A1));
 		assertEquals(SOL2, exhaustiveSearch.solution(A2));
@@ -39,11 +39,11 @@ public class FlagsTest {
 	}
 
 	@Test
-	public void testSolutionRandomInput() {
+	public void solutionRandomInput() {
 		final Flags flags = new Flags();
 		final Flags.ExhaustiveSearch exhaustiveSearch = new Flags.ExhaustiveSearch();
 		for (int t = 0; t < NUM_TESTS; t++) {
-			final int N = MoreInts.newRandom(MIN_N, 5_000);
+			final int N = MoreInts.newRandom(MIN_N, MAX_N / 50);
 			final int[] A = MoreInts.newRandomArray(N, MIN_INT, MAX_INT);
 			assertEquals(exhaustiveSearch.solution(A), flags.solution(A));
 		}

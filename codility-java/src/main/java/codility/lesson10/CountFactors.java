@@ -21,6 +21,7 @@ import java.util.Set;
  * <p>
  * Write an efficient algorithm for the following assumptions:<br>
  * N is an integer within the range [1..2,147,483,647].
+ *
  * @see <a href="https://app.codility.com/programmers/lessons/10-prime_and_composite_numbers/count_factors/">
  *     app.codility.com/programmers/lessons/10-prime_and_composite_numbers/count_factors</a>
  *
@@ -29,16 +30,14 @@ import java.util.Set;
 final class CountFactors {
 
 	/**
-	 * <p>
 	 * Idea: We can stop searching for factors of N when the candidate c multiplied by itself is greater than N.
-	 * We need to pay attention to count each factor 2 times except for the SQRT of N if is an integer value.
-	 * </p>
+	 * We need to pay attention to count each factor 2 times except for the SQRT of N if is an integer value.<br>
+	 * <br>
 	 * Time complexity is O(SQRT(N))<br>
 	 * Space complexity is O(1)
-	 * @see <a href="https://app.codility.com/demo/results/trainingDUCGCX-PR6/">app.codility.com/demo/results/trainingDUCGCX-PR6</a>
-	 * 
-	 * @param N
-	 * @return
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingDUCGCX-PR6/">
+	 *     app.codility.com/demo/results/trainingDUCGCX-PR6</a>
 	 */
 	public int solution(int N) {
 		int counter = 0;
@@ -59,8 +58,8 @@ final class CountFactors {
 	 * Time complexity is O(SQRT(N))<br>
 	 * Space complexity is O(1)
 	 *
-	 * @param N
-	 * @return
+	 * Note: 83% on performance. For example, for the input 2147483647 the solution exceeded the time limit.
+	 *
 	 * @see <a href="https://app.codility.com/demo/results/trainingJHCN2J-WRB/">
 	 *     app.codility.com/demo/results/trainingJHCN2J-WRB</a>
 	 */
@@ -86,7 +85,7 @@ final class CountFactors {
 				set.add(i);
 			}
 		}
-//		System.out.println(set);
+		//System.out.println(set);
 		return set.size();
 	}
 }

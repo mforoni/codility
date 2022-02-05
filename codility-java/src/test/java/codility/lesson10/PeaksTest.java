@@ -34,7 +34,7 @@ public class PeaksTest {
 	private static final int SOL6 = 0;
 
 	@Test
-	public void testSolution() {
+	public void solution() {
 		final Peaks peaks = new Peaks();
 		assertEquals(SOL1, peaks.solution(A1));
 		assertEquals(SOL2, peaks.solution(A2));
@@ -45,7 +45,7 @@ public class PeaksTest {
 	}
 	
 	@Test
-	public void testExhaustiveSearch() {
+	public void exhaustiveSearch() {
 		final Peaks.ExhaustiveSearch exhaustiveSearch = new Peaks.ExhaustiveSearch();
 		assertEquals(SOL1, exhaustiveSearch.solution(A1));
 		assertEquals(SOL2, exhaustiveSearch.solution(A2));
@@ -56,7 +56,7 @@ public class PeaksTest {
 	}
 
 	@Test
-	public void testSolutionRandomInput() {
+	public void solutionRandomInput() {
 		final Peaks peaks = new Peaks();
 		final Peaks.ExhaustiveSearch exhaustiveSearch = new Peaks.ExhaustiveSearch();
 		for (int t = 0; t < NUM_TESTS; t++) {
@@ -65,7 +65,7 @@ public class PeaksTest {
 			final int expected = exhaustiveSearch.solution(A);
 			final int actual = peaks.solution(A);
 			if (expected != actual) {
-				System.out.println(String.format("N = %d, A = %s", N, Arrays.toString(A)));
+				System.out.printf("N = %d, A = %s%n", N, Arrays.toString(A));
 			}
 			assertEquals(expected, actual);
 		}
