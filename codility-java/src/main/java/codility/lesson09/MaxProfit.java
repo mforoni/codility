@@ -47,32 +47,23 @@ package codility.lesson09;
  * expected worst-case time complexity is O(N);<br>
  * expected worst-case space complexity is O(1) (not counting the storage
  * required for input arguments).
+ *
  * @see <a href="https://app.codility.com/programmers/lessons/9-maximum_slice_problem/max_profit/">
  *     app.codility.com/programmers/lessons/9-maximum_slice_problem/max_profit</a>
  *
- * @author Foroni Marco
+ * @author Marco Foroni
  */
 final class MaxProfit {
 
 	/**
-	 * Idea: we need to compute the minimum value Min(i) i.e. the minimum value in
-	 * the array A till i-1:
-	 * <pre>
-	 * Min(0) = +INFINITE
-	 * Min(i) = min(Min(i-1), A[i-1])
-	 * 
-	 * And the maximum profit MP(i) i.e. the maximum possible profit for the array A 
-	 * till i as:
-	 * 
-	 * MP(0) = 0
-	 * MP(i) = max(MP(i-1), A[i] - Min(i-1))
-	 * </pre>
-	 *
+	 * Idea: store the current min value in array A of profits and the current max profit.
+	 * Iterate over the element in array A updating current min and current max profit.<br>
+	 * <br>
 	 * Time complexity is O(N)<br>
 	 * Space complexity is O(1)
 	 * 
-	 * @param A
-	 * @return
+	 * @see <a href="https://app.codility.com/demo/results/trainingQKV6JS-WZ8/">
+	 *     app.codility.com/demo/results/trainingQKV6JS-WZ8</a>
 	 */
 	public int solution(int[] A) {
 		int currentMin = Integer.MAX_VALUE; // current min value
@@ -87,12 +78,24 @@ final class MaxProfit {
 	}
 
 	/**
-	 * Time complexity is O(N)<br>
-	 * Space complexity is O(N)
+	 * Idea: we need to compute the minimum value Min(i) i.e. the minimum value in
+	 * the array A till i-1:
+	 * <pre>
+	 * Min(0) = +INFINITE
+	 * Min(i) = min(Min(i-1), A[i-1])
 	 *
-	 * @param A
-	 * @return
-	 * @see <a href="https://app.codility.com/demo/results/training4DB6BV-8US/">app.codility.com/demo/results/training4DB6BV-8US</a>
+	 * And the maximum profit MP(i) i.e. the maximum possible profit for the array A
+	 * till i as:
+	 *
+	 * MP(0) = 0
+	 * MP(i) = max(MP(i-1), A[i] - Min(i-1))
+	 * </pre>
+	 *
+	 * Time complexity is O(N)<br>
+	 * Space complexity is O(N) but can be reduced
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/training4DB6BV-8US/">
+	 *     app.codility.com/demo/results/training4DB6BV-8US</a>
 	 */
 	public static int subOptimal(int[] A) {
 		if (A.length == 0) {
@@ -116,14 +119,10 @@ final class MaxProfit {
 	}
 
 	/**
-	 * Idea: compute all possible profits and return the maximum value
-	 * <p>
+	 * Idea: compute all possible profits and return the maximum value<br>
+	 * <br>
 	 * Time complexity is O(N^2)<br>
 	 * Space complexity is O(1)
-	 * </p>
-	 * 
-	 * @param A
-	 * @return
 	 */
 	public static int exhaustiveSearch(final int[] A) {
 		int mp = 0; // max profit

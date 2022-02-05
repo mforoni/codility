@@ -36,11 +36,11 @@ import java.util.Arrays;
  * expected worst-case time complexity is O(N);<br>
  * expected worst-case space complexity is O(N) (not counting the storage
  * required for input arguments).
+ *
  * @see <a href="https://app.codility.com/programmers/lessons/9-maximum_slice_problem/max_slice_sum/">
  *     app.codility.com/programmers/lessons/9-maximum_slice_problem/max_slice_sum</a>
  *
- * @author Foroni Marco
- *
+ * @author Marco Foroni
  */
 final class MaxSliceSum {
 
@@ -51,14 +51,12 @@ final class MaxSliceSum {
 	 *     MSSE[i] = Max(MSSE[i-1] + A[i], A[i])
 	 * </pre>
 	 * MSS = Max element in MSSE array.
-	 * <p>
+	 * <br>
 	 * Time complexity is O(N)<br>
 	 * Space complexity is O(N)
-	 * </p>
 	 *
-	 * @param A
-	 * @return
-	 * @see <a href="https://app.codility.com/demo/results/training5AETQJ-JUK/">app.codility.com/demo/results/training5AETQJ-JUK</a>
+	 * @see <a href="https://app.codility.com/demo/results/training5AETQJ-JUK/">
+	 *     app.codility.com/demo/results/training5AETQJ-JUK</a>
 	 */
 	public int solution(int[] A) {
 		final int[] msse = new int[A.length];
@@ -76,14 +74,10 @@ final class MaxSliceSum {
 
 	/**
 	 * Idea: Compute prefix sums at the beginning, then find maximum sum for all
-	 * possible slices.
-	 * <p>
+	 * possible slices.<br>
+	 * <br>
 	 * Time complexity is O(N^2)<br>
 	 * Space complexity is O(N)
-	 * </p>
-	 *
-	 * @param A
-	 * @return
 	 */
 	public static int exhaustiveSearch(final int[] A) {
 		int max = Integer.MIN_VALUE;

@@ -34,32 +34,36 @@ import codility.util.MoreInts;
  * <p>
  * N is an integer within the range [3..100,000];<br>
  * each element of array A is an integer within the range [−10,000..10,000].
+ *
+ * @see <a href="https://app.codility.com/programmers/lessons/9-maximum_slice_problem/max_double_slice_sum/">
+ *     app.codility.com/programmers/lessons/9-maximum_slice_problem/max_double_slice_sum</a>
  * 
  * @author Marco Foroni
- *
  */
 final class MaxDoubleSliceSum {
 
 	/**
-	 * This problem can be solved computing the maximum subarray starting and ending
+	 * This problem can be solved computing the maximum sub-array starting and ending
 	 * on each index of the array (extremes excluded). This can be achieved using
-	 * kadane's algorithm.
-	 * <p>
+	 * kadane's algorithm.<br>
+	 * <br>
 	 * Time complexity is O(N)<br>
 	 * Space complexity is O(N)
 	 * 
-	 * @param A
-	 * @return
+	 * @see <a href="https://en.wikipedia.org/wiki/Maximum_subarray_problem#Kadane's_algorithm">Kadane's algorithm</a>
+	 *
+	 * @see <a href="https://app.codility.com/demo/results/trainingH6BFBK-BV3/">
+	 *     app.codility.com/demo/results/trainingH6BFBK-BV3</a>
 	 */
 	public int solution(int[] A) {
 		if (A.length == 3) {
 			return 0;
 		}
-		int[] mscss = maximumSumContinuosSubsequenceExtremesExcludedStartingAt(A);
-		int[] mscse = maximumSumContinuosSubsequenceExtremesExcludedEndingAt(A);
+		int[] mcss = maxContiguousSubsequenceStartingAt(A);
+		int[] mcse = maxContiguousSubsequenceEndingAt(A);
 		int max = Integer.MIN_VALUE;
 		for (int i = 1; i < A.length - 1; i++) {
-			int doubleSliceSum = Math.max(mscse[i - 1], 0) + Math.max(mscss[i + 1], 0);
+			int doubleSliceSum = Math.max(mcse[i - 1], 0) + Math.max(mcss[i + 1], 0);
 			if (doubleSliceSum > max) {
 				max = doubleSliceSum;
 			}
@@ -67,34 +71,45 @@ final class MaxDoubleSliceSum {
 		return max;
 	}
 
-	public static int[] maximumSumContinuosSubsequenceExtremesExcludedEndingAt(int[] array) {
+	/**
+	 * Return an array containing at each index the maximum sum of a contiguous subsequence extremes excluded
+	 * ending at index i.<br>
+	 * <br>
+	 * Time complexity is O(N)<br>
+	 * Space complexity is O(N)
+	 */
+	static int[] maxContiguousSubsequenceEndingAt(int[] array) {
 		assert (array.length > 1);
 		final int n = array.length;
-		final int[] mscse = new int[n];
-		mscse[1] = array[1];
+		final int[] mcse = new int[n];
+		mcse[1] = array[1];
 		for (int i = 2; i < n - 1; i++) {
-			mscse[i] = Math.max(mscse[i - 1] + array[i], array[i]);
+			mcse[i] = Math.max(mcse[i - 1] + array[i], array[i]);
 		}
-		return mscse;
+		return mcse;
 	}
 
-	public static int[] maximumSumContinuosSubsequenceExtremesExcludedStartingAt(int[] array) {
+	/**
+	 * Return an array containing at each index the maximum sum of a contiguous subsequence extremes excluded
+	 * starting at index i.<br>
+	 * <br>
+	 * Time complexity is O(N)<br>
+	 * Space complexity is O(N)
+	 */
+	static int[] maxContiguousSubsequenceStartingAt(int[] array) {
 		assert (array.length > 1);
 		final int n = array.length;
-		final int[] mscss = new int[n];
-		mscss[n - 2] = array[n - 2];
+		final int[] mcss = new int[n];
+		mcss[n - 2] = array[n - 2];
 		for (int i = n - 3; i > 0; i--) {
-			mscss[i] = Math.max(mscss[i + 1] + array[i], array[i]);
+			mcss[i] = Math.max(mcss[i + 1] + array[i], array[i]);
 		}
-		return mscss;
+		return mcss;
 	}
 
 	/**
 	 * Time complexity is O(N^3)<br>
 	 * Space complexity is O(N)
-	 * 
-	 * @param A
-	 * @return
 	 */
 	public static int exhaustiveSearch(final int[] A) {
 		final int[] sums = MoreInts.prefixSums(A);

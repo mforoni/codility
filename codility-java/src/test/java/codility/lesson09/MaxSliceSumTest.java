@@ -24,7 +24,7 @@ public class MaxSliceSumTest {
 	public static final int SOL3 = 2;
 
 	@Test
-	public void testSolution() {
+	public void solution() {
 		final MaxSliceSum maxSliceSum = new MaxSliceSum();
 		assertEquals(SOL1, maxSliceSum.solution(A1));
 		assertEquals(SOL2, maxSliceSum.solution(A2));
@@ -32,24 +32,24 @@ public class MaxSliceSumTest {
 	}
 
 	@Test
-	public void testExhaustiveSearch() {
+	public void exhaustiveSearch() {
 		assertEquals(SOL1, MaxSliceSum.exhaustiveSearch(A1));
 		assertEquals(SOL2, MaxSliceSum.exhaustiveSearch(A2));
 		assertEquals(SOL3, MaxSliceSum.exhaustiveSearch(A3));
 	}
 
 	@Test
-	public void testSolutionRandomInput() {
+	public void solutionRandomInput() {
 		final MaxSliceSum maxSliceSum = new MaxSliceSum();
 		for (int t = 0; t < NUM_TESTS; t++) {
-			final int N = MoreInts.newRandom(MIN_N, 10_000);
+			final int N = MoreInts.newRandom(MIN_N, MAX_N / 100);
 			final int[] A = MoreInts.newRandomArray(N, MIN_INT, MAX_INT);
 			assertEquals(MaxSliceSum.exhaustiveSearch(A), maxSliceSum.solution(A));
 		}
 	}
 
 	@Test
-	public void testSolutionRandomInputMaxN() {
+	public void solutionRandomInputMaxN() {
 		final MaxSliceSum maxSliceSum = new MaxSliceSum();
 		for (int t = 0; t < NUM_TESTS; t++) {
 			final int N = MoreInts.newRandom(MIN_N, MAX_N);
